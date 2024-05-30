@@ -24,28 +24,72 @@ def seed_users():
             "last_name": "User",
             "username": "demouser",
             "email": "demouser@email.com",
-            "hashed_password": "password1"
+            "hashed_password": "password1",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic1.jpg",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile1_background.jpg"
         },
         {
             "first_name": "John",
             "last_name": "Smith",
             "username": "johnsmith123",
             "email": "johnsmith123@email.com",
-            "hashed_password": "password2"
+            "hashed_password": "password2",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic2.jpg",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile2_background.jpg"
         },
         {
-            "first_name": "Sarah",
+            "first_name": "Matt",
             "last_name": "Carter",
-            "username": "sarahcarter123",
-            "email": "sarahcarter123@email.com",
-            "hashed_password": "password3"
+            "username": "mattcarter123",
+            "email": "mattcarter123@email.com",
+            "hashed_password": "password3",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic3.jpg",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile3_background.jpg"
         },
         {
             "first_name": "David",
             "last_name": "Kim",
             "username": "davidkim123",
             "email": "davidkim123@email.com",
-            "hashed_password": "password4"
+            "hashed_password": "password4",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic4.jpg",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile4_background.jpg"            
+        },
+        {
+            "first_name": "Sharon",
+            "last_name": "Lee",
+            "username": "sharonlee123",
+            "email": "sharonlee123@email.com",
+            "hashed_password": "password5",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic5.jpg",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile5_background.jpg"            
+        },
+        {
+            "first_name": "Sarah",
+            "last_name": "Johnson",
+            "username": "sarahjohnson123",
+            "email": "sarahjohnson123@email.com",
+            "hashed_password": "password6",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic6.jpg",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile6_background.jpg"            
+        },
+        {
+            "first_name": "Spencer",
+            "last_name": "Stanton",
+            "username": "spencerstanton123",
+            "email": "spencerstanton123@email.com",
+            "hashed_password": "password7",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic7.jpg",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile7_background.jpg"            
+        },
+        {
+            "first_name": "Gina",
+            "last_name": "Nguyen",
+            "username": "ginanguyen123",
+            "email": "ginanguyen123@email.com",
+            "hashed_password": "password8",
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic8.png",
+            "background_image": "https://stumblrimages.s3.amazonaws.com/profile8_background.jpg"            
         }
     ]
 
