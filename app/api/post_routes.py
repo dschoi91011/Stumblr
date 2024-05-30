@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from .aws_functions import (upload_file_to_s3, get_unique_filename)
-from ..models import db, Post, Comment
+from ..models import db, Post, Comment, Favorite
 from ..forms import PostForm, CommentForm
 
 
@@ -155,3 +155,37 @@ def create_post_comment(post_id):
 
     else:
         return {'error': form.errors}, 400
+
+#READ favorite for post-----------------------------------------------
+@post_routes.route('/<int:post_id>/favorites')
+def check_favs(post_id):
+    post = Post.query.get(post_id)
+    fav = Favorite.query.filter_by(post_id=post_id).all()
+
+    if not post:
+        return {'message': 'Post does not exist'}, 404
+
+    return {'Favorites': [favorite.user_id for favorite in favorites]}
+
+#CREATE favorite for post---------------------------------------------
+@post_routes.route('/<int:post_id>/favorite', methods=['POST'])
+@login_required
+def switch_fav(post_id):
+    post = Post.query.get(post_id)
+    fav = Favorite.query.filter_by(user_id=current_user.id, post_id=post_id).first()
+
+    if not post:
+        return {'message': 'Post does not exist'}, 404
+
+    if fav:
+        db.session.delete(fav)
+        msg = 'Liked'
+    else:
+        new_fav = Favorite(user_id=current_user.id, post_id=post_id)
+        db.session.add(new_fav)
+        msg = 'Unliked'
+
+    db.session.commit()
+    return {'message': msg}, 200
+
+    

@@ -14,7 +14,7 @@ class Post(db.Model):
 
     user = db.relationship('User', back_populates='posts')
     comments = db.relationship('Comment', back_populates='post', cascade='all, delete-orphan')
-    # likes = db.relationship('Like', back_populates='post', cascade='all, delete-orphan')
+    favorites = db.relationship('Favorite', back_populates='post', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
