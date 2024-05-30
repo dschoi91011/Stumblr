@@ -38,7 +38,7 @@ def all_posts():
 @login_required
 def my_posts():
     poster_id = current_user.id
-    posts = Post.query.filter_by(poster_id = user_id).all()                 # user_id --> poster_id???
+    posts = Post.query.filter_by(poster_id = poster_id).all()                 # user_id --> poster_id???
     return {'posts': [post.to_dict() for post in posts]}
 
 #READ one post------------------------------------------------------
