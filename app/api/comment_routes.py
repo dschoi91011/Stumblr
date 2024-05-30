@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from ..models import db, Comment
 from ..forms import CommentForm
@@ -11,7 +11,7 @@ def authorize(poster_id):
         return {'message': 'Forbidden'}, 403
     return None
 
-
+#READ one comment---------------------------------------------------------
 @comment_routes.route('/<int:comment_id>')
 def one_comment(comment_id):
     comment = Comment.query.get(comment_id)
@@ -19,6 +19,7 @@ def one_comment(comment_id):
         return {'message': 'Comment does not exist'}, 404
     return comment.to_dict()
 
+#READ all my comments-----------------------------------------------------
 @comment_routes.route('/my-comments')
 @login_required
 def my_comments():
@@ -26,6 +27,7 @@ def my_comments():
     comments = Comment.query.filter_by(user_id = user_id).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
+#UPDATE a comment----------------------------------------------------------
 @comment_routes.route('/<int:comment_id>', methods=['PUT'])
 @login_required
 def edit_comment(comment_id):
@@ -33,9 +35,9 @@ def edit_comment(comment_id):
     if not comment:
         return {'message': 'Comment does not exist'}, 404
 
-    auth = authorize(comment.user_id)
-    if auth:
-        return auth
+    authed = authorize(comment.user_id)
+    if authed:
+        return authed
 
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -46,16 +48,17 @@ def edit_comment(comment_id):
     else:
         return {'error': form.errors}, 400
 
-@comment_routes.route('/<int:comment_id', methods=['DELETE'])
+#DELETE a comment------------------------------------------------------------
+@comment_routes.route('/<int:comment_id>', methods=['DELETE'])
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.get(comment_id)
     if not comment:
         return {'message': 'Comment does not exist'}, 404
 
-    auth = authorize(comment.user_id)
-    if auth:
-        return auth
+    authed = authorize(comment.user_id)
+    if authed:
+        return authed
     
     db.session.delete(comment)
     db.session.commit()

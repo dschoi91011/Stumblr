@@ -79,7 +79,7 @@ def seed_comments():
         {'user_id': 1, 'post_id': 24, 'content': 'I love good architecture'}
     ]
 
-    create_comments = [Comments(**comment) for comment in all_comments]
+    create_comments = [Comment(**comment) for comment in all_comments]
     add_comments = [db.session.add(comment) for comment in create_comments]
     db.session.commit()
     return create_comments

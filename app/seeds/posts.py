@@ -149,7 +149,7 @@ def seed_posts():
         }
     ]
 
-    create_posts = [Posts(**post) for post in all_posts]
+    create_posts = [Post(**post) for post in all_posts]
     add_posts = [db.session.add(post) for post in create_posts]
     db.session.commit()
     return create_posts
