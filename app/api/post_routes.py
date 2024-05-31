@@ -13,25 +13,25 @@ def authorize(poster_id):
     return None
 
 #READ all posts------------------------------------------------------
-# @post_routes.route('/')
-# def all_posts():
-#     posts = Post.query.all()
-#     return {'posts': [post.to_dict() for post in posts]}
-
 @post_routes.route('/')
 def all_posts():
     posts = Post.query.all()
-    html = "<html><body><h1>All Posts</h1><ul>"
-    for post in posts:
-        html += f"""
-            <li>
-                <h2>{post.title}</h2>
-                <p>{post.body}</p>
-                <img style='height: 300px; width: auto;' src='{post.picture}' alt='{post.title}'>
-            </li>
-        """
-    html += "</ul></body></html>"
-    return html
+    return {'posts': [post.to_dict() for post in posts]}
+
+# @post_routes.route('/')
+# def all_posts():
+#     posts = Post.query.all()
+#     html = "<html><body><h1>All Posts</h1><ul>"
+#     for post in posts:
+#         html += f"""
+#             <li>
+#                 <h2>{post.title}</h2>
+#                 <p>{post.body}</p>
+#                 <img style='height: 300px; width: auto;' src='{post.picture}' alt='{post.title}'>
+#             </li>
+#         """
+#     html += "</ul></body></html>"
+#     return html
 
 #READ current user posts------------------------------------------------------
 @post_routes.route('/my-posts')
