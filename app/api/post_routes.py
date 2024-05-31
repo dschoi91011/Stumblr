@@ -18,7 +18,7 @@ def all_posts():
     posts = Post.query.all()
     return {'posts': [post.to_dict() for post in posts]}
 
-# @post_routes.route('/')
+# @post_routes.route('/')                                               # utilize this route to see images in backend
 # def all_posts():
 #     posts = Post.query.all()
 #     html = "<html><body><h1>All Posts</h1><ul>"
