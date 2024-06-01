@@ -83,11 +83,13 @@ export default function AllPosts() {
                             ) : (
                                 <p>No comments yet.</p>
                             )}
-                            <OpenModalButton
-                                className='post-comment'
-                                buttonText='Post Comment'
-                                modalComponent={<PostComment postId={obj.id}/>}
-                            />
+                            {currentUser && (
+                                <OpenModalButton
+                                    className='post-comment'
+                                    buttonText='Post Comment'
+                                    modalComponent={<PostComment postId={obj.id}/>}
+                                />
+                            )}
                         </div>
                     )}
                 </div>
