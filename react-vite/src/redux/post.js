@@ -58,10 +58,12 @@ const deletePost = (post) => ({
     post
 });
 
-export const deletePostThunk = (id) => async(dispatch) => {
-    const res = await fetch(`/api/posts/${id}`, {
+export const deletePostThunk = (postId) => async(dispatch) => {
+    const res = await fetch(`/api/posts/${postId}`, {
         method: 'DELETE'
     });
+
+    console.log('DELETE RES---------------> ', res)
     const data = await res.json();
     if(res.ok) dispatch(deletePost(data));
     return data;

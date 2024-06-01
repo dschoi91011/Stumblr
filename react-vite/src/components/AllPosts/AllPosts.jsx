@@ -2,6 +2,8 @@ import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {getAllPostsThunk} from "../../redux/posts";
+import DeletePost from "../DeletePost";
+import OpenModalButton from "../OpenModalButton";
 
 export default function AllPosts(){
     const [isLoaded, setIsLoaded] = useState(false);
@@ -32,10 +34,15 @@ export default function AllPosts(){
         <div className="all-posts">
             {currentUser && <button onClick={handleCreatePost}>Create Post</button>}
             {isLoaded && posts.map(obj => (
-                <div key={obj.id} onClick={() => handleTitleClick(obj.poster_id)} style={{ cursor: 'pointer' }}>
-                    <h2>{obj.title}</h2>
-                    <p>{obj.body}</p>
-                    {obj.picture && <img style={{height: "300px", width: "auto"}} src={obj.picture} alt={obj.title} />}
+                <div key={obj.id} style={{ position: 'relative', cursor: 'pointer' }}>
+                    <div onClick={() => handleTitleClick(obj.poster_id)}>
+                        <h2>{obj.title}</h2>
+                        <p>{obj.body}</p>
+                        {obj.picture && <img style={{height: "300px", width: "auto"}} src={obj.picture} alt={obj.title}/>}
+                    </div>
+                    {currentUser && currentUser.id === obj.poster_id &&
+                    (<OpenModalButton className='delete-post' buttonText='Delete' modalComponent={<DeletePost postId={obj.id}/>}/>)
+                    }
                 </div>
             ))}
         </div>

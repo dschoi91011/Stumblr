@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCurrentPostsThunk} from "../../redux/posts";
 import {useParams} from "react-router-dom";
 
-export default function UserPosts() {
+export default function UserPosts(){
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const currentPosts = useSelector((state) => state.posts.currentPosts);
-  const {userId} = useParams()
+  const {userId} = useParams();
 
   useEffect(() => {
     const getUserPosts = async() => {
@@ -17,7 +17,7 @@ export default function UserPosts() {
     getUserPosts();
   }, [dispatch, userId]);
 
-  return (
+  return(
     <div className="user-posts">
       {isLoaded &&
         currentPosts.map((post) => (

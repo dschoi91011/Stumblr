@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {createPostThunk} from '../../redux/post';
 
-export default function CreatePostForm() {
+export default function CreatePostForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
@@ -31,7 +31,7 @@ export default function CreatePostForm() {
 
             const res = await dispatch(createPostThunk(formData));
 
-            if(res.errors) {
+            if(res.errors){
                 setInputError(res.errors);
             } else {
                 navigate('/');
