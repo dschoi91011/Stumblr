@@ -36,7 +36,7 @@ export default function AllPosts(){
     return(
         <div className="all-posts">
             {currentUser && <button onClick={handleCreatePost}>Create Post</button>}
-            {isLoaded && posts.map(obj => (
+            {isLoaded && posts.slice(0).reverse().map(obj => (
                 <div key={obj.id} style={{ position: 'relative', cursor: 'pointer' }}>
                     <div onClick={() => handleTitleClick(obj.poster_id)}>
                         <h2>{obj.title}</h2>
