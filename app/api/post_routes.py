@@ -89,56 +89,37 @@ def new_post():
         return {'error': form.errors}, 400
 
 #UPDATE post------------------------------------------------------
-# @post_routes.route('/<int:post_id>', methods=['PUT'])
-# @login_required
-# def edit_post(post_id):
-#     post = Post.query.get(post_id)
-#     if not post:
-#         return {'message': 'Post does not exist'}, 404
-
-#     authed = authorize(post.poster_id)
-#     if authed:
-#         return authed
-
-#     form = PostForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-
-#     if form.validate_on_submit():
-#         post.title = form.data['title']
-#         post.body = form.data['body']
-#         post.picture = form.data['picture']
-#         db.session.commit()
-#         return post.to_dict(), 200
-#     else:
-#         return {'error': form.errors}, 400
-
-
 @post_routes.route('/<int:post_id>', methods=['PUT'])
 @login_required
 def edit_post(post_id):
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     post = Post.query.get(post_id)
     if not post:
-        return {'message': 'Post does not exist'}, 404
+        return {'message': 'Post not found'}, 404
 
     authed = authorize(post.poster_id)
     if authed:
         return authed
 
-    form = PostForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
     if form.validate_on_submit():
-        post.title = form.data['title']
-        post.body = form.data['body']
-        if 'picture' in request.files:
-            picture = request.files['picture']
-            if picture:
-                filename = get_unique_filename(picture.filename)
-                post.picture = upload_file_to_s3(picture, filename)
+        post.title = form.title.data
+        post.body = form.body.data
+
+        image = form.picture.data
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if 'url' not in upload:
+                return {'error': 'Image could not be uploaded'}, 400
+            post.picture = upload['url']
+
         db.session.commit()
         return post.to_dict(), 200
-    else:
-        return {'error': form.errors}, 400
+
+    return {'error': form.errors}, 400
+
 
 #DELETE post------------------------------------------------------
 @post_routes.route('/<int:post_id>', methods=['DELETE'])
