@@ -76,10 +76,8 @@ const postReducer = (state=initState, action) => {
     switch(action.type){
         case GET_POST_BY_ID:
             return {...state, post: action.post};
-        // case CREATE_POST:
-        //     return {...state, post: action.post};
         case CREATE_POST:
-            return { ...state, Posts: [action.post, ...state.Posts] };
+            return {...state, post: action.post};
         case UPDATE_POST:
             return {...state, post: action.post};
         default:
