@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { getAllPostsThunk } from "../../redux/posts";
-import { getCommentsForPostThunk } from "../../redux/comments"; // Import the thunk action
+import { getCommentsForPostThunk } from "../../redux/comments"; 
 import DeletePost from "../DeletePost";
 import UpdatePost from "../UpdatePost";
+import PostComment from "../PostComment";
 import OpenModalButton from "../OpenModalButton";
 import './AllPosts.css';
 
 export default function AllPosts() {
     const [isLoaded, setIsLoaded] = useState(false);
-    const [commentsVisible, setCommentsVisible] = useState({}); // Track visibility of comments for each post
+    const [commentsVisible, setCommentsVisible] = useState({}); 
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.posts);
     const currentUser = useSelector(state => state.session.user);
@@ -82,6 +83,11 @@ export default function AllPosts() {
                             ) : (
                                 <p>No comments yet.</p>
                             )}
+                            <OpenModalButton
+                                className='post-comment'
+                                buttonText='Post Comment'
+                                modalComponent={<PostComment postId={obj.id}/>}
+                            />
                         </div>
                     )}
                 </div>
