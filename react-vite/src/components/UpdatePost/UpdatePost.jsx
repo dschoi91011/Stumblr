@@ -1,25 +1,41 @@
-import {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {createPostThunk} from '../../redux/post';
-import './CreatePostForm.css';
+import {getPostByIdThunk, updatePostThunk} from '../../redux/post';
+import {getAllPostsThunk} from '../../redux/posts';
+import {useModal} from '../../context/Modal';
+import './UpdatePost.css';
 
-export default function CreatePostForm(){
+export default function UpdatePost({postId}) {
+    const {closeModal} = useModal();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const post = useSelector(state => state.post.post);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [picture, setPicture] = useState(null);
     const [inputError, setInputError] = useState({});
 
+    useEffect(() => {
+        const fetchPost = async() => {
+            if(postId){
+                const postData = await dispatch(getPostByIdThunk(postId));
+                setTitle(postData.title || '');
+                setBody(postData.body || '');
+                setPicture(postData.picture || '');
+            }
+        };
+
+        fetchPost();
+    }, [dispatch, postId]);
+
     const hasErrors = () => {
         let errorObj = {};
         if(!title) errorObj.title = 'Title is required';
-        if(!picture) errorObj.picture = 'Picture is required';
         return errorObj;
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const newErr = hasErrors();
         setInputError(newErr);
@@ -28,14 +44,18 @@ export default function CreatePostForm(){
             const formData = new FormData();
             formData.append('title', title);
             formData.append('body', body);
-            formData.append('picture', picture);
+            if(picture instanceof File){
+                formData.append('picture', picture);
+            }
 
-            const res = await dispatch(createPostThunk(formData));
+            const res = await dispatch(updatePostThunk(postId, formData));
 
-            if(res.errors){
-                setInputError(res.errors);
+            if(res.error){
+                setInputError(res.error);
             } else {
+                await dispatch(getAllPostsThunk());
                 navigate('/');
+                closeModal();
             }
         }
     };
@@ -45,9 +65,9 @@ export default function CreatePostForm(){
         if(file) setPicture(file);
     };
 
-    return(
+    return (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <h1 style={{fontSize: '40px'}}>Create a New Post</h1>
+            <h1 style={{fontSize: '40px'}}>Update Post</h1>
 
             <div>
                 <label htmlFor="title">Title
@@ -64,12 +84,11 @@ export default function CreatePostForm(){
 
             <div>
                 <label htmlFor="picture">Picture
-                    <input id="picture" type="file" style={{fontSize: '20px'}} onChange={updatePicture} required/>
+                    <input id="picture" type="file" style={{fontSize: '20px' }} onChange={updatePicture}/>
                 </label>
-                {inputError.picture && <p style={{color: 'red', fontSize: '22px'}}>{inputError.picture}</p>}
             </div>
 
-            <button type="submit" style={{height: '40px', width: '200px', fontSize: '20px', margin: '20px 0px'}}>Create Post</button>
+            <button type="submit" style={{height: '40px', width: '200px', fontSize: '20px', margin: '20px 0px'}}>Update Post</button>
         </form>
     );
 }

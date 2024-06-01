@@ -32,27 +32,19 @@ export const getCurrentPostsThunk = (userId) => async (dispatch) => {
     return data;
   };
 
-// const initState = {};
 
-// const postsReducer = (state=initState, action) => {
-//     switch(action.type){
-//         case GET_ALL_POSTS:
-//             return {...state, Posts: action.posts};
-//         case GET_CURRENT_POSTS:
-//             return {...state, currentPosts: action.posts};
-//         default:
-//             return state;
-//     }
-// };
+
+
 
 const initState = {Posts: []};
 
 const postsReducer = (state=initState, action) => {
     switch(action.type){
         case GET_ALL_POSTS:
-            return {...state, Posts: action.posts.posts}; // Accessing posts array from action payload
+            return {...state, Posts: action.posts.posts};
         case GET_CURRENT_POSTS:
             return {...state, currentPosts: action.posts.posts}; // Correct structure???
+
         default:
             return state;
     }

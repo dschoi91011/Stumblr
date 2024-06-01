@@ -46,3 +46,4 @@ class User(db.Model, UserMixin):
             'profile_pic': self.profile_pic,
             'background_image': self.background_image
         }
+

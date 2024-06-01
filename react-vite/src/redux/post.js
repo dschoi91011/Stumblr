@@ -6,8 +6,8 @@ const getPostById = (post) => ({
     post
 });
 
-export const getPostByIdThunk = (id) => async(dispatch) => {
-    const res = await fetch(`/api/posts/${id}`);
+export const getPostByIdThunk = (postId) => async(dispatch) => {
+    const res = await fetch(`/api/posts/${postId}`);
     const data = await res.json();
     if(res.ok) dispatch(getPostById(data));
     return data;
@@ -31,6 +31,7 @@ export const createPostThunk = (formData) => async(dispatch) => {
     return data;
 };
 
+
 // UPDATE A POST---------------------------------------
 const UPDATE_POST = 'post/UPDATE_POST';
 
@@ -39,11 +40,10 @@ const updatePost = (post) => ({
     post
 });
 
-export const updatePostThunk = (id, post) => async(dispatch) => {
-    const res = await fetch(`/api/posts/${id}`, {
+export const updatePostThunk = (postId, formData) => async(dispatch) => {
+    const res = await fetch(`/api/posts/${postId}`, {
         method: 'PUT',
-        header: {'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
+        body: formData
     });
     const data = await res.json();
     if(res.ok) dispatch(updatePost(data));
@@ -76,8 +76,10 @@ const postReducer = (state=initState, action) => {
     switch(action.type){
         case GET_POST_BY_ID:
             return {...state, post: action.post};
+        // case CREATE_POST:
+        //     return {...state, post: action.post};
         case CREATE_POST:
-            return {...state, post: action.post};
+            return { ...state, Posts: [action.post, ...state.Posts] };
         case UPDATE_POST:
             return {...state, post: action.post};
         default:

@@ -18,10 +18,15 @@ class Post(db.Model):
 
 
     def to_dict(self):
+
+        # user_info = self.user.to_dict()
+
         return {
             'id': self.id,
             'poster_id': self.poster_id,
             'title': self.title,
             'body': self.body,
-            'picture': self.picture
+            'picture': self.picture,
+            # 'poster_username': user_info['username'],
+            # 'poster_profile_pic': user_info['profile_pic']
         }

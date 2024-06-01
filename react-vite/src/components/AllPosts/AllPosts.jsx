@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {getAllPostsThunk} from "../../redux/posts";
 import DeletePost from "../DeletePost";
+import UpdatePost from "../UpdatePost";
 import OpenModalButton from "../OpenModalButton";
 import './AllPosts.css';
 
@@ -11,6 +12,7 @@ export default function AllPosts(){
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.Posts);
     const currentUser = useSelector(state => state.session.user);
+    // const allUsers = useSelector(state => state)
     const navigate = useNavigate();
 
     // console.log('POSTS--------------> ', posts);
@@ -41,9 +43,20 @@ export default function AllPosts(){
                         <p>{obj.body}</p>
                         {obj.picture && <img style={{height: "300px", width: "auto"}} src={obj.picture} alt={obj.title}/>}
                     </div>
-                    {currentUser && currentUser.id === obj.poster_id &&
-                    (<OpenModalButton className='delete-post' buttonText='Delete' modalComponent={<DeletePost postId={obj.id}/>}/>)
-                    }
+                    {currentUser && currentUser.id === obj.poster_id && (
+                        <div className="post-actions">
+                            <OpenModalButton
+                                className='delete-post'
+                                buttonText='Delete'
+                                modalComponent={<DeletePost postId={obj.id} />}
+                            />
+                            <OpenModalButton
+                                className='update-post'
+                                buttonText='Update'
+                                modalComponent={<UpdatePost postId={obj.id} />}
+                            />
+                        </div>
+                    )}
                 </div>
             ))}
         </div>
