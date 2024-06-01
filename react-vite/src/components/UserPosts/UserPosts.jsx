@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentPostsThunk} from "../../redux/posts";
 import {useParams} from "react-router-dom";
+import './UserPosts.css';
 
 export default function UserPosts(){
   const [isLoaded, setIsLoaded] = useState(false);

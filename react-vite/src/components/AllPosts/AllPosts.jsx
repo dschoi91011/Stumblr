@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {getAllPostsThunk} from "../../redux/posts";
 import DeletePost from "../DeletePost";
 import OpenModalButton from "../OpenModalButton";
+import './AllPosts.css';
 
 export default function AllPosts(){
     const [isLoaded, setIsLoaded] = useState(false);
