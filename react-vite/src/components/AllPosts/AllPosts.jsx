@@ -1,29 +1,41 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllPostsThunk } from "../../redux/posts";
+import {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from 'react-router-dom';
+import {getAllPostsThunk} from "../../redux/posts";
 
-export default function AllPosts() {
+export default function AllPosts(){
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.Posts);
+    const currentUser = useSelector(state => state.session.user);
+    const navigate = useNavigate();
 
-    console.log('POSTS--------------> ', posts);
+    // console.log('POSTS--------------> ', posts);
 
     useEffect(() => {
-        const getAllPosts = async () => {
+        const getAllPosts = async() => {
             await dispatch(getAllPostsThunk());
             setIsLoaded(true);
         };
         getAllPosts();
     }, [dispatch]);
 
+    const handleCreatePost = () => {
+        navigate('/new-post');
+    };
+
+    const handleTitleClick = (userId) => {
+        navigate(`/user/${userId}/posts`);
+    };
+
     return(
         <div className="all-posts">
-            {isLoaded && posts.map(post => (
-                <div key={post.id}>
-                    <h2>{post.title}</h2>
-                    <p>{post.body}</p>
-                    {post.picture && <img style={{ height: "300px", width: "auto" }} src={post.picture} alt={post.title} />}
+            {currentUser && <button onClick={handleCreatePost}>Create Post</button>}
+            {isLoaded && posts.map(obj => (
+                <div key={obj.id} onClick={() => handleTitleClick(obj.poster_id)} style={{ cursor: 'pointer' }}>
+                    <h2>{obj.title}</h2>
+                    <p>{obj.body}</p>
+                    {obj.picture && <img style={{height: "300px", width: "auto"}} src={obj.picture} alt={obj.title} />}
                 </div>
             ))}
         </div>

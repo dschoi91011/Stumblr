@@ -34,11 +34,17 @@ def all_posts():
 #     return html
 
 #READ current user posts------------------------------------------------------
-@post_routes.route('/my-posts')
-@login_required
-def my_posts():
-    poster_id = current_user.id
-    posts = Post.query.filter_by(poster_id = poster_id).all()                 # user_id --> poster_id???
+# @post_routes.route('/my-posts')
+# @login_required
+# def my_posts():
+#     poster_id = current_user.id
+#     posts = Post.query.filter_by(poster_id = poster_id).all()                 # user_id --> poster_id???
+#     return {'posts': [post.to_dict() for post in posts]}
+
+#READ posts by specific user ------------------------------------------------------
+@post_routes.route('/user/<int:poster_id>/posts')
+def user_posts(poster_id):
+    posts = Post.query.filter_by(poster_id = poster_id).all()
     return {'posts': [post.to_dict() for post in posts]}
 
 #READ one post------------------------------------------------------

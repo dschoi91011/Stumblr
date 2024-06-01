@@ -21,11 +21,10 @@ const createPost = (post) => ({
     post
 });
 
-export const createPostThunk = (post) => async(dispatch) => {
+export const createPostThunk = (formData) => async(dispatch) => {
     const res = await fetch('/api/posts/new-post', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
+        body: formData
     });
     const data = await res.json();
     if(res.ok) dispatch(createPost(data));
@@ -69,7 +68,7 @@ export const deletePostThunk = (id) => async(dispatch) => {
 }
 
 
-const initState = {};
+const initState = {Posts: [], currentPosts: []};
 
 const postReducer = (state=initState, action) => {
     switch(action.type){
