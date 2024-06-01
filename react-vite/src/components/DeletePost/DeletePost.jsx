@@ -1,8 +1,8 @@
 import {useModal} from '../../context/Modal';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {deletePostThunk} from '../../redux/post';
-import {getAllPostsThunk} from '../../redux/posts';
+// import {deletePostThunk} from '../../redux/post';
+import {deletePostThunk, getAllPostsThunk} from '../../redux/posts';
 import './DeletePost.css';
 
 

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {getPostByIdThunk, updatePostThunk} from '../../redux/post';
+import {getPostByIdThunk, updatePostThunk} from '../../redux/posts';
 import {getAllPostsThunk} from '../../redux/posts';
 import {useModal} from '../../context/Modal';
 import './UpdatePost.css';
@@ -10,7 +10,7 @@ export default function UpdatePost({postId}) {
     const {closeModal} = useModal();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const post = useSelector(state => state.post.post);
+    // const post = useSelector(state => state.post);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [picture, setPicture] = useState(null);

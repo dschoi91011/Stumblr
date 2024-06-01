@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {createPostThunk} from '../../redux/post';
+import {createPostThunk} from '../../redux/posts';
 import './CreatePostForm.css';
 
 export default function CreatePostForm(){

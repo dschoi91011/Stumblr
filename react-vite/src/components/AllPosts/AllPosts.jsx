@@ -10,7 +10,7 @@ import './AllPosts.css';
 export default function AllPosts(){
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
-    const posts = useSelector(state => state.posts.Posts);
+    const posts = useSelector(state => state.posts.posts);
     const currentUser = useSelector(state => state.session.user);
     // const allUsers = useSelector(state => state)
     const navigate = useNavigate();
