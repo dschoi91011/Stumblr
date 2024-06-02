@@ -6,6 +6,7 @@ import { getCommentsForPostThunk } from "../../redux/comments";
 import DeletePost from "../DeletePost";
 import UpdatePost from "../UpdatePost";
 import PostComment from "../PostComment";
+import UpdateComment from "../UpdateComment";
 import DeleteComment from "../DeleteComment";
 import OpenModalButton from "../OpenModalButton";
 import './AllPosts.css';
@@ -82,11 +83,18 @@ export default function AllPosts() {
                                         <p>{comment.content}</p>
                                         <small>By User {comment.user_id}</small>
                                         {currentUser && currentUser.id === comment.user_id && (
-                                            <OpenModalButton
-                                                className='delete-comment'
-                                                buttonText='Delete'
-                                                modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}
-                                            />
+                                            <div>
+                                                <OpenModalButton
+                                                    className='delete-comment'
+                                                    buttonText='Delete'
+                                                    modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}
+                                                />
+                                                <OpenModalButton
+                                                    className='update-comment'
+                                                    buttonText='Edit'
+                                                    modalComponent={<UpdateComment id={comment.id} postId={obj.id}/>}
+                                                />
+                                            </div>
                                         )}
                                     </div>
                                 ))

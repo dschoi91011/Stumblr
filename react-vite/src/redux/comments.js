@@ -135,10 +135,22 @@ const commentsReducer = (state = initState, action) => {
             const postId = action.comment.post_id;
             return {...state, byPostId: {...state.byPostId, [postId]: [...(state.byPostId[postId] || []), action.comment]}};
         }
+        // case UPDATE_COMMENT: {
+        //     const comment = action.comment;
+        //     const postId = comment.post_id;
+        //     return {...state, byPostId: {...state.byPostId, [postId]: [...(state.byPostId[postId] || []), comment]}};
+        // }
+
         case UPDATE_COMMENT: {
             const comment = action.comment;
             const postId = comment.post_id;
-            return {...state, byPostId: {...state.byPostId, [postId]: [...(state.byPostId[postId] || []), comment]}};
+            return {
+                ...state, 
+                byPostId: {
+                    ...state.byPostId, 
+                    [postId]: state.byPostId[postId].map(c => c.id === comment.id ? comment : c)
+                }
+            };
         }
         // case DELETE_COMMENT: {
         //     const commentId = action.commentId;
