@@ -11,7 +11,7 @@ def authorize(poster_id):
         return {'message': 'Forbidden'}, 403
     return None
 
-#READ one comment---------------------------------------------------------
+#READ one comment--------------------------------------------------------- POSSIBLY UNNECESSARY
 @comment_routes.route('/<int:comment_id>')
 def one_comment(comment_id):
     comment = Comment.query.get(comment_id)
@@ -19,7 +19,7 @@ def one_comment(comment_id):
         return {'message': 'Comment does not exist'}, 404
     return comment.to_dict()
 
-#READ all my comments-----------------------------------------------------
+#READ all my comments----------------------------------------------------- POSSIBLY UNNECESSARY
 @comment_routes.route('/my-comments')
 @login_required
 def my_comments():
@@ -42,7 +42,8 @@ def edit_comment(comment_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        comment.content = form.data['content']
+        # comment.content = form.data['content']
+        comment.content = form.content.data
         db.session.commit()
         return comment.to_dict(), 200
     else:

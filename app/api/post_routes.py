@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from .aws_functions import (upload_file_to_s3, get_unique_filename)
-from ..models import db, Post, Comment                                  # don't forget to add FAVORITE to add relevant routes 
+from ..models import db, Post, Comment                                  # make sure to add FAVORITE to add relevant routes for future features
 from ..forms import PostForm, CommentForm
 
 
@@ -34,12 +34,12 @@ def all_posts():
 #     html += "</ul></body></html>"
 #     return html
 
-#READ current user posts------------------------------------------------------
+#READ current user posts------------------------------------------------------  POSSIBLY UNNECESSARY
 # @post_routes.route('/my-posts')
 # @login_required
 # def my_posts():
 #     poster_id = current_user.id
-#     posts = Post.query.filter_by(poster_id = poster_id).all()                 # user_id --> poster_id???
+#     posts = Post.query.filter_by(poster_id = poster_id).all()                 
 #     return {'posts': [post.to_dict() for post in posts]}
 
 #READ posts by specific user ------------------------------------------------------
@@ -76,8 +76,6 @@ def new_post():
 
         new_post = Post(
             poster_id = current_user.id,
-            # title = form.data['title'],
-            # body = form.data['body'],
             title = form.title.data,
             body = form.body.data,
             picture = url
@@ -164,7 +162,7 @@ def create_post_comment(post_id):
         new_comment = Comment(
             user_id = current_user.id,
             post_id = post_id,
-            content = form.data['content']
+            content = form.content.data
         )
 
         db.session.add(new_comment)

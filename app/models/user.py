@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     profile_pic = db.Column(db.String)
     # background_image = db.Column(db.String)
 
-    posts = db.relationship('Post', back_populates='user', cascade='all, delete-orphan')                #fill in back_populates
+    posts = db.relationship('Post', back_populates='user', cascade='all, delete-orphan')               
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
     # favorites = db.relationship('Favorite', back_populates='user', cascade='all, delete-orphan')
 
