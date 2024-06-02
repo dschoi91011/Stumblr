@@ -95,13 +95,31 @@ const deleteComment = (comment) => ({
     comment
 });
 
+// export const deleteCommentThunk = (id) => async(dispatch) => {
+//     const res = await fetch(`api/comments/${id}`, {
+//         method: 'DELETE'
+//     });
+//     const data = await res.json();
+//     if(res.ok) dispatch(deleteComment(data));
+//     return data;
+// };
+
 export const deleteCommentThunk = (id) => async(dispatch) => {
-    const res = await fetch(`api/comments/${id}`, {
-        method: 'DELETE'
-    });
-    const data = await res.json();
-    if(res.ok) dispatch(deleteComment(data));
-    return data;
+    try {
+        const res = await fetch(`/api/comments/${id}`, {
+            method: 'DELETE'
+        });
+        const data = await res.json();
+        if(res.ok) {
+            dispatch(deleteComment(data)); // Dispatch action with the deleted comment
+            return data;
+        } else {
+            const error = await res.json();
+            return { error };
+        }
+    } catch (err) {
+        return { error: err.message };
+    }
 };
 
 
@@ -122,13 +140,21 @@ const commentsReducer = (state = initState, action) => {
             const postId = comment.post_id;
             return {...state, byPostId: {...state.byPostId, [postId]: [...(state.byPostId[postId] || []), comment]}};
         }
+        // case DELETE_COMMENT: {
+        //     const commentId = action.commentId;
+        //     const postId = Object.keys(state.byPostId).find(postId =>
+        //         state.byPostId[postId].some(comment => comment.id === commentId)
+        //     );
+        //     if (!postId) return state;
+        //     return {...state, byPostId: {...state.byPostId, [postId]: state.byPostId[postId].filter(comment => comment.id !== commentId)}};
+        // }
         case DELETE_COMMENT: {
-            const commentId = action.commentId;
-            const postId = Object.keys(state.byPostId).find(postId =>
-                state.byPostId[postId].some(comment => comment.id === commentId)
-            );
-            if (!postId) return state;
-            return {...state, byPostId: {...state.byPostId, [postId]: state.byPostId[postId].filter(comment => comment.id !== commentId)}};
+            const commentId = action.comment.id;
+            const newState = {...state};
+            Object.keys(newState.byPostId).forEach(postId => {
+                newState.byPostId[postId] = newState.byPostId[postId].filter(comment => comment.id !== commentId);
+            });
+            return newState;
         }
         default:
             return state;

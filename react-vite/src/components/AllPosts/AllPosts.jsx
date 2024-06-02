@@ -6,6 +6,7 @@ import { getCommentsForPostThunk } from "../../redux/comments";
 import DeletePost from "../DeletePost";
 import UpdatePost from "../UpdatePost";
 import PostComment from "../PostComment";
+import DeleteComment from "../DeleteComment";
 import OpenModalButton from "../OpenModalButton";
 import './AllPosts.css';
 
@@ -48,9 +49,9 @@ export default function AllPosts() {
         <div className="all-posts">
             {currentUser && <button onClick={handleCreatePost}>Create Post</button>}
             {isLoaded && posts.slice(0).reverse().map(obj => (
-                <div key={obj.id} style={{ position: 'relative', cursor: 'pointer' }}>
+                <div key={obj.id} style={{ position: 'relative'}}>
                     <div>
-                        <div onClick={() => handleTitleClick(obj.poster_id)}>
+                        <div onClick={() => handleTitleClick(obj.poster_id)} style={{ cursor: 'pointer' }}>
                             <h2>{obj.title}</h2>
                             <p>{obj.body}</p>
                         </div>
@@ -80,6 +81,13 @@ export default function AllPosts() {
                                     <div key={comment.id} className="comment">
                                         <p>{comment.content}</p>
                                         <small>By User {comment.user_id}</small>
+                                        {currentUser && currentUser.id === comment.user_id && (
+                                            <OpenModalButton
+                                                className='delete-comment'
+                                                buttonText='Delete'
+                                                modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}
+                                            />
+                                        )}
                                     </div>
                                 ))
                             ) : (
