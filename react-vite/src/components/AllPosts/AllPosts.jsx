@@ -50,10 +50,12 @@ export default function AllPosts() {
         <div className="all-posts">
             {currentUser && <button onClick={handleCreatePost}>Create Post</button>}
             {isLoaded && posts.slice(0).reverse().map(obj => (
-                <div key={obj.id} style={{ position: 'relative'}}>
+                <div key={obj.id} style={{border: '1px solid black'}}>
                     <div>
                         <div onClick={() => handleTitleClick(obj.poster_id)} style={{ cursor: 'pointer' }}>
-                            <h2>{obj.title}</h2>
+                            <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj.profile_pic} alt='prof_pic'/>
+                            <p>{obj.username}</p>
+                            {/* <h2>{obj.title}</h2> */}
                             <p>{obj.body}</p>
                         </div>
                         {obj.picture && <img style={{ height: "300px", width: "auto" }} src={obj.picture} alt={obj.title} />}
@@ -80,8 +82,9 @@ export default function AllPosts() {
                             {commentsByPostId[obj.id]?.length > 0 ? (
                                 commentsByPostId[obj.id].map(comment => (
                                     <div key={comment.id} className="comment">
+                                        <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={comment.profile_pic} alt='prof_pic'/>
+                                        <small>{comment.username} replied:</small>
                                         <p>{comment.content}</p>
-                                        <small>By User {comment.user_id}</small>
                                         {currentUser && currentUser.id === comment.user_id && (
                                             <div>
                                                 <OpenModalButton

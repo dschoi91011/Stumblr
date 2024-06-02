@@ -27,6 +27,6 @@ class Post(db.Model):
             'title': self.title,
             'body': self.body,
             'picture': self.picture,
-            # 'poster_username': user_info['username'],
-            # 'poster_profile_pic': user_info['profile_pic']
+            'username': self.user.username,
+            'profile_pic': self.user.profile_pic
         }

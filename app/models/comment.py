@@ -20,5 +20,7 @@ class Comment(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'post_id': self.post_id,
-            'content': self.content
+            'content': self.content,
+            'username': self.user.username,
+            'profile_pic': self.user.profile_pic
         }
