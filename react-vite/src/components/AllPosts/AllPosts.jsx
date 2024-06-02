@@ -49,9 +49,11 @@ export default function AllPosts() {
             {currentUser && <button onClick={handleCreatePost}>Create Post</button>}
             {isLoaded && posts.slice(0).reverse().map(obj => (
                 <div key={obj.id} style={{ position: 'relative', cursor: 'pointer' }}>
-                    <div onClick={() => handleTitleClick(obj.poster_id)}>
-                        <h2>{obj.title}</h2>
-                        <p>{obj.body}</p>
+                    <div>
+                        <div onClick={() => handleTitleClick(obj.poster_id)}>
+                            <h2>{obj.title}</h2>
+                            <p>{obj.body}</p>
+                        </div>
                         {obj.picture && <img style={{ height: "300px", width: "auto" }} src={obj.picture} alt={obj.title} />}
                     </div>
                     {currentUser && currentUser.id === obj.poster_id && (
