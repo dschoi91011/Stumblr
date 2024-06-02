@@ -76,8 +76,10 @@ def new_post():
 
         new_post = Post(
             poster_id = current_user.id,
-            title = form.data['title'],
-            body = form.data['body'],
+            # title = form.data['title'],
+            # body = form.data['body'],
+            title = form.title.data,
+            body = form.body.data,
             picture = url
         )
 

@@ -10,6 +10,7 @@ const removeUser = () => ({
   type: REMOVE_USER
 });
 
+//AUTHENTICATE-------------------------------------------------------
 export const thunkAuthenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/");
 	if (response.ok) {
@@ -22,6 +23,7 @@ export const thunkAuthenticate = () => async (dispatch) => {
 	}
 };
 
+//LOG IN USER-------------------------------------------------------
 export const thunkLogin = (credentials) => async dispatch => {
   const response = await fetch("/api/auth/login", {
     method: "POST",
@@ -40,6 +42,7 @@ export const thunkLogin = (credentials) => async dispatch => {
   }
 };
 
+//SIGN UP NEW USER----------------------------------------------------
 export const thunkSignup = (user) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
@@ -58,11 +61,14 @@ export const thunkSignup = (user) => async (dispatch) => {
   }
 };
 
+//LOG OUT USER-------------------------------------------------------
 export const thunkLogout = () => async (dispatch) => {
   await fetch("/api/auth/logout");
   dispatch(removeUser());
 };
 
+
+//REDUCER------------------------------------------------------------
 const initialState = { user: null };
 
 function sessionReducer(state = initialState, action) {
