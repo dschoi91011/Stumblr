@@ -31,6 +31,10 @@ export default function AllPosts() {
         getAllPosts();
     }, [dispatch]);
 
+    const futureFeature = () => {
+        alert('Feature under construction')
+    }
+
     const handleCreatePost = () => {
         navigate('/new-post');
     };

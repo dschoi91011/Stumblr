@@ -28,6 +28,17 @@ function LoginFormModal() {
     }
   };
 
+  const demoUser = async(e) => {
+    e.preventDefault()
+    const demoLogin = await dispatch(thunkLogin({
+      email: 'demouser@email.com',
+      password: 'password1'
+    }))
+    closeModal()
+
+    if(demoLogin) setErrors(demoLogin)
+  }
+
   return (
     <>
       <h1>Log In</h1>
@@ -53,6 +64,7 @@ function LoginFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
+        <button onClick={demoUser}>Demo User</button>
       </form>
     </>
   );
