@@ -57,10 +57,8 @@ export default function AllPosts() {
                 <div key={obj.id} style={{border: '1px solid black'}}>
                     <div>
                         <div onClick={() => handleTitleClick(obj.poster_id)} style={{ cursor: 'pointer' }}>
-                            {/* <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj.profile_pic} alt='prof_pic'/> */}
                             <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                             <p>{obj.username}</p>
-                            {/* <h2>{obj.title}</h2> */}
                         </div>
                         {obj.picture && <img style={{ height: "300px", width: "auto" }} src={obj.picture} alt={obj.title} />}
                         <p>{obj.body}</p>

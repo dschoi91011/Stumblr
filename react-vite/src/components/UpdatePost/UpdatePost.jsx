@@ -10,8 +10,6 @@ export default function UpdatePost({postId}) {
     const {closeModal} = useModal();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const post = useSelector(state => state.post);
-    // const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [picture, setPicture] = useState(null);
     const [inputError, setInputError] = useState({});
@@ -20,7 +18,6 @@ export default function UpdatePost({postId}) {
         const fetchPost = async() => {
             if(postId){
                 const postData = await dispatch(getPostByIdThunk(postId));
-                // setTitle(postData.title || '');
                 setBody(postData.body || '');
                 setPicture(postData.picture || '');
             }
@@ -31,7 +28,6 @@ export default function UpdatePost({postId}) {
 
     const hasErrors = () => {
         let errorObj = {};
-        // if(!title) errorObj.title = 'Title is required';
         return errorObj;
     };
 
@@ -42,7 +38,6 @@ export default function UpdatePost({postId}) {
 
         if(Object.keys(newErr).length === 0){
             const formData = new FormData();
-            // formData.append('title', title);
             formData.append('body', body);
             if(picture instanceof File){
                 formData.append('picture', picture);
@@ -68,13 +63,6 @@ export default function UpdatePost({postId}) {
     return (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
             <h1 style={{fontSize: '40px'}}>Update Post</h1>
-
-            {/* <div>
-                <label htmlFor="title">Title
-                    <input id="title" type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} required/>
-                </label>
-                {inputError.title && <p style={{color: 'red', fontSize: '22px'}}>{inputError.title}</p>}
-            </div> */}
 
             <div>
                 <label htmlFor="body">Body

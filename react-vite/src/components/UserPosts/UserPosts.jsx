@@ -26,7 +26,6 @@ export default function UserPosts(){
           <p>{currentPosts[0].username}</p>
           {currentPosts.slice(0).reverse().map((post) => (
             <div key={post.id}>
-              {/* <h2>{post.title}</h2> */}
               <p>{post.body}</p>
               {post.picture && (
                 <img

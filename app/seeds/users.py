@@ -26,7 +26,6 @@ def seed_users():
             "email": "demouser@email.com",
             "hashed_password": "password1",
             "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic1.jpg",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile1_background.jpg"
         },
         {
             "first_name": "John",
@@ -35,7 +34,6 @@ def seed_users():
             "email": "johnsmith123@email.com",
             "hashed_password": "password2",
             "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic2.jpg",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile2_background.jpg"
         },
         {
             "first_name": "Matt",
@@ -44,7 +42,6 @@ def seed_users():
             "email": "mattcarter123@email.com",
             "hashed_password": "password3",
             "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic3.jpg",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile3_background.jpg"
         },
         {
             "first_name": "David",
@@ -52,8 +49,7 @@ def seed_users():
             "username": "davidkim123",
             "email": "davidkim123@email.com",
             "hashed_password": "password4",
-            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic4.jpg",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile4_background.jpg"            
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic4.jpg",     
         },
         {
             "first_name": "Sharon",
@@ -61,8 +57,7 @@ def seed_users():
             "username": "sharonlee123",
             "email": "sharonlee123@email.com",
             "hashed_password": "password5",
-            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic5.jpg",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile5_background.jpg"            
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic5.jpg",      
         },
         {
             "first_name": "Sarah",
@@ -70,8 +65,7 @@ def seed_users():
             "username": "sarahjohnson123",
             "email": "sarahjohnson123@email.com",
             "hashed_password": "password6",
-            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic6.jpg",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile6_background.jpg"            
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic6.jpg",      
         },
         {
             "first_name": "Spencer",
@@ -79,8 +73,7 @@ def seed_users():
             "username": "spencerstanton123",
             "email": "spencerstanton123@email.com",
             "hashed_password": "password7",
-            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic7.jpg",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile7_background.jpg"            
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic7.jpg",  
         },
         {
             "first_name": "Gina",
@@ -88,8 +81,7 @@ def seed_users():
             "username": "ginanguyen123",
             "email": "ginanguyen123@email.com",
             "hashed_password": "password8",
-            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic8.png",
-            # "background_image": "https://stumblrimages.s3.amazonaws.com/profile8_background.jpg"            
+            "profile_pic": "https://stumblrimages.s3.amazonaws.com/profile_pic8.png",    
         }
     ]
 
