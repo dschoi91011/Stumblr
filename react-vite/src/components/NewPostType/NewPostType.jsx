@@ -18,8 +18,8 @@ export default function NewPostType(){
     return(
         <div id='new-post-type-container'>
             <div className='type-buttons-container' style={{height: '200px', width: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '50px'}}>
-                <button className='to-create-post-form-btn' style={{height: '30px', width: '100px'}} onClick={handleSubmit}>Image</button>
-                <button className='to-create-text-form-btn' style={{height: '30px', width: '100px'}} onClick={futureFeature}>Text</button>
+                <img className='to-create-post-form-btn' style={{cursor: 'pointer'}} src="/photo_icon.png" alt="Image" onClick={handleSubmit}/>
+                <img className='to-create-text-form-btn' style={{cursor: 'pointer'}} src="/text_icon.png" alt="Text" onClick={futureFeature}/>
             </div>
         </div>
     )

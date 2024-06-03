@@ -1,3 +1,38 @@
 .profile-dropdown {
   position: absolute;
+  right: 0;
+  margin-right: 100px;
+  margin-top: 30px;
+  padding: 20px 30px;
+  border: 1px solid black;
+  background-color: white;
 }
+
+#stumblr-title {
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: bolder;
+  color: rgb(84, 84, 221);
+  transition: color 2s ease;
+}
+
+#stumblr-title:hover {
+  animation: colorShift 4s infinite; 
+}
+
+@keyframes colorShift {
+  0% {color: blue}
+  20% {color: skyblue}
+  40% {color: pink}
+  60% {color: red}
+  80% {color: orange }
+  100% { color: purple}
+}
+
+#nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+}
+

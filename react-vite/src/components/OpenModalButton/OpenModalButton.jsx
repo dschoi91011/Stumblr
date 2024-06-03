@@ -40,7 +40,6 @@ function OpenModalButton({
   };
 
   if (children) {
-    // If children are provided, render them directly with an onClick handler
     return React.cloneElement(children, { onClick });
   }
 
