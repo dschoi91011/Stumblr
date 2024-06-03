@@ -47,7 +47,7 @@ export default function CreatePostForm(){
 
     return(
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <h1 style={{fontSize: '40px'}}>Create a New Post</h1>
+            <h1 style={{fontSize: '40px'}}>Create a New Image Post</h1>
 
             {/* <div>
                 <label htmlFor="title">Title
@@ -58,7 +58,7 @@ export default function CreatePostForm(){
 
             <div>
                 <label htmlFor="body">Body
-                    <textarea id="body" rows="4" cols="50" placeholder="Body" style={{fontSize: '20px'}} value={body} onChange={e => setBody(e.target.value)}/>
+                    <textarea id="body" rows="2" cols="80" placeholder="Optional caption" style={{fontSize: '20px'}} value={body} onChange={e => setBody(e.target.value)}/>
                 </label>
             </div>
 

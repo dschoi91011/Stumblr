@@ -9,6 +9,7 @@ import PostComment from "../PostComment";
 import UpdateComment from "../UpdateComment";
 import DeleteComment from "../DeleteComment";
 import OpenModalButton from "../OpenModalButton";
+import NewPostType from "../NewPostType";
 import './AllPosts.css';
 
 export default function AllPosts() {
@@ -52,7 +53,11 @@ export default function AllPosts() {
 
     return (
         <div className="all-posts">
-            {currentUser && <button onClick={handleCreatePost}>Create Post</button>}
+            {/* {currentUser && <button onClick={handleCreatePost}>Create Post</button>} */}
+            {
+                currentUser &&
+                (<OpenModalButton className='new-post-type' buttonText='Create Post' modalComponent={<NewPostType/>}/>)
+            }
             {isLoaded && posts.slice(0).reverse().map(obj => (
                 <div key={obj.id} style={{border: '1px solid black'}}>
                     <div>
@@ -60,9 +65,9 @@ export default function AllPosts() {
                             <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj.profile_pic} alt='prof_pic'/>
                             <p>{obj.username}</p>
                             {/* <h2>{obj.title}</h2> */}
-                            <p>{obj.body}</p>
                         </div>
                         {obj.picture && <img style={{ height: "300px", width: "auto" }} src={obj.picture} alt={obj.title} />}
+                        <p>{obj.body}</p>
                     </div>
                     {currentUser && currentUser.id === obj.poster_id && (
                         <div className="post-actions">
