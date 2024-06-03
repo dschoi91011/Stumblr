@@ -36,10 +36,6 @@ export default function AllPosts() {
         alert('Feature under construction')
     }
 
-    const handleCreatePost = () => {
-        navigate('/new-post');
-    };
-
     const handleTitleClick = (userId) => {
         navigate(`/user/${userId}/posts`);
     };
@@ -53,7 +49,6 @@ export default function AllPosts() {
 
     return (
         <div className="all-posts">
-            {/* {currentUser && <button onClick={handleCreatePost}>Create Post</button>} */}
             {
                 currentUser &&
                 (<OpenModalButton className='new-post-type' buttonText='Create Post' modalComponent={<NewPostType/>}/>)
@@ -62,7 +57,8 @@ export default function AllPosts() {
                 <div key={obj.id} style={{border: '1px solid black'}}>
                     <div>
                         <div onClick={() => handleTitleClick(obj.poster_id)} style={{ cursor: 'pointer' }}>
-                            <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj.profile_pic} alt='prof_pic'/>
+                            {/* <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj.profile_pic} alt='prof_pic'/> */}
+                            <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                             <p>{obj.username}</p>
                             {/* <h2>{obj.title}</h2> */}
                         </div>
