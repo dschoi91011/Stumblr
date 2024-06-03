@@ -76,7 +76,7 @@ def new_post():
 
         new_post = Post(
             poster_id = current_user.id,
-            title = form.title.data,
+            # title = form.title.data,
             body = form.body.data,
             picture = url
         )
@@ -104,7 +104,7 @@ def edit_post(post_id):
         return authed
 
     if form.validate_on_submit():
-        post.title = form.title.data
+        # post.title = form.title.data
         post.body = form.body.data
 
         image = form.picture.data

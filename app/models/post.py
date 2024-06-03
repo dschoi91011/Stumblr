@@ -8,7 +8,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     poster_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    title = db.Column(db.String(30), nullable=False)
+    # title = db.Column(db.String(30), nullable=False)
     body = db.Column(db.String(1000))
     picture = db.Column(db.String)
 
@@ -21,7 +21,7 @@ class Post(db.Model):
         return {
             'id': self.id,
             'poster_id': self.poster_id,
-            'title': self.title,
+            # 'title': self.title,
             'body': self.body,
             'picture': self.picture,
             'username': self.user.username,

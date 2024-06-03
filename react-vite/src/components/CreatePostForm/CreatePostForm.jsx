@@ -7,14 +7,14 @@ import './CreatePostForm.css';
 export default function CreatePostForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [title, setTitle] = useState('');
+    // const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [picture, setPicture] = useState(null);
     const [inputError, setInputError] = useState({});
 
     const hasErrors = () => {
         let errorObj = {};
-        if(!title) errorObj.title = 'Title is required';
+        // if(!title) errorObj.title = 'Title is required';
         if(!picture) errorObj.picture = 'Picture is required';
         return errorObj;
     };
@@ -26,7 +26,7 @@ export default function CreatePostForm(){
 
         if(Object.keys(newErr).length === 0){
             const formData = new FormData();
-            formData.append('title', title);
+            // formData.append('title', title);
             formData.append('body', body);
             formData.append('picture', picture);
 
@@ -49,12 +49,12 @@ export default function CreatePostForm(){
         <form onSubmit={handleSubmit} encType="multipart/form-data">
             <h1 style={{fontSize: '40px'}}>Create a New Post</h1>
 
-            <div>
+            {/* <div>
                 <label htmlFor="title">Title
                     <input id="title" type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} required/>
                 </label>
                 {inputError.title && <p style={{color: 'red', fontSize: '22px'}}>{inputError.title}</p>}
-            </div>
+            </div> */}
 
             <div>
                 <label htmlFor="body">Body

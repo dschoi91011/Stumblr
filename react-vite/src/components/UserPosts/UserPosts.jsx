@@ -23,7 +23,7 @@ export default function UserPosts(){
       {isLoaded &&
         currentPosts.map((post) => (
           <div key={post.id}>
-            <h2>{post.title}</h2>
+            {/* <h2>{post.title}</h2> */}
             <p>{post.body}</p>
             {post.picture && (
               <img
