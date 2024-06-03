@@ -1,10 +1,35 @@
+// import { useModal } from '../../context/Modal';
+
+// function OpenModalButton({
+//   modalComponent, // component to render inside the modal
+//   buttonText, // text of the button that opens the modal
+//   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
+//   onModalClose // optional: callback function that will be called once the modal is closed
+// }) {
+//   const { setModalContent, setOnModalClose } = useModal();
+
+//   const onClick = () => {
+//     if (onModalClose) setOnModalClose(onModalClose);
+//     setModalContent(modalComponent);
+//     if (typeof onButtonClick === "function") onButtonClick();
+//   };
+
+//   return <button onClick={onClick}>{buttonText}</button>;
+// }
+
+// export default OpenModalButton;
+
+
+
+import React from 'react';
 import { useModal } from '../../context/Modal';
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose, // optional: callback function that will be called once the modal is closed
+  children // optional: custom content for the button, like an icon
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -14,7 +39,16 @@ function OpenModalButton({
     if (typeof onButtonClick === "function") onButtonClick();
   };
 
-  return <button onClick={onClick}>{buttonText}</button>;
+  if (children) {
+    // If children are provided, render them directly with an onClick handler
+    return React.cloneElement(children, { onClick });
+  }
+
+  return (
+    <button onClick={onClick}>
+      {buttonText}
+    </button>
+  );
 }
 
 export default OpenModalButton;

@@ -22,11 +22,10 @@ export default function UserPosts(){
     <div className="user-posts">
       {isLoaded && currentPosts.length > 0 &&
         <div>
-          <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={currentPosts[0]?.profile_pic} alt="Profile Pic"/>
+          <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={currentPosts[0]?.profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>
           <p>{currentPosts[0].username}</p>
           {currentPosts.slice(0).reverse().map((post) => (
             <div key={post.id}>
-              <p>{post.body}</p>
               {post.picture && (
                 <img
                   style={{ height: "300px", width: "auto" }}
@@ -34,6 +33,7 @@ export default function UserPosts(){
                   alt={post.title}
                 />
               )}
+              <p>{post.body}</p>
             </div>
           ))}
         </div>

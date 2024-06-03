@@ -21,6 +21,8 @@ export default function AllPosts() {
     const commentsByPostId = useSelector(state => state.comments.byPostId);
     const navigate = useNavigate();
 
+    const [follow, setFollow] = useState({});
+
     console.log('COMMENTS---------------> ', commentsByPostId)
     console.log('POST ------------->', posts)
 
@@ -32,10 +34,6 @@ export default function AllPosts() {
         getAllPosts();
     }, [dispatch]);
 
-    const futureFeature = () => {
-        alert('Feature under construction')
-    }
-
     const handleTitleClick = (userId) => {
         navigate(`/user/${userId}/posts`);
     };
@@ -46,6 +44,15 @@ export default function AllPosts() {
         }
         setCommentsVisible(prev => ({ ...prev, [postId]: !prev[postId] }));
     };
+
+    const toggleFollow = (userId) => {
+        setFollow(prev => ({...prev, [userId]: !prev[userId]}));
+        alert(`
+            Currently holds no other function than to toggle follow
+            button for all posts of the user being followed. Functionality
+            to be added later for green-lit
+        `)
+    }
 
     return (
         <div className="all-posts">
@@ -62,19 +69,31 @@ export default function AllPosts() {
                         </div>
                         {obj.picture && <img style={{ height: "300px", width: "auto" }} src={obj.picture} alt={obj.title} />}
                         <p>{obj.body}</p>
+
+                        {currentUser && currentUser.id !== obj.poster_id && (
+                            <img
+                                src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'}
+                                alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
+                                style={{ cursor: 'pointer', height: '35px', width: '35px' }}
+                                onClick={() => toggleFollow(obj.poster_id)}
+                            />
+                        )}
+
                     </div>
                     {currentUser && currentUser.id === obj.poster_id && (
                         <div className="post-actions">
                             <OpenModalButton
                                 className='delete-post'
-                                buttonText='Delete'
                                 modalComponent={<DeletePost postId={obj.id} />}
-                            />
+                            >
+                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt="Delete" />
+                            </OpenModalButton>
                             <OpenModalButton
                                 className='update-post'
-                                buttonText='Update'
                                 modalComponent={<UpdatePost postId={obj.id} />}
-                            />
+                            >
+                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt="Update" />
+                            </OpenModalButton>
                         </div>
                     )}
                     <button onClick={() => toggleComments(obj.id)}>
@@ -85,21 +104,23 @@ export default function AllPosts() {
                             {commentsByPostId[obj.id]?.length > 0 ? (
                                 commentsByPostId[obj.id].map(comment => (
                                     <div key={comment.id} className="comment">
-                                        <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={comment.profile_pic} alt='prof_pic'/>
+                                        <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                                         <small>{comment.username} replied:</small>
                                         <p>{comment.content}</p>
                                         {currentUser && currentUser.id === comment.user_id && (
                                             <div>
                                                 <OpenModalButton
                                                     className='delete-comment'
-                                                    buttonText='Delete'
                                                     modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}
-                                                />
+                                                >
+                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt="Delete" />
+                                                </OpenModalButton>
                                                 <OpenModalButton
                                                     className='update-comment'
-                                                    buttonText='Edit'
                                                     modalComponent={<UpdateComment id={comment.id} postId={obj.id}/>}
-                                                />
+                                                >
+                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt="Update" />
+                                                </OpenModalButton>
                                             </div>
                                         )}
                                     </div>
