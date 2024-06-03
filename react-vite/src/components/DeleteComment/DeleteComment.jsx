@@ -1,20 +1,20 @@
 import {useModal} from '../../context/Modal';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import { deleteCommentThunk, getCommentsForPostThunk } from '../../redux/comments';
+import {deleteCommentThunk, getCommentsForPostThunk} from '../../redux/comments';
 import './DeleteComment.css';
 
 
 export default function DeleteComment({id, postId}){
-    const {closeModal} = useModal()
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const {closeModal} = useModal();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = async() => {
-        await dispatch(deleteCommentThunk(id))
-        await dispatch(getCommentsForPostThunk(postId))
-        navigate('/')
-        closeModal()
+        await dispatch(deleteCommentThunk(id));
+        await dispatch(getCommentsForPostThunk(postId));
+        navigate('/');
+        closeModal();
     }
 
     return(
@@ -25,6 +25,6 @@ export default function DeleteComment({id, postId}){
                 <button className='yes-no-btn' onClick={closeModal}>No</button>
             </div>
         </div>
-    )
+    );
 
 }

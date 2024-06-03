@@ -42,7 +42,6 @@ def edit_comment(comment_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # comment.content = form.data['content']
         comment.content = form.content.data
         db.session.commit()
         return comment.to_dict(), 200

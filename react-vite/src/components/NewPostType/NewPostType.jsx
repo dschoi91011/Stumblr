@@ -1,5 +1,5 @@
-import { useModal } from '../../context/Modal';
-import { useNavigate } from 'react-router-dom';
+import {useModal} from '../../context/Modal';
+import {useNavigate} from 'react-router-dom';
 import './NewPostType.css';
 
 export default function NewPostType(){
@@ -12,7 +12,7 @@ export default function NewPostType(){
     }
 
     const futureFeature = () => {
-        alert('Feature under construction')
+        alert('Feature under construction');
     }
 
     return(
@@ -22,6 +22,8 @@ export default function NewPostType(){
                 <img className='to-create-text-form-btn' style={{cursor: 'pointer'}} src="/text_icon.png" alt="Text" onClick={futureFeature}/>
             </div>
         </div>
-    )
+    );
 
 }
+
+

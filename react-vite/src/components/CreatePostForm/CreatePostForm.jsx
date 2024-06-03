@@ -17,7 +17,7 @@ export default function CreatePostForm(){
         return errorObj;
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const newErr = hasErrors();
         setInputError(newErr);
@@ -43,23 +43,24 @@ export default function CreatePostForm(){
     };
 
     return(
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <h1 style={{fontSize: '40px'}}>Create a New Image Post</h1>
+        // <form onSubmit={handleSubmit} encType='multipart/form-data'>
+        <form onSubmit={handleSubmit}>
+            <h1 style={{fontSize: '40px'}}>Create a New Image</h1>
 
             <div>
-                <label htmlFor="body">Body
-                    <textarea id="body" rows="2" cols="80" placeholder="Optional caption" style={{fontSize: '20px'}} value={body} onChange={e => setBody(e.target.value)}/>
+                <label htmlFor='picture'>Picture
+                    <input id='picture' type='file' onChange={updatePicture}/>
                 </label>
+                {inputError.picture && <p style={{color: 'red'}}>{inputError.picture}</p>}
             </div>
 
             <div>
-                <label htmlFor="picture">Picture
-                    <input id="picture" type="file" style={{fontSize: '20px'}} onChange={updatePicture} required/>
+                <label htmlFor='caption'>Caption
+                    <textarea id='caption' rows='1' cols='80' placeholder='Optional caption' value={body} onChange={e => setBody(e.target.value)}/>
                 </label>
-                {inputError.picture && <p style={{color: 'red', fontSize: '22px'}}>{inputError.picture}</p>}
             </div>
 
-            <button type="submit" style={{height: '40px', width: '200px', fontSize: '20px', margin: '20px 0px'}}>Create Post</button>
+            <button type='submit'style={{height: '30px', width: '100px'}}>Create Post</button>
         </form>
     );
 }

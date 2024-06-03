@@ -11,7 +11,7 @@ const removeUser = () => ({
 });
 
 //AUTHENTICATE-------------------------------------------------------
-export const thunkAuthenticate = () => async (dispatch) => {
+export const thunkAuthenticate = () => async(dispatch) => {
 	const response = await fetch("/api/auth/");
 	if (response.ok) {
 		const data = await response.json();
@@ -24,7 +24,7 @@ export const thunkAuthenticate = () => async (dispatch) => {
 };
 
 //LOG IN USER-------------------------------------------------------
-export const thunkLogin = (credentials) => async dispatch => {
+export const thunkLogin = (credentials) => async(dispatch) => {
   const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -42,26 +42,8 @@ export const thunkLogin = (credentials) => async dispatch => {
   }
 };
 
-//SIGN UP NEW USER----------------------------------------------------
-// export const thunkSignup = (user) => async (dispatch) => {
-//   const response = await fetch("/api/auth/signup", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(user)
-//   });
-
-//   if(response.ok) {
-//     const data = await response.json();
-//     dispatch(setUser(data));
-//   } else if (response.status < 500) {
-//     const errorMessages = await response.json();
-//     return errorMessages
-//   } else {
-//     return { server: "Something went wrong. Please try again" }
-//   }
-// };
-
-export const thunkSignup = (user) => async (dispatch) => {
+//SIGN UP NEW USER---------------------------------------------------
+export const thunkSignup = (user) => async(dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     body: user
@@ -79,7 +61,7 @@ export const thunkSignup = (user) => async (dispatch) => {
 };
 
 //LOG OUT USER-------------------------------------------------------
-export const thunkLogout = () => async (dispatch) => {
+export const thunkLogout = () => async(dispatch) => {
   await fetch("/api/auth/logout");
   dispatch(removeUser());
 };

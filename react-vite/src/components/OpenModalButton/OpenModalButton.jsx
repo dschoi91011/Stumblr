@@ -22,7 +22,7 @@
 
 
 import React from 'react';
-import { useModal } from '../../context/Modal';
+import {useModal} from '../../context/Modal';
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
@@ -31,7 +31,7 @@ function OpenModalButton({
   onModalClose, // optional: callback function that will be called once the modal is closed
   children // optional: custom content for the button, like an icon
 }) {
-  const { setModalContent, setOnModalClose } = useModal();
+  const {setModalContent, setOnModalClose} = useModal();
 
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
@@ -39,11 +39,11 @@ function OpenModalButton({
     if (typeof onButtonClick === "function") onButtonClick();
   };
 
-  if (children) {
-    return React.cloneElement(children, { onClick });
+  if(children){
+    return React.cloneElement(children, {onClick});
   }
 
-  return (
+  return(
     <button onClick={onClick}>
       {buttonText}
     </button>

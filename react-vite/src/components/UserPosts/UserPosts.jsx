@@ -18,21 +18,15 @@ export default function UserPosts(){
     getUserPosts();
   }, [dispatch, userId]);
 
-  return (
+  return(
     <div className="user-posts">
-      {isLoaded && currentPosts.length > 0 &&
+      {isLoaded && currentPosts.length &&
         <div>
-          <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={currentPosts[0]?.profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>
+          <img style={{height: "50px", width: "50px", marginTop: '5px', marginRight: '5px'}} src={currentPosts[0]?.profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>
           <p>{currentPosts[0].username}</p>
           {currentPosts.slice(0).reverse().map((post) => (
             <div key={post.id}>
-              {post.picture && (
-                <img
-                  style={{ height: "300px", width: "auto" }}
-                  src={post.picture}
-                  alt={post.title}
-                />
-              )}
+              {post.picture && (<img style={{ height: "300px", width: "auto" }} src={post.picture} alt={post.title}/>)}
               <p>{post.body}</p>
             </div>
           ))}

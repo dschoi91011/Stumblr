@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import { getAllPostsThunk } from "../../redux/posts";
-import { getCommentsForPostThunk } from "../../redux/comments"; 
+import {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from 'react-router-dom';
+import {getAllPostsThunk} from "../../redux/posts";
+import {getCommentsForPostThunk} from "../../redux/comments"; 
 import DeletePost from "../DeletePost";
 import UpdatePost from "../UpdatePost";
 import PostComment from "../PostComment";
@@ -12,7 +12,7 @@ import OpenModalButton from "../OpenModalButton";
 import NewPostType from "../NewPostType";
 import './AllPosts.css';
 
-export default function AllPosts() {
+export default function AllPosts(){
     const [isLoaded, setIsLoaded] = useState(false);
     const [commentsVisible, setCommentsVisible] = useState({}); 
     const dispatch = useDispatch();
@@ -20,29 +20,28 @@ export default function AllPosts() {
     const currentUser = useSelector(state => state.session.user);
     const commentsByPostId = useSelector(state => state.comments.byPostId);
     const navigate = useNavigate();
-
     const [follow, setFollow] = useState({});
 
-    console.log('COMMENTS---------------> ', commentsByPostId)
-    console.log('POST ------------->', posts)
+    // console.log('COMMENTS---------------> ', commentsByPostId)
+    // console.log('POST ------------->', posts)
 
     useEffect(() => {
-        const getAllPosts = async () => {
+        const getAllPosts = async() => {
             await dispatch(getAllPostsThunk());
             setIsLoaded(true);
         };
         getAllPosts();
     }, [dispatch]);
 
-    const handleTitleClick = (userId) => {
+    const handleHeaderClick = (userId) => {
         navigate(`/user/${userId}/posts`);
     };
 
-    const toggleComments = async (postId) => {
-        if (!commentsVisible[postId]) {
+    const toggleComments = async(postId) => {
+        if(!commentsVisible[postId]){
             await dispatch(getCommentsForPostThunk(postId));
         }
-        setCommentsVisible(prev => ({ ...prev, [postId]: !prev[postId] }));
+        setCommentsVisible(prev => ({...prev, [postId]: !prev[postId]}));
     };
 
     const toggleFollow = (userId) => {
@@ -54,27 +53,27 @@ export default function AllPosts() {
         `)
     }
 
-    return (
+    return(
         <div className="all-posts">
             {
                 currentUser &&
                 (<OpenModalButton className='new-post-type' buttonText='Create Post' modalComponent={<NewPostType/>}/>)
             }
             {isLoaded && posts.slice(0).reverse().map(obj => (
-                <div key={obj.id} style={{border: '1px solid black'}}>
+                <div className='post-block' key={obj.id} style={{border: '1px solid black'}}>
                     <div>
-                        <div onClick={() => handleTitleClick(obj.poster_id)} style={{ cursor: 'pointer' }}>
-                            <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                        <div onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
+                            <img style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                             <p>{obj.username}</p>
                         </div>
-                        {obj.picture && <img style={{ height: "300px", width: "auto" }} src={obj.picture} alt={obj.title} />}
+                        {obj.picture && <img style={{height: "300px", width: "auto"}} src={obj.picture} alt={obj.title}/>}
                         <p>{obj.body}</p>
 
                         {currentUser && currentUser.id !== obj.poster_id && (
                             <img
                                 src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'}
                                 alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
-                                style={{ cursor: 'pointer', height: '35px', width: '35px' }}
+                                style={{cursor: 'pointer', height: '35px', width: '35px'}}
                                 onClick={() => toggleFollow(obj.poster_id)}
                             />
                         )}
@@ -82,17 +81,11 @@ export default function AllPosts() {
                     </div>
                     {currentUser && currentUser.id === obj.poster_id && (
                         <div className="post-actions">
-                            <OpenModalButton
-                                className='delete-post'
-                                modalComponent={<DeletePost postId={obj.id} />}
-                            >
-                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt="Delete" />
+                            <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
+                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
                             </OpenModalButton>
-                            <OpenModalButton
-                                className='update-post'
-                                modalComponent={<UpdatePost postId={obj.id} />}
-                            >
-                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt="Update" />
+                            <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}>
+                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
                             </OpenModalButton>
                         </div>
                     )}
@@ -101,25 +94,19 @@ export default function AllPosts() {
                     </button>
                     {commentsVisible[obj.id] && (
                         <div className="comments-section">
-                            {commentsByPostId[obj.id]?.length > 0 ? (
+                            {commentsByPostId[obj.id]?.length ? (
                                 commentsByPostId[obj.id].map(comment => (
                                     <div key={comment.id} className="comment">
-                                        <img style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                                        <img style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                                         <small>{comment.username} replied:</small>
                                         <p>{comment.content}</p>
                                         {currentUser && currentUser.id === comment.user_id && (
                                             <div>
-                                                <OpenModalButton
-                                                    className='delete-comment'
-                                                    modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}
-                                                >
-                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt="Delete" />
+                                                <OpenModalButton className='delete-comment' modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}>
+                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
                                                 </OpenModalButton>
-                                                <OpenModalButton
-                                                    className='update-comment'
-                                                    modalComponent={<UpdateComment id={comment.id} postId={obj.id}/>}
-                                                >
-                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt="Update" />
+                                                <OpenModalButton className='update-comment' modalComponent={<UpdateComment id={comment.id} postId={obj.id}/>}>
+                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
                                                 </OpenModalButton>
                                             </div>
                                         )}
@@ -128,13 +115,7 @@ export default function AllPosts() {
                             ) : (
                                 <p>No comments yet.</p>
                             )}
-                            {currentUser && (
-                                <OpenModalButton
-                                    className='post-comment'
-                                    buttonText='Post Comment'
-                                    modalComponent={<PostComment postId={obj.id}/>}
-                                />
-                            )}
+                            {currentUser && (<OpenModalButton className='post-comment' buttonText='Post Comment' modalComponent={<PostComment postId={obj.id}/>}/>)}
                         </div>
                     )}
                 </div>

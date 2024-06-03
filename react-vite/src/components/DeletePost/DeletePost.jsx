@@ -6,16 +6,16 @@ import {deletePostThunk, getAllPostsThunk} from '../../redux/posts';
 import './DeletePost.css';
 
 
-export default function DeletePost({postId}) {
-  const { closeModal } = useModal()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+export default function DeletePost({postId}){
+  const {closeModal} = useModal();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    await dispatch(deletePostThunk(postId))
-    await dispatch(getAllPostsThunk())
-    navigate('/')
-    closeModal()
+  const handleSubmit = async() => {
+    await dispatch(deletePostThunk(postId));
+    await dispatch(getAllPostsThunk());
+    navigate('/');
+    closeModal();
   }
 
   return(
@@ -26,5 +26,5 @@ export default function DeletePost({postId}) {
         <button className='yes-no-btn' onClick={closeModal}>NO</button>
       </div>
     </div>
-  )
+  );
 }
