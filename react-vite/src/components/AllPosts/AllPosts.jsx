@@ -12,6 +12,7 @@ import OpenModalButton from "../OpenModalButton";
 // import NewPostType from "../NewPostType";
 import './AllPosts.css';
 
+
 export default function AllPosts(){
     const [isLoaded, setIsLoaded] = useState(false);
     const [commentsVisible, setCommentsVisible] = useState({}); 
@@ -21,6 +22,16 @@ export default function AllPosts(){
     const commentsByPostId = useSelector(state => state.comments.byPostId);
     const navigate = useNavigate();
     const [follow, setFollow] = useState({});
+    const [randomPosts, setRandomPosts] = useState([]);
+    
+
+    console.log('COMMENTS --------------> ', commentsByPostId)
+    console.log('POSTs_-------------->', posts)
+    console.log('CURRENTUSER-------> ', currentUser)
+
+    const futureFeature = () => {
+        alert('Feature under construction')
+    };
 
     useEffect(() => {
         const getAllPosts = async() => {
@@ -48,83 +59,168 @@ export default function AllPosts(){
             button for all posts of the user being followed. Functionality
             to be added later for green-lit
         `)
+    };
+
+    const getRandomPosts = (posts, count) => {
+        const randomized = [...posts].sort(() => 0.5 - Math.random());
+        return randomized.slice(0, count);
+    };
+
+    const reshufflePosts = () => {
+        const newRandomized = getRandomPosts(posts, 5);
+        setRandomPosts(newRandomized);
     }
 
-    return(
-        <div className="all-posts">
-
-            {isLoaded && posts.slice(0).reverse().map(obj => (
-                <div className='post-block' key={obj.id}>
-                    <div>
-                        <div className='post-header' onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
-                            <img className='poster-profpic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
-                            <p className='poster-username'>{obj.username}</p>
-                        </div>
-                        {obj.picture && (
-                            <div className="post-img-container">
-                                <img className='post-img' src={obj.picture} alt='post-img'/>
-                            </div>
-                        )}
-                        <p className='img-caption'>{obj.body}</p>
-                    </div>
-                    <div className="post-lower-btns">
-
-                        <button className='toggle-comment-btn' onClick={() => toggleComments(obj.id)}>
-                            {commentsVisible[obj.id] ? 'Hide Comments' : 'Show Comments'}
-                        </button>
-
-                        {currentUser && currentUser.id !== obj.poster_id && (
-                            <img className='follow-toggle-btn'
-                                src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'}
-                                alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
-                                style={{cursor: 'pointer', height: '35px', width: '35px'}}
-                                onClick={() => toggleFollow(obj.poster_id)}
-                            />
-                        )}
-
-                        {currentUser && currentUser.id === obj.poster_id && (
-                            <div className="post-actions">
-                                <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
-                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
-                                </OpenModalButton>
-                                <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}>
-                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
-                                </OpenModalButton>
-                            </div>
-                        )}
-
-
-                    </div>
-                    {commentsVisible[obj.id] && (
-                        <div className="comments-section">
-                            {commentsByPostId[obj.id]?.length ? (
-                                commentsByPostId[obj.id].map(comment => (
-                                    <div key={comment.id} className="comment-block">
-                                        <img className='commenter-pic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
-                                        <div className='commenter-post-block'>
-                                            <small className='commenter-username'>{comment.username} replied:</small>
-                                            <p className='commenter-reply'>{comment.content}</p>
-                                        </div>
-                                        {currentUser && currentUser.id === comment.user_id && (
-                                            <div className='commenter-modal-btns'>
-                                                <OpenModalButton className='delete-comment' modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}>
-                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
-                                                </OpenModalButton>
-                                                <OpenModalButton className='update-comment' modalComponent={<UpdateComment id={comment.id} postId={obj.id}/>}>
-                                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
-                                                </OpenModalButton>
-                                            </div>
-                                        )}
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No comments yet.</p>
-                            )}
-                            {currentUser && (<OpenModalButton className='post-comment' buttonText='Post Comment' modalComponent={<PostComment postId={obj.id}/>}/>)}
-                        </div>
-                    )}
-                </div>
-            ))}
+    useEffect(() => {
+        if (isLoaded) {
+            const randomPosts = getRandomPosts(posts.filter(post => post.poster_id !== (currentUser ? currentUser.id : null)), 5);
+            setRandomPosts(randomPosts);
+        }
+    }, [isLoaded, posts, currentUser]);
+    
+    const searchBar = (
+        <div className='search-bar-container'>
+            <div id='search-icon'>
+                <img style={{height: '25px', width: '25px'}} src='/search_icon.png' alt='search_icon'/>
+            </div>
+            <input
+                id='search-bar'
+                type='search'
+                style={{width: '200px'}}
+                // value=''
+                // onChange={}
+                placeholder='Feature under construction'
+            />
         </div>
     );
+
+return(
+    <div className='all-posts-main'>
+        <div className='posts-header'>
+            <div className='posts-header-center'>
+                <h3 className='trending' style={{cursor: 'pointer'}} onClick={futureFeature}>Trending</h3>
+                <h3 className='for-you' style={{cursor: 'pointer'}} onClick={futureFeature}>For You</h3>
+                <h3 className='filler' style={{cursor: 'pointer'}} onClick={futureFeature}>Filler</h3>
+            </div>
+            <div className='posts-header-search'>
+                <div className='search'>{searchBar}</div>
+            </div>
+        </div>
+
+        <div className='post-main-body'>
+            <div className='post-block-column'>
+                {isLoaded && posts.slice(0).reverse().map(obj => (
+                    <div className='post-block' key={obj.id}>
+                        <div>
+                            <div className='post-header' onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
+                                <img className='poster-profpic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                                <p className='poster-username'>{obj.username}</p>
+                            </div>
+                            {obj.picture && (
+                                <div className="post-img-container">
+                                    <img className='post-img' src={obj.picture} alt='post-img'/>
+                                </div>
+                            )}
+                            <p className='img-caption'>{obj.body}</p>
+                        </div>
+                        <div className="post-lower-btns">
+
+                            <button className='toggle-comment-btn' onClick={() => toggleComments(obj.id)}>
+                                {commentsVisible[obj.id] ? 'Hide Comments' : 'Show Comments'}
+                            </button>
+
+                            {currentUser && currentUser.id !== obj.poster_id && (
+                                <div className='post-lower-right-btn-cluster'>
+                                    <img className='reply-toggle-btn'
+                                    src={commentsVisible[obj.id] ? '/hide_reply_icon.png' : 'reply_icon.png'}
+                                    alt='reply_icon'
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
+                                    onClick={() => toggleComments(obj.id)}
+                                    />
+                                    <img className='like-toggle-btn'
+                                    src='/fav_icon.png'
+                                    alt='fav_icon'
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
+                                    onClick={futureFeature}
+                                    />
+                                    <img className='follow-toggle-btn'
+                                    src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'}
+                                    alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
+                                    onClick={() => toggleFollow(obj.poster_id)}
+                                    />
+                                </div>
+                            )}
+
+                            {currentUser && currentUser.id === obj.poster_id && (
+                                <div className="post-actions">
+                                    <img className='reply-toggle-btn'
+                                    src='/reply_icon.png'
+                                    alt='reply_icon'
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
+                                    onClick={() => toggleComments(obj.id)}
+                                    />
+                                    <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
+                                        <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
+                                    </OpenModalButton>
+                                    <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}>
+                                        <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
+                                    </OpenModalButton>
+                                </div>
+                            )}
+                        </div>
+                        {commentsVisible[obj.id] && (
+                            <div className="comments-section">
+                                {commentsByPostId[obj.id]?.length ? (
+                                    commentsByPostId[obj.id].map(comment => (
+                                        <div key={comment.id} className="comment-block">
+
+                                            <div className='commenter-block-left'>
+                                                <img className='commenter-pic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                                                <div className='commenter-post-block'>
+                                                    <small className='commenter-username'>{comment.username} replied:</small>
+                                                    <p className='commenter-reply'>{comment.content}</p>
+                                                </div>
+                                            </div>
+                                            {currentUser && currentUser.id === comment.user_id && (
+                                                <div className='commenter-modal-btns'>
+                                                    <OpenModalButton className='delete-comment' modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}>
+                                                        <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
+                                                    </OpenModalButton>
+                                                    <OpenModalButton className='update-comment' modalComponent={<UpdateComment id={comment.id} postId={obj.id}/>}>
+                                                        <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
+                                                    </OpenModalButton>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No comments yet.</p>
+                                )}
+                                {currentUser && (<OpenModalButton className='post-comment' buttonText='Post Comment' modalComponent={<PostComment postId={obj.id}/>}/>)}
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+
+            <div className='post-block-right'>
+                <h3 className='post-block-right-title'>Check out these blogs</h3>
+                <div className='post-block-right-list'>
+                    {isLoaded && randomPosts.map(obj => (
+                        <div className='post-block-right-features' key={obj.id} onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
+                            <img className='poster-profpic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                            <div className='post-block-right-textblock'>
+                                <p className='poster-username'>{obj.username}</p>
+                                <p className='poster-caption'>{obj.body ? obj.body : ``}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <button className='reshuffle-btn' onClick={reshufflePosts}>Show more blogs</button>
+            </div>
+            
+        </div>
+    </div>
+);
 }

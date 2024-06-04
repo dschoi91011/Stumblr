@@ -1,0 +1,30 @@
+#post-comment-container{
+    height: 200px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-comment-title{
+    margin-top: 0;
+    font-size: 40px;
+}
+
+.post-comment-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.post-comment-textbox{
+    resize: none;
+}
+
+.post-comment-btn{
+    height: 30px;
+    width: 130px;
+}

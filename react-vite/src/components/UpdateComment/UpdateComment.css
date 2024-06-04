@@ -10,6 +10,10 @@
     gap: 20px;
 }
 
+.update-textbox{
+    resize: none;
+}
+
 .update-comment-btn{
     height: 30px;
     width: 130px;

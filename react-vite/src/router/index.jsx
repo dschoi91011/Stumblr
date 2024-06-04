@@ -6,6 +6,7 @@ import UserPosts from '../components/UserPosts';
 import CreatePostForm from '../components/CreatePostForm';
 import Layout from './Layout';
 
+
 export const router = createBrowserRouter([
   {
     element: <Layout />,

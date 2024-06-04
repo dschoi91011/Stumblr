@@ -23,10 +23,13 @@ export default function PostComment({postId}){
 
     return(
         <div id='post-comment-container'>
+            <h1 className='post-comment-title'>Reply to post</h1>
             <form onSubmit={handleSubmit}>
-                <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder='Write your comment here...'/>
-                {inputError && <p style={{color: 'red'}}>{inputError}</p>}
-                <button className='post-comment-btn' type='submit'>Post</button>
+                <div className='post-comment-block'>
+                    <textarea className='post-comment-textbox' rows='2' cols='50' value={content} onChange={(e) => setContent(e.target.value)} placeholder='Write your comment here...'/>
+                    {inputError && <p style={{color: 'red'}}>{inputError}</p>}
+                    <button className='post-comment-btn' type='submit'>Post</button>
+                </div>
             </form>
         </div>
     );
