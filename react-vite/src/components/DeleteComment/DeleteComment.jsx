@@ -19,10 +19,10 @@ export default function DeleteComment({id, postId}){
 
     return(
         <div id='delete-comment-container'>
-            <h1 className='title'>Delete comment?</h1>
-            <div className='buttons-container'>
-                <button className='yes-no-btn' onClick={handleSubmit}>YES</button>
-                <button className='yes-no-btn' onClick={closeModal}>No</button>
+            <h1 className='del-comment-title'>Delete comment?</h1>
+            <div className='del-buttons-container'>
+                <button className='del-comment-yes-btn' onClick={handleSubmit}>YES</button>
+                <button className='del-comment-no-btn' onClick={closeModal}>NO</button>
             </div>
         </div>
     );

@@ -1,0 +1,6 @@
+.user-posts{
+    flex: 1;
+    padding: 20px; 
+    margin-left: 250px; 
+    overflow-y: auto; 
+  }

@@ -9,7 +9,7 @@ import PostComment from "../PostComment";
 import UpdateComment from "../UpdateComment";
 import DeleteComment from "../DeleteComment";
 import OpenModalButton from "../OpenModalButton";
-import NewPostType from "../NewPostType";
+// import NewPostType from "../NewPostType";
 import './AllPosts.css';
 
 export default function AllPosts(){
@@ -21,9 +21,6 @@ export default function AllPosts(){
     const commentsByPostId = useSelector(state => state.comments.byPostId);
     const navigate = useNavigate();
     const [follow, setFollow] = useState({});
-
-    // console.log('COMMENTS---------------> ', commentsByPostId)
-    // console.log('POST ------------->', posts)
 
     useEffect(() => {
         const getAllPosts = async() => {
@@ -55,22 +52,29 @@ export default function AllPosts(){
 
     return(
         <div className="all-posts">
-            {
-                currentUser &&
-                (<OpenModalButton className='new-post-type' buttonText='Create Post' modalComponent={<NewPostType/>}/>)
-            }
+
             {isLoaded && posts.slice(0).reverse().map(obj => (
-                <div className='post-block' key={obj.id} style={{border: '1px solid black'}}>
+                <div className='post-block' key={obj.id}>
                     <div>
-                        <div onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
-                            <img style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
-                            <p>{obj.username}</p>
+                        <div className='post-header' onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
+                            <img className='poster-profpic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                            <p className='poster-username'>{obj.username}</p>
                         </div>
-                        {obj.picture && <img style={{height: "300px", width: "auto"}} src={obj.picture} alt={obj.title}/>}
-                        <p>{obj.body}</p>
+                        {obj.picture && (
+                            <div className="post-img-container">
+                                <img className='post-img' src={obj.picture} alt='post-img'/>
+                            </div>
+                        )}
+                        <p className='img-caption'>{obj.body}</p>
+                    </div>
+                    <div className="post-lower-btns">
+
+                        <button className='toggle-comment-btn' onClick={() => toggleComments(obj.id)}>
+                            {commentsVisible[obj.id] ? 'Hide Comments' : 'Show Comments'}
+                        </button>
 
                         {currentUser && currentUser.id !== obj.poster_id && (
-                            <img
+                            <img className='follow-toggle-btn'
                                 src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'}
                                 alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
                                 style={{cursor: 'pointer', height: '35px', width: '35px'}}
@@ -78,30 +82,31 @@ export default function AllPosts(){
                             />
                         )}
 
+                        {currentUser && currentUser.id === obj.poster_id && (
+                            <div className="post-actions">
+                                <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
+                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
+                                </OpenModalButton>
+                                <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}>
+                                    <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
+                                </OpenModalButton>
+                            </div>
+                        )}
+
+
                     </div>
-                    {currentUser && currentUser.id === obj.poster_id && (
-                        <div className="post-actions">
-                            <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
-                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
-                            </OpenModalButton>
-                            <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}>
-                                <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
-                            </OpenModalButton>
-                        </div>
-                    )}
-                    <button onClick={() => toggleComments(obj.id)}>
-                        {commentsVisible[obj.id] ? 'Hide Comments' : 'Show Comments'}
-                    </button>
                     {commentsVisible[obj.id] && (
                         <div className="comments-section">
                             {commentsByPostId[obj.id]?.length ? (
                                 commentsByPostId[obj.id].map(comment => (
-                                    <div key={comment.id} className="comment">
-                                        <img style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
-                                        <small>{comment.username} replied:</small>
-                                        <p>{comment.content}</p>
+                                    <div key={comment.id} className="comment-block">
+                                        <img className='commenter-pic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                                        <div className='commenter-post-block'>
+                                            <small className='commenter-username'>{comment.username} replied:</small>
+                                            <p className='commenter-reply'>{comment.content}</p>
+                                        </div>
                                         {currentUser && currentUser.id === comment.user_id && (
-                                            <div>
+                                            <div className='commenter-modal-btns'>
                                                 <OpenModalButton className='delete-comment' modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}>
                                                     <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
                                                 </OpenModalButton>

@@ -10,9 +10,6 @@ export default function UpdateComment({id, postId}){
     const [content, setContent] = useState('');
     const comment = useSelector(state => state.comments.byPostId[postId]?.find(comment => comment.id === id));
 
-
-    console.log('UPDATECOMMENT comment------> ', comment)
-
     useEffect(() => {
         const fetchComment = async() => {
             if(comment){
@@ -41,10 +38,11 @@ export default function UpdateComment({id, postId}){
     return (
         <div id='update-comment-container'>
             <form onSubmit={handleSubmit}>
-                <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder='Update comment...'
-                    required
-                />
-                <button className='update-comment-btn' type='submit'>Update</button>
+                <div className='update-comment-items'>
+                    <h1 className='update-comment-title'>Edit your comment</h1>
+                    <textarea className ='update-textbox' rows='2' cols='60' value={content} onChange={(e) => setContent(e.target.value)} placeholder='Update comment...'/>
+                    <button className='update-comment-btn' type='submit'>Update</button>
+                </div>
             </form>
         </div>
     );

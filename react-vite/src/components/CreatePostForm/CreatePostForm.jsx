@@ -44,7 +44,7 @@ export default function CreatePostForm(){
 
     return(
         // <form onSubmit={handleSubmit} encType='multipart/form-data'>
-        <form onSubmit={handleSubmit}>
+        <form className='create-post-form' onSubmit={handleSubmit}>
             <h1 style={{fontSize: '40px'}}>Create a New Image</h1>
 
             <div>

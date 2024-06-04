@@ -20,10 +20,10 @@ export default function DeletePost({postId}){
 
   return(
     <div id='delete-post-container'>
-      <h1 className='title'>Delete this post?</h1>
-      <div className='buttons-container'>
-        <button className='yes-no-btn' onClick={handleSubmit}>YES</button>
-        <button className='yes-no-btn' onClick={closeModal}>NO</button>
+      <h1 className='del-post-title'>Delete this post?</h1>
+      <div className='del-buttons-container'>
+        <button className='del-post-yes-btn' onClick={handleSubmit}>YES</button>
+        <button className='del-post-no-btn' onClick={closeModal}>NO</button>
       </div>
     </div>
   );

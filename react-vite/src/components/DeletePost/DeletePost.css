@@ -1,0 +1,29 @@
+#delete-post-container{
+    height: 200px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.del-post-title{
+    margin-top: -30px;
+    margin-bottom: 40px;
+}
+
+.del-post-yes-btn{
+    height: 30px;
+    width: 130px;
+    border: 1px solid red;
+    background-color: rgb(223, 195, 195);
+}
+
+.del-post-yes-btn:hover{
+    background-color: red;
+}
+
+.del-post-no-btn{
+    height: 30px;
+    width: 130px;
+}
