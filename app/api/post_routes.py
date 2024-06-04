@@ -89,13 +89,27 @@ def edit_post(post_id):
     if form.validate_on_submit():
         post.body = form.body.data
 
-        image = form.picture.data
-        if image:
+        # image = form.picture.data
+        # if image:
+        #     image.filename = get_unique_filename(image.filename)
+        #     upload = upload_file_to_s3(image)
+        #     if 'url' not in upload:
+        #         return {'error': 'Image could not be uploaded'}, 400
+        #     post.picture = upload['url']
+
+        if form.data['picture']:
+            image = form.data['picture']
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
+            image_url = upload['url']
+
             if 'url' not in upload:
                 return {'error': 'Image could not be uploaded'}, 400
-            post.picture = upload['url']
+        else:
+            image_url = post.picture
+        
+        post.picture = image_url
+        post.body = form.data['body']
 
         db.session.commit()
         return post.to_dict(), 200
