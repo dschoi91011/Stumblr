@@ -1,0 +1,39 @@
+.login-container{
+    height: 300px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .login-items{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .login-email, .login-password{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-error{
+    height: 20px; 
+    display: flex;
+    align-items: center;
+  }
+  
+  .login-error p{
+    margin: 0;
+    color: red;
+    font-size: 14px;
+  }
