@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCurrentPostsThunk } from "../../redux/posts";
-// import { getCommentsForPostThunk } from "../../redux/comments"; 
-import { useParams } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getCurrentPostsThunk} from "../../redux/posts";
+// import {getCommentsForPostThunk} from "../../redux/comments"; 
+import {useParams} from "react-router-dom";
 import './UserPosts.css';
 
-export default function UserPosts() {
+export default function UserPosts(){
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const currentPosts = useSelector((state) => state.posts.currentPosts);
@@ -21,7 +21,7 @@ export default function UserPosts() {
   }, [dispatch, userId]);
 
 
-  return (
+  return(
     <div className="user-posts">
       {isLoaded && (
         <div className='userpost-prof-block'>

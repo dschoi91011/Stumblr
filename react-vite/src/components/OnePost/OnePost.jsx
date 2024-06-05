@@ -1,13 +1,13 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { getPostByIdThunk } from '../../redux/posts';
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import './OnePost.css';
 
 export default function OnePost(){
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
-    const { postId } = useParams(); 
+    const {postId} = useParams(); 
     const post = useSelector(state => state.posts.post); 
 
     console.log('POST', post)

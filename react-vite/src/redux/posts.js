@@ -21,7 +21,7 @@ const getCurrentPosts = (posts) => ({
     posts
 });
 
-export const getCurrentPostsThunk = (userId) => async (dispatch) => {
+export const getCurrentPostsThunk = (userId) => async(dispatch) => {
     const res = await fetch(`/api/posts/user/${userId}/posts`);
     const data = await res.json();
     if (res.ok) dispatch(getCurrentPosts(data));

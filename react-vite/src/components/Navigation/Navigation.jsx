@@ -10,7 +10,7 @@ function Navigation(){
   const currentUser = useSelector(state => state.session.user);
 
   const navHomeClick = () => {
-    navigate('/')
+    navigate('/');
   }
 
   return(

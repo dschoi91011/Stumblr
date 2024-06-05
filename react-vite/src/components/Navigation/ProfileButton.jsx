@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkLogout } from "../../redux/session";
+import {useState, useEffect, useRef} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {thunkLogout} from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -17,10 +17,10 @@ function ProfileButton() {
   };
 
   useEffect(() => {
-    if (!showMenu) return;
+    if(!showMenu) return;
 
     const closeMenu = (e) => {
-      if (ulRef.current && !ulRef.current.contains(e.target)) {
+      if(ulRef.current && !ulRef.current.contains(e.target)){
         setShowMenu(false);
       }
     };
@@ -38,7 +38,7 @@ function ProfileButton() {
     closeMenu();
   };
 
-  return (
+  return(
     <>
       <button className='profile-menu-btn' style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={toggleMenu}>
         <img style={{height: '25px', width: '25px'}} src='/profile_icon.png' alt='profile'/>

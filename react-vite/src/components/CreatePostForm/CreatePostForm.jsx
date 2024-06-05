@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { createPostThunk } from '../../redux/posts';
+import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {createPostThunk} from '../../redux/posts';
 import './CreatePostForm.css';
 
 export default function CreatePostForm() {
@@ -12,7 +12,7 @@ export default function CreatePostForm() {
     const [inputError, setInputError] = useState({});
 
     const hasErrors = () => {
-        let errorObj = {};
+        const errorObj = {};
         if (!picture) errorObj.picture = 'Picture is required';
         else {
             const supportedTypes = ['jpg', 'png', 'gif'];
@@ -70,7 +70,7 @@ export default function CreatePostForm() {
                 </div>
             </div>
 
-            <button type='submit' style={{ height: '30px', width: '100px' }}>Create Post</button>
+            <button type='submit' style={{ height: '30px', width: '100px', borderRadius: '10px'}}>Create Post</button>
         </form>
     );
 }
