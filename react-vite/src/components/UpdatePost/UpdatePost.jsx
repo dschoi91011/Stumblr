@@ -87,7 +87,7 @@ export default function UpdatePost({postId}){
                 {inputError && <p>{inputError}</p>}
             </div>
 
-            <button type='submit' style={{height: '30px', width: '100px'}}>Update Post</button>
+            <button type='submit' style={{height: '30px', width: '100px', borderRadius: '10px'}}>Update Post</button>
         </form>
     );
 }
