@@ -8,7 +8,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     poster_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    body = db.Column(db.String(1000))
+    body = db.Column(db.String(30))
     picture = db.Column(db.String)
 
     user = db.relationship('User', back_populates='posts')

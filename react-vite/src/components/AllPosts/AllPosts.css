@@ -1,7 +1,9 @@
 .all-posts-main{
     flex: 1;
     padding: 20px; 
-    margin-left: 250px; 
+    /* margin-left: 250px;  */
+    /* margin-left: calc(20% + 30px); */
+    margin-left: 270px;
     overflow-y: auto; 
   }
 
