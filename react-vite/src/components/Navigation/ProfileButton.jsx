@@ -48,8 +48,8 @@ function ProfileButton() {
         <div className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <div className="profile-info">
-              <div>{user.username}</div>
-              <div>{user.email}</div>
+              <div style={{fontSize: '20px'}}>{user.username}</div>
+              {/* <div>{user.email}</div> */}
               <div>
                 <button style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={logout}>Log Out</button>
               </div>

@@ -1,33 +1,33 @@
-.update-post-form {
+.update-post-form{
     flex: 1;
     padding: 20px;
     margin-left: 250px;
     overflow-y: auto;
-  }
+}
   
-  .form-field {
+.form-field{
     margin-bottom: 20px;
-  }
+}
   
-  .error-message {
+.error-message{
     height: 20px; 
-  }
+}
   
-  .error-message p {
+.error-message p{
     margin: 0;
     color: red;
     font-size: 14px;
     visibility: hidden; 
-  }
+}
   
-  .error-message p:empty {
+.error-message p:empty{
     visibility: hidden; 
-  }
+}
   
-  .error-message p:not(:empty) {
+.error-message p:not(:empty){
     visibility: visible; 
-  }
+}
 
-  #caption {
+#caption{
     resize: none;
-  }
+}

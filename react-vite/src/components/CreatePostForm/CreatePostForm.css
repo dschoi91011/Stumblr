@@ -1,26 +1,26 @@
-.create-post-form {
+.create-post-form{
   flex: 1;
   padding: 20px;
   margin-left: 250px;
   overflow-y: auto;
 }
 
-.form-field {
+.form-field{
   margin-bottom: 20px;
 }
 
-.error-message {
+.error-message{
   height: 25px; 
   margin-top: 5px;
 }
 
-.error-message p {
+.error-message p{
   margin: 0px;
   color: red;
   font-size: 14px;
 
 }
 
-#caption {
+#caption{
   resize: none;
 }
