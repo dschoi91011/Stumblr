@@ -44,7 +44,7 @@ function OpenModalButton({
   }
 
   return(
-    <button onClick={onClick}>
+    <button style={{height: '30px', width: '130px', borderRadius: '10px', backgroundColor: 'rgb(128, 181, 228)', cursor: 'pointer'}} onClick={onClick}>
       {buttonText}
     </button>
   );

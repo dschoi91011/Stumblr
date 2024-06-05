@@ -5,7 +5,7 @@
     /* margin-left: calc(20% + 30px); */
     margin-left: 270px;
     overflow-y: auto; 
-  }
+}
 
 .posts-header{
     display: flex;
@@ -46,7 +46,7 @@
     border: 1px solid black;
     width: 100%; 
     margin-bottom: 15px;
-    background-color: rgb(41, 146, 238);
+    background-color: rgb(75, 87, 196);
     border-radius: 10px;
 }
 

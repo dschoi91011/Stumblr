@@ -1,0 +1,39 @@
+.signup-container{
+    height: 670px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative; 
+}
+  
+.signup-form label{
+    position: relative; 
+}
+  
+.signup-form input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  
+.signup-btn-container{
+    margin-left: 135px;
+    margin-top: 20px;
+}
+
+.error{
+    color: red;
+    font-size: 14px;
+    position: absolute; 
+    bottom: -25px; 
+    left: 0;
+}

@@ -15,7 +15,7 @@ function OpenModalMenuItem({
   };
 
   return (
-    <li onClick={onClick}>{itemText}</li>
+    <button style={{height: '30px', width: '130px', borderRadius: '10px', backgroundColor: 'rgb(128, 181, 228)', cursor: 'pointer'}} onClick={onClick}>{itemText}</button>
   );
 }
 

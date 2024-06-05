@@ -40,8 +40,8 @@ function ProfileButton() {
 
   return (
     <>
-      <button className='profile-menu-btn' onClick={toggleMenu}>
-        <img style={{height: '35px', width: '35px'}} src='/profile_icon.png' alt='profile'/>
+      <button className='profile-menu-btn' style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={toggleMenu}>
+        <img style={{height: '25px', width: '25px'}} src='/profile_icon.png' alt='profile'/>
         <span style={{fontSize: '15px'}}>Profile</span>
       </button>
       {showMenu && (
@@ -51,11 +51,11 @@ function ProfileButton() {
               <div>{user.username}</div>
               <div>{user.email}</div>
               <div>
-                <button onClick={logout}>Log Out</button>
+                <button style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={logout}>Log Out</button>
               </div>
             </div>
           ) : (
-            <div>
+            <div className='init-prof-btns'>
               <OpenModalMenuItem
                 itemText="Log In"
                 onItemClick={closeMenu}
