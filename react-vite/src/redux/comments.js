@@ -8,7 +8,11 @@ const getCommentsForPost = (postId, comments) => ({
 
 export const getCommentsForPostThunk = (postId) => async(dispatch) => {
     const res = await fetch(`api/posts/${postId}/comments`);
+
+    console.log('Comment data trace', res)
     const data = await res.json();
+
+    console.log('COMMENT DATA THUNK----->', data)
     if(res.ok) dispatch(getCommentsForPost(postId, data.comments));
     return data;
 }
@@ -58,7 +62,7 @@ const updateComment = (comment) => ({
 export const updateCommentThunk = (id, comment) => async(dispatch) => {
     const res = await fetch(`api/comments/${id}`, {
         method: 'PUT',
-        headers: {'COntent-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(comment)
     });
     const data = await res.json();

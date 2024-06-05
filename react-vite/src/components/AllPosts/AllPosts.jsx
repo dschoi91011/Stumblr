@@ -9,7 +9,6 @@ import PostComment from "../PostComment";
 import UpdateComment from "../UpdateComment";
 import DeleteComment from "../DeleteComment";
 import OpenModalButton from "../OpenModalButton";
-// import NewPostType from "../NewPostType";
 import './AllPosts.css';
 
 
@@ -26,8 +25,8 @@ export default function AllPosts(){
     
 
     console.log('COMMENTS --------------> ', commentsByPostId)
-    console.log('POSTs_-------------->', posts)
-    console.log('CURRENTUSER-------> ', currentUser)
+    // console.log('POSTs_-------------->', posts)
+    // console.log('CURRENTUSER-------> ', currentUser)
 
     const futureFeature = () => {
         alert('Feature under construction')
@@ -41,16 +40,16 @@ export default function AllPosts(){
         getAllPosts();
     }, [dispatch]);
 
+
     const handleHeaderClick = (userId) => {
         navigate(`/user/${userId}/posts`);
     };
 
     const toggleComments = async(postId) => {
-        if(!commentsVisible[postId]){
-            await dispatch(getCommentsForPostThunk(postId));
-        }
+        await dispatch(getCommentsForPostThunk(postId));
         setCommentsVisible(prev => ({...prev, [postId]: !prev[postId]}));
     };
+
 
     const toggleFollow = (userId) => {
         setFollow(prev => ({...prev, [userId]: !prev[userId]}));
@@ -125,9 +124,7 @@ return(
                         </div>
                         <div className="post-lower-btns">
 
-                            <button className='toggle-comment-btn' onClick={() => toggleComments(obj.id)}>
-                                {commentsVisible[obj.id] ? 'Hide Comments' : 'Show Comments'}
-                            </button>
+                            <button className='toggle-comment-btn' style={{cursor: 'pointer'}} onClick={() => toggleComments(obj.id)}>Notes</button>
 
                             {currentUser && currentUser.id !== obj.poster_id && (
                                 <div className='post-lower-right-btn-cluster'>
@@ -217,10 +214,12 @@ return(
                         </div>
                     ))}
                 </div>
-                <button className='reshuffle-btn' onClick={reshufflePosts}>Show more blogs</button>
+                <div className='reshuffle-btn-container'>
+                    <button className='reshuffle-btn' onClick={reshufflePosts}>Show more blogs</button>
+                </div>
             </div>
             
         </div>
     </div>
-);
+    );
 }

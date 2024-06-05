@@ -3,4 +3,38 @@
     padding: 20px; 
     margin-left: 250px; 
     overflow-y: auto; 
-  }
+}
+
+.userpost-prof-block{
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 650px;
+    padding: 10px 0 10px;
+    background-color: rgb(75, 87, 196);
+}
+
+.userpost-profpic{
+    padding-left: 10px;
+}
+
+.userpost-block{
+    width: 650px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(75, 87, 196);
+}
+
+.userpost-img-container{
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 0;
+    border: 1px solid black;
+}
+
+.userpost-img{
+    width: 100%; 
+    height: auto;
+}

@@ -5,122 +5,122 @@ def seed_posts():
     all_posts = [
         {
             'poster_id': 1,
-            'body': None,
+            'body': 'Sunset over the Alpes',
             'picture': 'https://stumblrimages.s3.amazonaws.com/nature1.jpg'
         },
         {
             'poster_id': 1,
-            'body': None,
+            'body': 'Evening clouds',
             'picture': 'https://stumblrimages.s3.amazonaws.com/nature3.jpg'
         },
         {
             'poster_id': 1,
-            'body': None,
+            'body': 'Switzerland',
             'picture': 'https://stumblrimages.s3.amazonaws.com/nature4.jpg'
         },
         {
             'poster_id': 2,
-            'body': None,
+            'body': 'Who remembers Evangelion?',
             'picture': 'https://stumblrimages.s3.amazonaws.com/sci1.jpg'
         },
         {
             'poster_id': 2,
-            'body': None,
+            'body': 'Dystopian concepts',
             'picture': 'https://stumblrimages.s3.amazonaws.com/sci2.jpg'
         },
         {
             'poster_id': 2,
-            'body': None,
+            'body': 'Dark city',
             'picture': 'https://stumblrimages.s3.amazonaws.com/sci3.jpg'
         },
         {
             'poster_id': 3,
-            'body': None,
+            'body': 'Reggie!!!',
             'picture': 'https://stumblrimages.s3.amazonaws.com/westie1.jpg'
         },
         {
             'poster_id': 3,
-            'body': None,
+            'body': 'Dumb and Dumber',
             'picture': 'https://stumblrimages.s3.amazonaws.com/westie2.jpg'
         },
         {
             'poster_id': 3,
-            'body': None,
+            'body': 'Waiting for the bus',
             'picture': 'https://stumblrimages.s3.amazonaws.com/westie3.jpg'
         },
         {
             'poster_id': 4,
-            'body': None,
+            'body': 'Neon Nights',
             'picture': 'https://stumblrimages.s3.amazonaws.com/art1.jpg'
         },
         {
             'poster_id': 4,
-            'body': None,
+            'body': 'Overwatch',
             'picture': 'https://stumblrimages.s3.amazonaws.com/art2.jpg'
         },
         {
             'poster_id': 4,
-            'body': None,
+            'body': 'Colors and angles',
             'picture': 'https://stumblrimages.s3.amazonaws.com/art3.jpg'
         },
         {
             'poster_id': 5,
-            'body': None,
+            'body': 'Tokyo GTR',
             'picture': 'https://stumblrimages.s3.amazonaws.com/car1.jpg'
         },
         {
             'poster_id': 5,
-            'body': None,
+            'body': 'Go VROOOOMMM!!!!',
             'picture': 'https://stumblrimages.s3.amazonaws.com/car2.jpg'
         },
         {
             'poster_id': 5,
-            'body': None,
+            'body': 'Pretty and Pink',
             'picture': 'https://stumblrimages.s3.amazonaws.com/car3.jpg'
         },
         {
             'poster_id': 6,
-            'body': None,
+            'body': 'Artistic Art',
             'picture': 'https://stumblrimages.s3.amazonaws.com/music1.jpg'
         },
         {
             'poster_id': 6,
-            'body': None,
+            'body': 'I hate flats',
             'picture': 'https://stumblrimages.s3.amazonaws.com/music2.jpg'
         },
         {
             'poster_id': 6,
-            'body': None,
+            'body': 'Speak to my soul',
             'picture': 'https://stumblrimages.s3.amazonaws.com/music3.jpg'
         },
                 {
             'poster_id': 7,
-            'body': None,
+            'body': 'Last competition',
             'picture': 'https://stumblrimages.s3.amazonaws.com/bjj1.jpg'
         },
         {
             'poster_id': 7,
-            'body': None,
+            'body': 'The gentle art',
             'picture': 'https://stumblrimages.s3.amazonaws.com/bjj2.jpg'
         },
         {
             'poster_id': 7,
-            'body': None,
+            'body': 'Jiujitero definitions',
             'picture': 'https://stumblrimages.s3.amazonaws.com/bjj3.jpg'
         },
         {
             'poster_id': 8,
-            'body': None,
+            'body': 'LA Summer Nights',
             'picture': 'https://stumblrimages.s3.amazonaws.com/arch1.jpg'
         },
         {
             'poster_id': 8,
-            'body': None,
+            'body': 'Storms over Mumbai',
             'picture': 'https://stumblrimages.s3.amazonaws.com/arch2.jpg'
         },
         {
             'poster_id': 8,
-            'body': None,
+            'body': 'Tokyo aerial',
             'picture': 'https://stumblrimages.s3.amazonaws.com/arch3.jpg'
         }
     ]
