@@ -65,6 +65,10 @@ export default function AllPosts(){
         return randomized.slice(0, count);
     };
 
+    const handleSidebarClick = (postId) => {
+        navigate(`/posts/${postId}`);
+    }
+
     const reshufflePosts = () => {
         const newRandomized = getRandomPosts(posts, 5);
         setRandomPosts(newRandomized);
@@ -205,7 +209,7 @@ return(
                 <h3 className='post-block-right-title'>Check out these blogs</h3>
                 <div className='post-block-right-list'>
                     {isLoaded && randomPosts.map(obj => (
-                        <div className='post-block-right-features' key={obj.id} onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
+                        <div className='post-block-right-features' key={obj.id} onClick={() => handleSidebarClick(obj.id)} style={{cursor: 'pointer'}}>
                             <img className='poster-profpic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                             <div className='post-block-right-textblock'>
                                 <p className='poster-username'>{obj.username}</p>

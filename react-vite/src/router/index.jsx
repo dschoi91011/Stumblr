@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import AllPosts from '../components/AllPosts';
 import UserPosts from '../components/UserPosts';
 import CreatePostForm from '../components/CreatePostForm';
+import OnePost from '../components/OnePost';
 import Layout from './Layout';
 
 
@@ -25,12 +26,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "user/:userId/posts",
-        element: <UserPosts/>
+        element: <UserPosts/>,
       },
       {
         path: "new-post",
         element: <CreatePostForm/>,
       },
+      {
+        path: "posts/:postId",
+        element: <OnePost/>,
+      }
     ],
   },
 ]);
