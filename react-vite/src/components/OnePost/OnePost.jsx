@@ -10,16 +10,14 @@ export default function OnePost(){
     const { postId } = useParams(); 
     const post = useSelector(state => state.posts.post); 
 
-    console.log(post)
+    console.log('POST', post)
 
     useEffect(() => {
         const getPost = async(postId) => {
             await dispatch(getPostByIdThunk(postId));
             setIsLoaded(true);
         };
-        if (postId) {
-            getPost(postId); 
-        }
+        getPost(postId); 
     }, [dispatch, postId]);
 
     return(
