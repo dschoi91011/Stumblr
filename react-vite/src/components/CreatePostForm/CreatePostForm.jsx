@@ -15,9 +15,9 @@ export default function CreatePostForm() {
         const errorObj = {};
         if (!picture) errorObj.picture = 'Picture is required';
         else {
-            const supportedTypes = ['jpg', 'png', 'gif'];
+            const supportedTypes = ['jpg','jpeg', 'png', 'gif'];
             const extension = picture.name.split('.').pop().toLowerCase();
-            if (!supportedTypes.includes(extension)) errorObj.picture = 'File type not supported';
+            if (!supportedTypes.includes(extension)) errorObj.picture = 'Acceptable file types: jpg, jpeg, png, and gif';
         }
         if (body.length > 30) errorObj.body = 'Max character length of 30';
         return errorObj;

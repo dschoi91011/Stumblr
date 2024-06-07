@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentPostsThunk} from "../../redux/posts";
-// import {getCommentsForPostThunk} from "../../redux/comments"; 
+import {getCommentsForPostThunk} from "../../redux/comments"; 
 import {useParams} from "react-router-dom";
 import './UserPosts.css';
 
@@ -9,8 +9,16 @@ export default function UserPosts(){
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const currentPosts = useSelector((state) => state.posts.currentPosts);
-  // const commentsByPostId = useSelector(state => state.comments.byPostId);
-  const { userId } = useParams();
+  const commentsByPostId = useSelector(state => state.comments.byPostId);
+  const { userId, postId } = useParams();
+
+  // const post = currentPosts[0]
+
+  console.log('COMMENTS_------', commentsByPostId)
+  console.log('CURRENTPOSTS  ----->', currentPosts)
+  // console.log(currentPosts[0])
+  console.log('USERID------->', userId)
+  console.log('POSTID------------>', postId)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +28,9 @@ export default function UserPosts(){
     fetchData();
   }, [dispatch, userId]);
 
+  useEffect(() => {
+      dispatch(getCommentsForPostThunk(postId))
+  }, [dispatch, postId])
 
   return(
     <div className="user-posts">

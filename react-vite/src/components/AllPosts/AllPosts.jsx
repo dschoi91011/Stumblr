@@ -23,7 +23,7 @@ export default function AllPosts(){
     const [follow, setFollow] = useState({});
     const [randomPosts, setRandomPosts] = useState([]);
     
-
+    
     console.log('COMMENTS --------------> ', commentsByPostId)
     // console.log('POSTs_-------------->', posts)
     // console.log('CURRENTUSER-------> ', currentUser)
@@ -164,7 +164,8 @@ return(
                                     <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
                                         <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
                                     </OpenModalButton>
-                                    <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}>
+                                    {/* <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}> */}
+                                    <OpenModalButton className='update-post' modalComponent={<UpdatePost postObj={obj}/>}>
                                         <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
                                     </OpenModalButton>
                                 </div>
@@ -227,3 +228,6 @@ return(
     </div>
     );
 }
+
+
+
