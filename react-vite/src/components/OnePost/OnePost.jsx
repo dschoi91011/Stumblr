@@ -24,8 +24,10 @@ export default function OnePost(){
         isLoaded && (
             <div className="one-post">
                 <div>
-                    <p style={{paddingLeft: '300px', fontSize: '40px', marginTop: '25px'}}>{post.post.body}</p>
-                    <img style={{paddingLeft: '300px', marginTop: '-30px'}} src={post.post.picture} alt="picture"/>
+                    {/* <p style={{paddingLeft: '300px', fontSize: '40px', marginTop: '25px'}}>{post.post.body}</p>
+                    <img style={{paddingLeft: '300px', marginTop: '-30px'}} src={post.post.picture} alt="picture"/> */}
+                    <p style={{fontSize: '40px', marginTop: '25px'}}>{post.post.body}</p>
+                    <img style={{marginTop: '-30px'}} src={post.post.picture} alt="picture"/>
                 </div>
             </div>
         )

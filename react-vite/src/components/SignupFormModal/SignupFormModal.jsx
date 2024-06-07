@@ -4,7 +4,7 @@ import {useModal} from "../../context/Modal";
 import {thunkSignup} from "../../redux/session";
 import "./SignupForm.css";
 
-function SignupFormModal() {
+function SignupFormModal(){
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -13,8 +13,9 @@ function SignupFormModal() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [profilePic, setProfilePic] = useState(null);
+  const [profilePicUrl, setProfilePicUrl] = useState('default_profpic.jpg');
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const {closeModal} = useModal();
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -49,7 +50,10 @@ function SignupFormModal() {
 
   const updateProfilePic = (e) => {
     const file = e.target.files[0];
-    if(file) setProfilePic(file);
+    if(file) {
+      setProfilePic(file);
+      setProfilePicUrl(URL.createObjectURL(file));
+    }
   };
 
   return(
@@ -101,8 +105,10 @@ function SignupFormModal() {
         </label>
 
         <label>
-          Profile Picture (optional)
-          <input type="file" onChange={updateProfilePic}/>
+          Profile Picture (optional) <input type="file" id="profile-pic" onChange={updateProfilePic} style={{display: 'none'}}/>
+          <label htmlFor="profile-pic" className="profile-pic-label">
+            <img style={{cursor: 'pointer'}} src={profilePicUrl} alt="Profile Preview" className="profile-pic-preview"/>
+          </label>
         </label>
 
         <div className="signup-btn-container">
