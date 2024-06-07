@@ -1,7 +1,6 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentPostsThunk} from "../../redux/posts";
-import {getCommentsForPostThunk} from "../../redux/comments"; 
 import {useParams} from "react-router-dom";
 import './UserPosts.css';
 
@@ -9,7 +8,7 @@ export default function UserPosts(){
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const currentPosts = useSelector((state) => state.posts.currentPosts);
-  const { userId, postId } = useParams();
+  const {userId} = useParams();
 
   useEffect(() => {
     const fetchData = async() => {
@@ -19,26 +18,22 @@ export default function UserPosts(){
     fetchData();
   }, [dispatch, userId]);
 
-  useEffect(() => {
-      dispatch(getCommentsForPostThunk(postId));
-  }, [dispatch, postId]);
-
   return(
     <div className="user-posts-container">
       {isLoaded && (
         <div className='userpost-prof-block'>
-          <img className='userpost-profpic' style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={currentPosts[0].profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>
+          <img className='userpost-profpic' style={{height: "50px", width: "50px", marginTop: '5px', marginRight: '5px'}} src={currentPosts[0].profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>
           <p>{currentPosts[0].username}</p>
         </div>
       )}
-      {isLoaded && currentPosts.length && currentPosts.map((post) => (
-        <div key={post.id} className='userpost-block'>
-          {post.picture && 
+      {isLoaded && currentPosts.length && currentPosts.map(obj => (
+        <div key={obj.id} className='userpost-block'>
+          {obj.picture && 
           (<div className='userpost-img-container'>
-              <img className='userpost-img' src={post.picture} alt={post.title}/>
+              <img className='userpost-img' src={obj.picture} alt='picture'/>
           </div>)
           }
-          <p>{post.body}</p>
+          <p>{obj.body}</p>
         </div>
       ))}
     </div>

@@ -12,6 +12,7 @@ export default function PostComment({postId}){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        
         if(!content.trim()){
             setInputError('Write something');
             return;

@@ -6,18 +6,8 @@ const getCommentsForPost = (postId, comments) => ({
     comments
 });
 
-// export const getCommentsForPostThunk = (postId) => async(dispatch) => {
-//     const res = await fetch(`api/posts/${postId}/comments`);
-
-//     // console.log('Comment data trace', res)
-//     const data = await res.json();
-//     if(res.ok) dispatch(getCommentsForPost(postId, data.comments));
-//     return data;
-// }
-
 export const getCommentsForPostThunk = (postId) => async(dispatch) => {
     const res = await fetch(`api/posts/${postId}/comments`);
-    console.log('Comment data trace', res)
     if(res.ok){
         const data = await res.json();
         dispatch(getCommentsForPost(postId, data.comments));

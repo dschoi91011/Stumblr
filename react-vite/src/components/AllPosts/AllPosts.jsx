@@ -24,7 +24,7 @@ export default function AllPosts(){
     const [randomPosts, setRandomPosts] = useState([]);
     
     
-    console.log('COMMENTS --------------> ', commentsByPostId)
+    // console.log('COMMENTS --------------> ', commentsByPostId)
     // console.log('POSTs_-------------->', posts)
     // console.log('CURRENTUSER-------> ', currentUser)
 
@@ -75,7 +75,7 @@ export default function AllPosts(){
     }
 
     useEffect(() => {
-        if (isLoaded) {
+        if(isLoaded){
             const randomPosts = getRandomPosts(posts.filter(post => post.poster_id !== (currentUser ? currentUser.id : null)), 5);
             setRandomPosts(randomPosts);
         }
@@ -86,13 +86,9 @@ export default function AllPosts(){
             <div id='search-icon'>
                 <img style={{height: '25px', width: '25px'}} src='/search_icon.png' alt='search_icon'/>
             </div>
-            <input
-                id='search-bar'
-                type='search'
-                style={{width: '200px'}}
+            <input id='search-bar' type='search' style={{width: '200px'}} placeholder='Feature under construction'
                 // value=''
                 // onChange={}
-                placeholder='Feature under construction'
             />
         </div>
     );
@@ -133,22 +129,15 @@ return(
                             {currentUser && currentUser.id !== obj.poster_id && (
                                 <div className='post-lower-right-btn-cluster'>
                                     <img className='reply-toggle-btn'
-                                    src={commentsVisible[obj.id] ? '/hide_reply_icon.png' : 'reply_icon.png'}
-                                    alt='reply_icon'
-                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
-                                    onClick={() => toggleComments(obj.id)}
+                                    src={commentsVisible[obj.id] ? '/hide_reply_icon.png' : 'reply_icon.png'} alt='reply_icon'
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleComments(obj.id)}
                                     />
-                                    <img className='like-toggle-btn'
-                                    src='/fav_icon.png'
-                                    alt='fav_icon'
-                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
-                                    onClick={futureFeature}
+                                    <img className='like-toggle-btn' src='/fav_icon.png' alt='fav_icon' 
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={futureFeature}
                                     />
                                     <img className='follow-toggle-btn'
-                                    src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'}
-                                    alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
-                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
-                                    onClick={() => toggleFollow(obj.poster_id)}
+                                    src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'} alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleFollow(obj.poster_id)}
                                     />
                                 </div>
                             )}
@@ -156,15 +145,12 @@ return(
                             {currentUser && currentUser.id === obj.poster_id && (
                                 <div className="post-actions">
                                     <img className='reply-toggle-btn'
-                                    src='/reply_icon.png'
-                                    alt='reply_icon'
-                                    style={{cursor: 'pointer', height: '35px', width: '35px'}}
-                                    onClick={() => toggleComments(obj.id)}
+                                    src='/reply_icon.png' alt='reply_icon'
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleComments(obj.id)}
                                     />
                                     <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
                                         <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
                                     </OpenModalButton>
-                                    {/* <OpenModalButton className='update-post' modalComponent={<UpdatePost postId={obj.id}/>}> */}
                                     <OpenModalButton className='update-post' modalComponent={<UpdatePost postObj={obj}/>}>
                                         <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
                                     </OpenModalButton>

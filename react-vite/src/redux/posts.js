@@ -24,7 +24,7 @@ const getCurrentPosts = (posts) => ({
 export const getCurrentPostsThunk = (userId) => async(dispatch) => {
     const res = await fetch(`/api/posts/user/${userId}/posts`);
     const data = await res.json();
-    if (res.ok) dispatch(getCurrentPosts(data));
+    if(res.ok) dispatch(getCurrentPosts(data));
     return data;
   };
 
@@ -95,7 +95,6 @@ export const deletePostThunk = (postId) => async(dispatch) => {
         method: 'DELETE'
     });
 
-    console.log('DELETE RES---------------> ', res)
     const data = await res.json();
     if(res.ok) dispatch(deletePost(data));
     return data;

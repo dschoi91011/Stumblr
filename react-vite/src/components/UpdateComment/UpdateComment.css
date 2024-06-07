@@ -1,4 +1,4 @@
-#update-comment-container {
+#update-comment-container{
     height: 300px;
     width: 500px;
     display: flex;
@@ -7,12 +7,12 @@
     align-items: center;
 }
 
-.update-comment-title {
+.update-comment-title{
     margin-top: 0;
     font-size: 40px;
 }
 
-.update-comment-items {
+.update-comment-items{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,16 +20,16 @@
     gap: 30px;
 }
 
-.update-textbox {
+.update-textbox{
     resize: none;
 }
 
-.update-comment-btn {
+.update-comment-btn{
     height: 30px;
     width: 130px;
 }
 
-.error-message {
+.error-message{
     height: 20px;
     margin: 0; 
     color: red;

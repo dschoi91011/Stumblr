@@ -5,7 +5,7 @@ import {getAllPostsThunk} from '../../redux/posts';
 import {useModal} from '../../context/Modal';
 import './UpdatePost.css';
 
-export default function UpdatePost({postObj}) {
+export default function UpdatePost({postObj}){
     const {closeModal} = useModal();
     const dispatch = useDispatch();
     const [body, setBody] = useState(postObj.body);
@@ -36,7 +36,7 @@ export default function UpdatePost({postObj}) {
     const hasErrors = () => {
         if(body.length > 30) return 'Max character length of 30';
         if(picture && !(picture instanceof File)) return '';
-        if(picture && picture instanceof File) {
+        if(picture && picture instanceof File){
             const fileExtension = picture.name.split('.').pop().toLowerCase();
             if(!['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)){
                 return 'Accepted file types are jpg, jpeg, png, and gif';
@@ -93,7 +93,7 @@ export default function UpdatePost({postObj}) {
 
             <div className='form-field'>
                 <label htmlFor='picture' className='file-input-labels'>
-                    {imageURL ? <img src={imageURL} alt="preview" className='thumbnails' /> : 'Upload Picture'}
+                    {imageURL ? <img src={imageURL} alt="preview" className='thumbnails'/> : 'Upload Picture'}
                     <input id='picture' type='file' onChange={updatePicture} style={{visibility: 'hidden'}}/>
                 </label>
             </div>

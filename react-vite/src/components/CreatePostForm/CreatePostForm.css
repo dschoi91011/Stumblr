@@ -1,44 +1,44 @@
 .create-post-form{
-  flex: 1;
-  padding: 20px;
-  margin-left: 280px;
-  overflow-y: auto;
+    flex: 1;
+    padding: 20px;
+    margin-left: 280px;
+    overflow-y: auto;
 }
 
 .form-field{
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .error-message{
-  height: 25px; 
-  margin-top: 5px;
+    height: 25px; 
+    margin-top: 5px;
 }
 
 .error-message p{
-  margin: 0px;
-  color: red;
-  font-size: 14px;
+    margin: 0px;
+    color: red;
+    font-size: 14px;
 }
 
 #caption{
-  resize: none;
+    resize: none;
 }
 
 .custom-file-upload{
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 10px;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  line-height: 100px;
-  overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    overflow: hidden;
 }
 
 .picture-preview{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
  

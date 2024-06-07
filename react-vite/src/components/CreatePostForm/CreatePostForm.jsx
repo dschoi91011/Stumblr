@@ -19,7 +19,6 @@ export default function CreatePostForm(){
             const supportedTypes = ['jpg', 'jpeg', 'png', 'gif'];
             const extension = picture.name.split('.').pop().toLowerCase();
             if(!supportedTypes.includes(extension)) errorObj.picture = 'Acceptable file types: jpg, jpeg, png, and gif';
-            // setPictureUrl('/noimg_icon.png');
         }
         if(body.length > 30) errorObj.body = 'Max character length of 30';
         return errorObj;
@@ -48,8 +47,16 @@ export default function CreatePostForm(){
     const updatePicture = (e) => {
         const file = e.target.files[0];
         if(file){
-            setPicture(file);
-            setPictureUrl(URL.createObjectURL(file));
+            const supportedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+            const extension = file.name.split('.').pop().toLowerCase();
+            if(!supportedTypes.includes(extension)){
+                setInputError({ picture: 'Acceptable file types: jpg, jpeg, png, and gif' });
+                setPicture(null);
+                setPictureUrl('photo_icon.png');
+            } else {
+                setPicture(file);
+                setPictureUrl(URL.createObjectURL(file));
+            }
         }
     };
 
@@ -58,26 +65,25 @@ export default function CreatePostForm(){
             <h1 style={{fontSize: '40px'}}>Create a New Image</h1>
 
             <div className='form-field'>
-                <label htmlFor='picture'>Picture <input id='picture' type='file' onChange={updatePicture} style={{display: 'none'}}/>
+                <label htmlFor='picture'>
+                    Picture{' '}
+                    <input id='picture' type='file' onChange={updatePicture} style={{display: 'none'}}/>
                     <label htmlFor='picture' className='custom-file-upload'>
                         <img src={pictureUrl} alt='Picture Preview' className='picture-preview'/>
                     </label>
                 </label>
-                <div className='error-message'>
-                    {inputError.picture && <p>{inputError.picture}</p>}
-                </div>
+                <div className='error-message'>{inputError.picture && <p>{inputError.picture}</p>}</div>
             </div>
 
             <div className='form-field'>
-                <label htmlFor='caption'>Caption <textarea id='caption' rows='1' cols='80' placeholder='Optional caption' value={body} onChange={e => setBody(e.target.value)}/>
+                <label htmlFor='caption'>
+                    Caption{' '}
+                    <textarea id='caption' rows='1' cols='80' placeholder='Optional caption' value={body} onChange={(e) => setBody(e.target.value)}/>
                 </label>
-                <div className='error-message'>
-                    {inputError.body && <p>{inputError.body}</p>}
-                </div>
+                <div className='error-message'>{inputError.body && <p>{inputError.body}</p>}</div>
             </div>
 
             <button type='submit' style={{height: '30px', width: '100px', borderRadius: '10px'}}>Create Post</button>
         </form>
     );
 }
-
