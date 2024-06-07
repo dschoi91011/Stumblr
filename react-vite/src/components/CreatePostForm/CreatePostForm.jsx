@@ -19,6 +19,7 @@ export default function CreatePostForm(){
             const supportedTypes = ['jpg', 'jpeg', 'png', 'gif'];
             const extension = picture.name.split('.').pop().toLowerCase();
             if(!supportedTypes.includes(extension)) errorObj.picture = 'Acceptable file types: jpg, jpeg, png, and gif';
+            // setPictureUrl('/noimg_icon.png');
         }
         if(body.length > 30) errorObj.body = 'Max character length of 30';
         return errorObj;
@@ -79,5 +80,4 @@ export default function CreatePostForm(){
         </form>
     );
 }
-
 

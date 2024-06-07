@@ -12,7 +12,7 @@ def authorize(poster_id):
         return {'message': 'Forbidden'}, 403
     return None
 
-#READ all posts------------------------------------------------------
+#READ all posts---------------------------------------------------------------
 @post_routes.route('/')
 def all_posts():
     posts = Post.query.all()
@@ -26,13 +26,13 @@ def all_posts():
 #     posts = Post.query.filter_by(poster_id = poster_id).all()                 
 #     return {'posts': [post.to_dict() for post in posts]}
 
-#READ posts by specific user ------------------------------------------------------
+#READ posts by specific user -------------------------------------------------
 @post_routes.route('/user/<int:poster_id>/posts')
 def user_posts(poster_id):
     posts = Post.query.filter_by(poster_id = poster_id).all()
     return {'posts': [post.to_dict() for post in posts]}
 
-#READ one post------------------------------------------------------
+#READ one post--------------------------------------------------------
 @post_routes.route('/<int:post_id>')
 def one_post(post_id):
     post = Post.query.get(post_id)
@@ -88,14 +88,6 @@ def edit_post(post_id):
 
     if form.validate_on_submit():
         post.body = form.body.data
-
-        # image = form.picture.data
-        # if image:
-        #     image.filename = get_unique_filename(image.filename)
-        #     upload = upload_file_to_s3(image)
-        #     if 'url' not in upload:
-        #         return {'error': 'Image could not be uploaded'}, 400
-        #     post.picture = upload['url']
 
         if form.data['picture']:
             image = form.data['picture']

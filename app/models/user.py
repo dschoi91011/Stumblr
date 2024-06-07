@@ -36,7 +36,7 @@ class User(db.Model, UserMixin):
             return check_password_hash(self.password, password)
 
 
-    def get_posts(self):                                        # ADDED
+    def get_posts(self):
         return [post.to_dict() for post in self.posts]
 
 
@@ -48,6 +48,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'profile_pic': self.profile_pic,
-            'posts': self.get_posts()                           # ADDED
+            'posts': self.get_posts()
         }
 
