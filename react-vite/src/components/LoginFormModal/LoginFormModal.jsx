@@ -63,7 +63,7 @@ function LoginFormModal(){
 
           <div className="login-email">
             <label>
-              Email:
+              Email{' '}
               <input type="text" style={{width: '185px'}} value={email} onChange={(e) => setEmail(e.target.value)}/>
             </label>
             <div className="login-error">
@@ -73,7 +73,7 @@ function LoginFormModal(){
 
           <div className="login-password">
             <label>
-              Password:
+              Password{' '}
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </label>
             <div className="login-error">

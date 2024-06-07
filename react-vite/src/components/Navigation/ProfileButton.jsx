@@ -55,16 +55,16 @@ function ProfileButton() {
               </div>
             </div>
           ) : (
-            <div className='init-prof-btns'>
+            <div className='init-prof-btns' style={{marginLeft: '30px'}}>
               <OpenModalMenuItem
                 itemText="Log In"
                 onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
+                modalComponent={<LoginFormModal/>}
               />
               <OpenModalMenuItem
                 itemText="Sign Up"
                 onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
+                modalComponent={<SignupFormModal/>}
               />
             </div>
           )}

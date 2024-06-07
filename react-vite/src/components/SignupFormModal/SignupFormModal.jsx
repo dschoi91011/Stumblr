@@ -69,49 +69,50 @@ function SignupFormModal(){
       <form onSubmit={handleSubmit} className="signup-form">
 
         <label>
-          First Name
+          First Name{' '}
           <input type="text" style={{width: '330px'}} value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
           {errors.first_name && <p className="error">{errors.first_name}</p>}
           {errors.fields && !firstName && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
-          Last Name
+          Last Name{' '}
           <input type="text" style={{width: '333px'}} value={lastName} onChange={(e) => setLastName(e.target.value)}/>
           {errors.last_name && <p className="error">{errors.last_name}</p>}
           {errors.fields && !lastName && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
-          Email
+          Email{' '}
           <input type="text" style={{width: '365px'}} value={email} onChange={(e) => setEmail(e.target.value)}/>
           {errors.email && <p className="error">{errors.email}</p>}
           {errors.fields && !email && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
-          Username
+          Username{' '}
           <input type="text" style={{width: '339px'}} value={username} onChange={(e) => setUsername(e.target.value)}/>
           {errors.username && <p className="error">{errors.username}</p>}
           {errors.fields && !username && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
-          Password
+          Password{' '}
           <input type="password" style={{width: '342px'}} value={password} onChange={(e) => setPassword(e.target.value)}/>
           {errors.password && <p className="error">{errors.password}</p>}
           {errors.fields && !password && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
-          Confirm Password
+          Confirm Password{' '}
           <input type="password" style={{width: '284px'}} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
           {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
           {errors.fields && !confirmPassword && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
-          Profile Picture (optional) <input type="file" id="profile-pic" onChange={updateProfilePic} style={{display: 'none'}}/>
+          Profile Picture (optional){' '} 
+          <input type="file" id="profile-pic" onChange={updateProfilePic} style={{display: 'none'}}/>
           <label htmlFor="profile-pic" className="profile-pic-label">
             <img style={{cursor: 'pointer'}} src={profilePicUrl} alt="Profile Preview" className="profile-pic-preview"/>
           </label>

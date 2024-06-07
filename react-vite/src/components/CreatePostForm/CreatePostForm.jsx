@@ -50,12 +50,17 @@ export default function CreatePostForm(){
             const supportedTypes = ['jpg', 'jpeg', 'png', 'gif'];
             const extension = file.name.split('.').pop().toLowerCase();
             if(!supportedTypes.includes(extension)){
-                setInputError({ picture: 'Acceptable file types: jpg, jpeg, png, and gif' });
+                setInputError(prev => ({ ...prev, picture: 'Acceptable file types: jpg, jpeg, png, and gif' }));
                 setPicture(null);
                 setPictureUrl('photo_icon.png');
             } else {
                 setPicture(file);
                 setPictureUrl(URL.createObjectURL(file));
+                setInputError(prev => {
+                    const newError = {...prev};
+                    delete newError.picture;
+                    return newError;
+                });
             }
         }
     };
