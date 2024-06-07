@@ -1,7 +1,6 @@
 .all-posts-main{
     flex: 1;
     padding: 20px; 
-    /* margin-left: 250px;  */
     margin-left: 310px;
     overflow-y: auto; 
 }
@@ -15,7 +14,6 @@
 .posts-header-center{
     display: flex;
     justify-content: space-around;
-    /* gap: 100px; */
     width: 650px;
     /* border: 1px solid black; */
 }

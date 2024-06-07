@@ -15,7 +15,7 @@ function SignupFormModal(){
   const [profilePic, setProfilePic] = useState(null);
   const [profilePicUrl, setProfilePicUrl] = useState('default_profpic.jpg');
   const [errors, setErrors] = useState({});
-  const {closeModal} = useModal();
+  const { closeModal } = useModal();
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ function SignupFormModal(){
 
     if(!firstName || !lastName || !email || !username || !password || !confirmPassword) newErrors.fields = "All text fields must be completed.";
     if(password && password.length < 8) newErrors.password = "Password must be at least 8 characters.";
-    if (password !== confirmPassword) newErrors.confirmPassword = "Confirm Password field must be the same as the Password field.";
+    if(password !== confirmPassword) newErrors.confirmPassword = "Confirm Password field must be the same as the Password field.";
     if(email && !email.includes('@')) newErrors.email = "Not a valid email address.";
 
     if(Object.keys(newErrors).length){
@@ -50,9 +50,15 @@ function SignupFormModal(){
 
   const updateProfilePic = (e) => {
     const file = e.target.files[0];
-    if(file) {
-      setProfilePic(file);
-      setProfilePicUrl(URL.createObjectURL(file));
+    if(file){
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+      if(validTypes.includes(file.type)){
+        setProfilePic(file);
+        setProfilePicUrl(URL.createObjectURL(file));
+        setErrors(prevErrors => ({...prevErrors, profilePic: null}));
+      } else {
+        setErrors(prevErrors => ({...prevErrors, profilePic: 'File type must be jpg, jpeg, png, or gif'}));
+      }
     }
   };
 
@@ -109,6 +115,7 @@ function SignupFormModal(){
           <label htmlFor="profile-pic" className="profile-pic-label">
             <img style={{cursor: 'pointer'}} src={profilePicUrl} alt="Profile Preview" className="profile-pic-preview"/>
           </label>
+          {errors.profilePic && <p className="error">{errors.profilePic}</p>}
         </label>
 
         <div className="signup-btn-container">

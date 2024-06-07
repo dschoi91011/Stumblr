@@ -1,11 +1,7 @@
 /* TODO: Add sitewide styles */
-*{
-    /* background-color: rgb(164, 164, 216); */
-}
 
 html{
     max-width: 1200px;
-    margin-right: auto;
-    margin-left: 150px;
+    margin: auto;
     background-color: rgb(146, 146, 206);
 }

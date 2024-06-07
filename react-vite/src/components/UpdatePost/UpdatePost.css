@@ -1,67 +1,36 @@
-.update-post-form {
-    flex: 1;
-    padding: 20px;
-    margin-left: 250px;
-    overflow-y: auto;
+.update-post-form{
+    padding: 50px;
 }
 
-.form-field {
-    margin-bottom: 20px;
-}
-
-.error-message {
+.error-message{
     height: 20px; 
 }
 
-.error-message p {
+.error-message p{
     margin: 0;
     color: red;
     font-size: 14px;
     visibility: hidden; 
 }
 
-.error-message p:empty {
+.error-message p:empty{
     visibility: hidden; 
 }
 
-.error-message p:not(:empty) {
+.error-message p:not(:empty){
     visibility: visible; 
 }
 
-#caption {
+#caption{
     resize: none;
 }
 
-.file-inputs-optional {
-    position: absolute;
-    font-size: 14px;
-    color: red;
-    top: 41px;
-    left: 240px;
-}
-
-.thumbnails {
+.thumbnails{
     width: 50px;
     height: 50px;
-    outline: none;
+    border-radius: 10px;
 }
 
-.file-input-labels {
-    display: block;
-    border: 2px solid var(--minimal-border);
-    border-radius: 4px;
-    color: var(--minimal-border);
-    background-color: var(--minimal-background);
-    width: 124px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 600;
-    padding-top: 7px;
-    transition: all 0.3s ease-in-out;
-}
-
-.file-input-labels:hover {
-    color: white;
-    border-color: white;
+.file-input-labels:hover{
     cursor: pointer;
 }

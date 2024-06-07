@@ -9,19 +9,10 @@ export default function UserPosts(){
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const currentPosts = useSelector((state) => state.posts.currentPosts);
-  const commentsByPostId = useSelector(state => state.comments.byPostId);
   const { userId, postId } = useParams();
 
-  // const post = currentPosts[0]
-
-  console.log('COMMENTS_------', commentsByPostId)
-  console.log('CURRENTPOSTS  ----->', currentPosts)
-  // console.log(currentPosts[0])
-  console.log('USERID------->', userId)
-  console.log('POSTID------------>', postId)
-
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async() => {
       await dispatch(getCurrentPostsThunk(userId));
       setIsLoaded(true);
     };
@@ -29,11 +20,11 @@ export default function UserPosts(){
   }, [dispatch, userId]);
 
   useEffect(() => {
-      dispatch(getCommentsForPostThunk(postId))
-  }, [dispatch, postId])
+      dispatch(getCommentsForPostThunk(postId));
+  }, [dispatch, postId]);
 
   return(
-    <div className="user-posts">
+    <div className="user-posts-container">
       {isLoaded && (
         <div className='userpost-prof-block'>
           <img className='userpost-profpic' style={{ height: "50px", width: "50px", marginTop: '5px', marginRight: '5px' }} src={currentPosts[0].profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>

@@ -4,38 +4,39 @@ import {useNavigate} from 'react-router-dom';
 import {createPostThunk} from '../../redux/posts';
 import './CreatePostForm.css';
 
-export default function CreatePostForm() {
+export default function CreatePostForm(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [body, setBody] = useState('');
     const [picture, setPicture] = useState(null);
+    const [pictureUrl, setPictureUrl] = useState('photo_icon.png');
     const [inputError, setInputError] = useState({});
 
     const hasErrors = () => {
         const errorObj = {};
-        if (!picture) errorObj.picture = 'Picture is required';
+        if(!picture) errorObj.picture = 'Picture is required';
         else {
-            const supportedTypes = ['jpg','jpeg', 'png', 'gif'];
+            const supportedTypes = ['jpg', 'jpeg', 'png', 'gif'];
             const extension = picture.name.split('.').pop().toLowerCase();
-            if (!supportedTypes.includes(extension)) errorObj.picture = 'Acceptable file types: jpg, jpeg, png, and gif';
+            if(!supportedTypes.includes(extension)) errorObj.picture = 'Acceptable file types: jpg, jpeg, png, and gif';
         }
-        if (body.length > 30) errorObj.body = 'Max character length of 30';
+        if(body.length > 30) errorObj.body = 'Max character length of 30';
         return errorObj;
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const newErr = hasErrors();
         setInputError(newErr);
 
-        if (Object.keys(newErr).length === 0) {
+        if(!Object.keys(newErr).length){
             const formData = new FormData();
             formData.append('body', body);
             formData.append('picture', picture);
 
             const res = await dispatch(createPostThunk(formData));
 
-            if (res.errors) {
+            if(res.errors){
                 setInputError(res.errors);
             } else {
                 navigate('/');
@@ -45,16 +46,21 @@ export default function CreatePostForm() {
 
     const updatePicture = (e) => {
         const file = e.target.files[0];
-        if (file) setPicture(file);
+        if(file){
+            setPicture(file);
+            setPictureUrl(URL.createObjectURL(file));
+        }
     };
 
-    return (
+    return(
         <form className='create-post-form' onSubmit={handleSubmit}>
-            <h1 style={{ fontSize: '40px' }}>Create a New Image</h1>
+            <h1 style={{fontSize: '40px'}}>Create a New Image</h1>
 
             <div className='form-field'>
-                <label htmlFor='picture'>Picture
-                    <input id='picture' type='file' onChange={updatePicture} />
+                <label htmlFor='picture'>Picture <input id='picture' type='file' onChange={updatePicture} style={{display: 'none'}}/>
+                    <label htmlFor='picture' className='custom-file-upload'>
+                        <img src={pictureUrl} alt='Picture Preview' className='picture-preview'/>
+                    </label>
                 </label>
                 <div className='error-message'>
                     {inputError.picture && <p>{inputError.picture}</p>}
@@ -62,15 +68,16 @@ export default function CreatePostForm() {
             </div>
 
             <div className='form-field'>
-                <label htmlFor='caption'>Caption
-                    <textarea id='caption' rows='1' cols='80' placeholder='Optional caption' value={body} onChange={e => setBody(e.target.value)} />
+                <label htmlFor='caption'>Caption <textarea id='caption' rows='1' cols='80' placeholder='Optional caption' value={body} onChange={e => setBody(e.target.value)}/>
                 </label>
                 <div className='error-message'>
                     {inputError.body && <p>{inputError.body}</p>}
                 </div>
             </div>
 
-            <button type='submit' style={{ height: '30px', width: '100px', borderRadius: '10px'}}>Create Post</button>
+            <button type='submit' style={{height: '30px', width: '100px', borderRadius: '10px'}}>Create Post</button>
         </form>
     );
 }
+
+

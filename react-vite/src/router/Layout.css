@@ -1,5 +1,111 @@
-.vertical-align{
+/* .vertical-align{
+    display: flex;
+    justify-content: center;
+} */
+
+  .layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
+  }
+  
+  .content {
+    padding-left: 30px;
+  }
+  
+  .profile-dropdown {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin-top: 400px;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid black;
+    /* margin-top: 150px; */
+  }
+  
+  .profile-menu-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .profile-info {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    padding-right: 30px;
+    gap: 20px;
+  }
+  
+  .init-prof-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    padding-right: 30px;
+  }
+  
+  .nav-home-btn {
+    display: flex;
+    justify-content: center;
     align-items: center;
-}
+    gap: 5px;
+  }
+  
+  #stumblr-title {
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: bolder;
+    color: rgb(84, 84, 221);
+    transition: color 2s ease;
+  }
+  
+  #stumblr-title:hover {
+    animation: colorShift 4s infinite;
+  }
+  
+  @keyframes colorShift {
+    0% {color: blue}
+    20% {color: skyblue}
+    40% {color: pink}
+    60% {color: red}
+    80% {color: orange}
+    100% {color: purple}
+  }
+  
+  #nav-bar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    padding: 30px 35px 35px 0;
+    border-right: 1px solid black;
+  }
+  
+  .nav-upper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  
+  .nav-upper-btn-cluster {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .vertical-align {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+  }

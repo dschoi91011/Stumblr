@@ -1,0 +1,27 @@
+.one-post-container{
+    display: flex;
+    margin-left: 250px; 
+    padding-left: 80px; 
+}
+  
+.one-post{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+  
+.post-content{
+    text-align: center;
+}
+  
+.post-body{
+    font-size: 40px;
+    margin-top: 25px;
+}
+  
+.post-image{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-top: -30px;
+}

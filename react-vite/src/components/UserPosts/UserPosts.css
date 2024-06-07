@@ -1,10 +1,10 @@
-/* .user-posts{
-    flex: 1;
-    padding: 20px; 
+.user-posts-container{
+    display: flex;
+    flex-direction: column;
     margin-left: 250px; 
-    overflow-y: auto; 
-} */
-
+    padding-left: 80px; 
+}
+  
 .userpost-prof-block{
     display: flex;
     margin-bottom: 20px;
@@ -14,11 +14,11 @@
     padding: 10px 0 10px;
     background-color: rgb(75, 87, 196);
 }
-
+  
 .userpost-profpic{
     padding-left: 10px;
 }
-
+  
 .userpost-block{
     width: 650px;
     border: 1px solid black;
@@ -26,14 +26,14 @@
     margin-bottom: 20px;
     background-color: rgb(75, 87, 196);
 }
-
+  
 .userpost-img-container{
     display: flex;
     justify-content: center;
     margin: 30px 0 0;
     border: 1px solid black;
 }
-
+  
 .userpost-img{
     width: 100%; 
     height: auto;
