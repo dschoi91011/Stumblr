@@ -112,7 +112,7 @@ return(
                     <div className='post-block' key={obj.id}>
                         <div>
                             <div className='post-header' onClick={() => handleHeaderClick(obj.poster_id)} style={{cursor: 'pointer'}}>
-                                <img className='poster-profpic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                                <img className='poster-profpic' src={obj?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                                 <p className='poster-username'>{obj.username}</p>
                             </div>
                             {obj.picture && (
@@ -120,14 +120,14 @@ return(
                                     <img className='post-img' src={obj.picture} alt='post-img'/>
                                 </div>
                             )}
-                            <p className='img-caption'>{obj.body}</p>
+                            <p className='img-caption' style={{marginLeft: '10px', fontSize: '20px'}}>{obj.body}</p>
                         </div>
-                        <div className="post-lower-btns">
+                        <div className="post-lower-btns" style={{marginLeft: '10px'}}>
 
                             <button className='toggle-comment-btn' style={{cursor: 'pointer'}} onClick={() => toggleComments(obj.id)}>Notes</button>
 
                             {currentUser && currentUser.id !== obj.poster_id && (
-                                <div className='post-lower-right-btn-cluster'>
+                                <div className='post-lower-right-btn-cluster' style={{marginRight: '10px'}}>
                                     <img className='reply-toggle-btn'
                                     src={commentsVisible[obj.id] ? '/hide_reply_icon.png' : 'reply_icon.png'} alt='reply_icon'
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleComments(obj.id)}
@@ -158,20 +158,21 @@ return(
                             )}
                         </div>
                         {commentsVisible[obj.id] && (
-                            <div className="comments-section">
+                            <div className="comments-section" style={{marginBottom: '20px', marginLeft: '10px'}}>
                                 {commentsByPostId[obj.id]?.length ? (
                                     commentsByPostId[obj.id].map(comment => (
-                                        <div key={comment.id} className="comment-block">
+                                        <div key={comment.id} className="comment-block" style={{marginLeft: '10px'}}>
 
                                             <div className='commenter-block-left'>
-                                                <img className='commenter-pic' style={{height: '50px', width: '50px', marginTop: '5px', marginRight: '5px'}} src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                                                <img className='commenter-pic' src={comment?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                                                 <div className='commenter-post-block'>
                                                     <small className='commenter-username'>{comment.username} replied:</small>
                                                     <p className='commenter-reply'>{comment.content}</p>
                                                 </div>
                                             </div>
+
                                             {currentUser && currentUser.id === comment.user_id && (
-                                                <div className='commenter-modal-btns'>
+                                                <div className='commenter-modal-btns' style={{marginRight: '10px'}}>
                                                     <OpenModalButton className='delete-comment' modalComponent={<DeleteComment id={comment.id} postId={obj.id}/>}>
                                                         <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
                                                     </OpenModalButton>
@@ -183,8 +184,9 @@ return(
                                         </div>
                                     ))
                                 ) : (
-                                    <p>No comments yet.</p>
+                                    <p style={{marginLeft: '10px'}}>No comments yet.</p>
                                 )}
+                                <div style={{marginTop: '30px'}}></div>
                                 {currentUser && (<OpenModalButton className='post-comment' buttonText='Post Comment' modalComponent={<PostComment postId={obj.id}/>}/>)}
                             </div>
                         )}

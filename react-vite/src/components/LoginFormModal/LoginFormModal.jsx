@@ -64,7 +64,7 @@ function LoginFormModal(){
           <div className="login-email">
             <label>
               Email{' '}
-              <input type="text" style={{width: '190px'}} value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <input type="text" style={{width: '193px'}} value={email} onChange={(e) => setEmail(e.target.value)}/>
             </label>
             <div className="login-error">
               {errors.email && <p>{errors.email}</p>}
