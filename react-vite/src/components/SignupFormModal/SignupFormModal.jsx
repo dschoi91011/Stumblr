@@ -15,17 +15,23 @@ function SignupFormModal(){
   const [profilePic, setProfilePic] = useState(null);
   const [profilePicUrl, setProfilePicUrl] = useState('default_profpic.jpg');
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const {closeModal} = useModal();
 
   const handleSubmit = async(e) => {
     e.preventDefault();
 
     const newErrors = {};
 
-    if(!firstName || !lastName || !email || !username || !password || !confirmPassword) newErrors.fields = "All text fields must be completed.";
-    if(password && password.length < 8) newErrors.password = "Password must be at least 8 characters.";
-    if(password !== confirmPassword) newErrors.confirmPassword = "Confirm Password field must be the same as the Password field.";
-    if(email && !email.includes('@')) newErrors.email = "Not a valid email address.";
+    if(!firstName) newErrors.firstName = 'First name is required.';
+    if(!lastName) newErrors.lastName = 'Last name is required.';
+    if(!email) newErrors.email = 'Email is required.';
+    if(!username) newErrors.username = 'Username is required.';
+    if(!password) newErrors.password = 'Password is required.';
+    if(!confirmPassword) newErrors.confirmPassword = 'Confirm password is required.';
+
+    if(password && password.length < 8) newErrors.password = 'Password must be at least 8 characters.';
+    if(password !== confirmPassword) newErrors.confirmPassword = 'Confirm password field must be the same as password.';
+    if(email && !email.includes('@')) newErrors.email = 'Not a valid email address.';
 
     if(Object.keys(newErrors).length){
       return setErrors(newErrors);
@@ -71,47 +77,41 @@ function SignupFormModal(){
         <label>
           First Name{' '}
           <input type="text" style={{width: '330px'}} value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-          {errors.first_name && <p className="error">{errors.first_name}</p>}
-          {errors.fields && !firstName && <p className="error">{errors.fields}</p>}
+          {errors.firstName && <p className="error">{errors.firstName}</p>}
         </label>
 
         <label>
           Last Name{' '}
           <input type="text" style={{width: '333px'}} value={lastName} onChange={(e) => setLastName(e.target.value)}/>
-          {errors.last_name && <p className="error">{errors.last_name}</p>}
-          {errors.fields && !lastName && <p className="error">{errors.fields}</p>}
+          {errors.lastName && <p className="error">{errors.lastName}</p>}
         </label>
 
         <label>
           Email{' '}
           <input type="text" style={{width: '365px'}} value={email} onChange={(e) => setEmail(e.target.value)}/>
           {errors.email && <p className="error">{errors.email}</p>}
-          {errors.fields && !email && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
           Username{' '}
           <input type="text" style={{width: '339px'}} value={username} onChange={(e) => setUsername(e.target.value)}/>
           {errors.username && <p className="error">{errors.username}</p>}
-          {errors.fields && !username && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
           Password{' '}
           <input type="password" style={{width: '342px'}} value={password} onChange={(e) => setPassword(e.target.value)}/>
           {errors.password && <p className="error">{errors.password}</p>}
-          {errors.fields && !password && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
           Confirm Password{' '}
           <input type="password" style={{width: '284px'}} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
           {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-          {errors.fields && !confirmPassword && <p className="error">{errors.fields}</p>}
         </label>
 
         <label>
-          Profile Picture (optional){' '} 
+          Profile Picture (optional){' '}
           <input type="file" id="profile-pic" onChange={updateProfilePic} style={{display: 'none'}}/>
           <label htmlFor="profile-pic" className="profile-pic-label">
             <img style={{cursor: 'pointer'}} src={profilePicUrl} alt="Profile Preview" className="profile-pic-preview"/>
