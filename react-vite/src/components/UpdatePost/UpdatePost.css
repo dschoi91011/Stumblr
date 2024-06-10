@@ -34,3 +34,7 @@
 .file-input-labels:hover{
     cursor: pointer;
 }
+
+.update-post-btn:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}

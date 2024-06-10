@@ -20,10 +20,15 @@
 }
 
 .del-post-yes-btn:hover{
-    background-color: red;
+    background-color: rgb(226, 59, 59);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .del-post-no-btn{
     height: 30px;
     width: 130px;
+}
+
+.del-post-no-btn:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
