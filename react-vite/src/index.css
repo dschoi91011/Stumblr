@@ -5,3 +5,7 @@ html{
     margin: auto;
     background-color: rgb(146, 146, 206);
 }
+
+.open-modal-btn:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}

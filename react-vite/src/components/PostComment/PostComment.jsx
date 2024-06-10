@@ -33,7 +33,7 @@ export default function PostComment({postId}){
                 <div className='post-comment-block'>
                     <textarea className='post-comment-textbox' rows='2' cols='50' value={content} onChange={(e) => setContent(e.target.value)} placeholder='Write your comment here...'/>
                     <p className='error-message'>{inputError}</p>
-                    <button className='post-comment-btn' style={{borderRadius: '10px'}} type='submit'>Post</button>
+                    <button className='post-comment-btn' style={{borderRadius: '10px', cursor: 'pointer'}} type='submit'>Post</button>
                 </div>
             </form>
         </div>

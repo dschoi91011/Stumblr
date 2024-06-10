@@ -120,7 +120,7 @@ function SignupFormModal(){
         </label>
 
         <div className="signup-btn-container">
-          <button style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} type="submit">Sign Up</button>
+          <button className='signup-btn' style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} type="submit">Sign Up</button>
         </div>
       </form>
     </div>

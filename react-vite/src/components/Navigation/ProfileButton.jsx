@@ -51,7 +51,7 @@ function ProfileButton() {
               <div style={{fontSize: '20px'}}>{user.username}</div>
               {/* <div>{user.email}</div> */}
               <div>
-                <button style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={logout}>Log Out</button>
+                <button className='logout-btn' style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={logout}>Log Out</button>
               </div>
             </div>
           ) : (

@@ -88,8 +88,8 @@ function LoginFormModal(){
         </div>
 
         <div className="login-btn-container">
-          <button type="submit" style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}}>Log In</button>
-          <button style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={demoUser}>Demo User</button>
+          <button className='login-btn' type="submit" style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}}>Log In</button>
+          <button className='demouser-btn' style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={demoUser}>Demo User</button>
         </div>
       </form>
     </div>

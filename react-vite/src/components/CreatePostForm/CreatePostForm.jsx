@@ -88,7 +88,7 @@ export default function CreatePostForm(){
                 <div className='error-message'>{inputError.body && <p>{inputError.body}</p>}</div>
             </div>
 
-            <button type='submit' style={{height: '30px', width: '100px', borderRadius: '10px'}}>Create Post</button>
+            <button className='create-post-btn' type='submit' style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}}>Create Post</button>
         </form>
     );
 }

@@ -81,6 +81,10 @@
     background-color: rgb(128, 181, 228);
 }
 
+.toggle-comment-btn:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
 .post-lower-right-btn-cluster{
     display: flex;
     gap: 20px;
@@ -176,6 +180,9 @@
     cursor: pointer;
 }
 
+.reshuffle-btn:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
 
 .trending:hover{
     transform: scale(1.1);
