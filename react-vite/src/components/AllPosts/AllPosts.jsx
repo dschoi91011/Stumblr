@@ -195,7 +195,7 @@ return(
             </div>
 
             <div className='post-block-right'>
-                <h3 className='post-block-right-title'>Featured Posts</h3>
+                <h3 className='post-block-right-title'>Check out these posts</h3>
                 <div className='post-block-right-list'>
                     {isLoaded && randomPosts.map(obj => (
                         <div className='post-block-right-features' key={obj.id} onClick={() => handleSidebarClick(obj.id)} style={{cursor: 'pointer'}}>
