@@ -24,6 +24,23 @@ function Navigation(){
             <img style={{height: '25px', width: '25px'}} src='/home_icon.png' alt='profile'/>
             <span style={{fontSize: '15px'}}>Home</span>
           </button>
+
+          {
+            currentUser &&
+            <button className="nav-liked-btn" style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={navHomeClick}>
+              <img style={{height: '25px', width: '25px'}} src="/fav_icon.png" alt="fav"/>
+              <span style={{fontSize: '15px'}}>Liked</span>
+            </button>
+          }
+
+          {
+            currentUser &&
+            <button className="nav-follow-btn" style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={navHomeClick}>
+              <img style={{height: '25px', width: '25px'}} src="/follow_icon.png" alt="fav"/>
+              <span style={{fontSize: '15px'}}>Follow</span>
+            </button>
+          }
+        
         </div>
       </div>
       {
