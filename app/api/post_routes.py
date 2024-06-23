@@ -135,7 +135,7 @@ def post_comments(post_id):
     comments = Comment.query.filter_by(post_id = post_id).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
-#CREATE comment for post--------------------------------------------
+#CREATE comment for post---------------------------------------------------------------
 @post_routes.route('/<int:post_id>/comments/new', methods=['POST'])
 @login_required
 def create_post_comment(post_id):
@@ -161,6 +161,25 @@ def create_post_comment(post_id):
         return {'error': form.errors}, 400
 
 
+#CREATE/DELETE favorite post-------------------------------------------------------------------
+@post_routes.route('/<int:post_id>/favorite', methods=['POST'])
+@login_required
+def toggle_favorite(post_id):
+    post = Post.query.get(post_id)
+    if not post:
+        return {'message': 'Post does not exist'}, 404
+
+    existing_favorite = Favorite.query.filter_by(user_id=current_user.id, post_id=post_id).first()
+    if existing_favorite:
+        db.session.delete(existing_favorite)
+        db.session.commit()
+        return {'message': 'Post removed from favorites'}, 200
+    else:
+        new_favorite = Favorite(user_id=current_user.id, post_id=post_id)
+        db.session.add(new_favorite)
+        db.session.commit()
+        return {'message': 'Post added to favorites'}, 201
+
 
 #READ favorites for user-----------------------------------------------
 @post_routes.route('/favorites')
@@ -170,26 +189,3 @@ def favorite_posts():
     favorite_posts_ids = [favorite.post_id for favorite in favorites]
     posts = Post.query.filter(Post.id.in_(favorite_post_ids)).all()
     return {'favorites': [post.to_dict() for post in posts]}
-
-#CREATE favorite for post---------------------------------------------
-# @post_routes.route('/<int:post_id>/favorite', methods=['POST'])
-# @login_required
-# def switch_fav(post_id):
-#     post = Post.query.get(post_id)
-#     fav = Favorite.query.filter_by(user_id=current_user.id, post_id=post_id).first()
-
-#     if not post:
-#         return {'message': 'Post does not exist'}, 404
-
-#     if fav:
-#         db.session.delete(fav)
-#         msg = 'Liked'
-#     else:
-#         new_fav = Favorite(user_id=current_user.id, post_id=post_id)
-#         db.session.add(new_fav)
-#         msg = 'Unliked'
-
-#     db.session.commit()
-#     return {'message': msg}, 200
-
-    
