@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from 'react-router-dom';
-import {getAllPostsThunk} from "../../redux/posts";
+import {getAllPostsThunk, addFavoriteThunk, removeFavoriteThunk} from "../../redux/posts";
 import {getCommentsForPostThunk} from "../../redux/comments"; 
 import DeletePost from "../DeletePost";
 import UpdatePost from "../UpdatePost";
@@ -22,7 +22,7 @@ export default function AllPosts(){
     const navigate = useNavigate();
     const [follow, setFollow] = useState({});
     const [randomPosts, setRandomPosts] = useState([]);
-    
+
     
     // console.log('COMMENTS --------------> ', commentsByPostId)
     // console.log('POSTs_-------------->', posts)
@@ -50,6 +50,13 @@ export default function AllPosts(){
         setCommentsVisible(prev => ({...prev, [postId]: !prev[postId]}));
     };
 
+    const toggleFavorite = (postId, isFavorite) => {
+        if(isFavorite){
+            dispatch(removeFavoriteThunk(postId));
+        } else {
+            dispatch(addFavoriteThunk(postId));
+        }
+    };
 
     const toggleFollow = (userId) => {
         setFollow(prev => ({...prev, [userId]: !prev[userId]}));
@@ -133,7 +140,7 @@ return(
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleComments(obj.id)}
                                     />
                                     <img className='like-toggle-btn' src='/fav_icon.png' alt='fav_icon' 
-                                    style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={futureFeature}
+                                    style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleFavorite(obj.id)}
                                     />
                                     <img className='follow-toggle-btn'
                                     src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'} alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
@@ -216,6 +223,3 @@ return(
     </div>
     );
 }
-
-
-

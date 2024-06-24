@@ -6,6 +6,7 @@ import UserPosts from '../components/UserPosts';
 import CreatePostForm from '../components/CreatePostForm';
 import OnePost from '../components/OnePost';
 import Layout from './Layout';
+import Favorites from '../components/Favorites';
 
 
 export const router = createBrowserRouter([
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "posts/:postId",
         element: <OnePost/>,
+      },
+      {
+        path: "favorites",
+        element: <Favorites/>,
       }
     ],
   },

@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from .aws_functions import (upload_file_to_s3, get_unique_filename)
-from ..models import db, Post, Comment, Favorite                                # make sure to add FAVORITE to add relevant routes for future features
+from ..models import db, Post, Comment, Favorite                                
 from ..forms import PostForm, CommentForm
 
 
@@ -18,13 +18,6 @@ def all_posts():
     posts = Post.query.all()
     return {'posts': [post.to_dict() for post in posts]}
 
-#READ current user posts------------------------------------------------------  
-# @post_routes.route('/my-posts')
-# @login_required
-# def my_posts():
-#     poster_id = current_user.id
-#     posts = Post.query.filter_by(poster_id = poster_id).all()                 
-#     return {'posts': [post.to_dict() for post in posts]}
 
 #READ posts by specific user -------------------------------------------------
 @post_routes.route('/user/<int:poster_id>/posts')
@@ -187,5 +180,5 @@ def toggle_favorite(post_id):
 def favorite_posts():
     favorites = Favorite.query.filter_by(user_id=current_user.id).all()
     favorite_posts_ids = [favorite.post_id for favorite in favorites]
-    posts = Post.query.filter(Post.id.in_(favorite_post_ids)).all()
+    posts = Post.query.filter(Post.id.in_(favorite_posts_ids)).all()
     return {'favorites': [post.to_dict() for post in posts]}
