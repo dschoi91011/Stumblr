@@ -32,7 +32,7 @@ function Navigation(){
           {
             currentUser &&
             <button className="nav-liked-btn" style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={favoritesClick}>
-              <img style={{height: '25px', width: '25px'}} src="/fav_icon.png" alt="fav"/>
+              <img style={{height: '25px', width: '25px'}} src="/unfav_icon.png" alt="fav"/>
               <span style={{fontSize: '15px'}}>Liked</span>
             </button>
           }

@@ -22,7 +22,6 @@ export default function AllPosts(){
     const navigate = useNavigate();
     const [follow, setFollow] = useState({});
     const [randomPosts, setRandomPosts] = useState([]);
-
     
     // console.log('COMMENTS --------------> ', commentsByPostId)
     // console.log('POSTs_-------------->', posts)
@@ -100,6 +99,7 @@ export default function AllPosts(){
         </div>
     );
 
+
 return(
     <div className='all-posts-main'>
         <div className='posts-header'>
@@ -139,9 +139,15 @@ return(
                                     src={commentsVisible[obj.id] ? '/hide_reply_icon.png' : 'reply_icon.png'} alt='reply_icon'
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleComments(obj.id)}
                                     />
-                                    <img className='like-toggle-btn' src='/fav_icon.png' alt='fav_icon' 
+
+                                    {/* <img className='like-toggle-btn' src={liked ? '/fav_icon.png' : '/unfav_icon.png'} alt='fav_icon' 
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleFavorite(obj.id)}
+                                    /> */}
+
+                                    <img className='like-toggle-btn' src={obj.isLiked ? '/fav_icon.png' : '/unfav_icon.png'} alt='fav_icon'
+                                    style={{ cursor: 'pointer', height: '35px', width: '35px' }} onClick={() => toggleFavorite(obj.id, obj.isLiked)}
                                     />
+
                                     <img className='follow-toggle-btn'
                                     src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'} alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleFollow(obj.poster_id)}
