@@ -167,10 +167,29 @@ const postsReducer = (state = initState, action) => {
             return { ...state, currentPosts: action.posts.posts };
         case GET_FAVORITE_POSTS:
             return { ...state, favorites: action.posts };
-        case ADD_FAVORITE:
-            return { ...state, favorites: [...state.favorites, action.post] };
-        case REMOVE_FAVORITE:
-            return { ...state, favorites: state.favorites.filter(post => post.id !== action.postId) };
+        // case ADD_FAVORITE:
+        //     return { ...state, favorites: [...state.favorites, action.post] };
+        // case REMOVE_FAVORITE:
+        //     return { ...state, favorites: state.favorites.filter(post => post.id !== action.postId) };
+        case ADD_FAVORITE: {
+            const updatedPosts = state.posts.map(post => {
+                if (post.id === action.post.id) {
+                    return { ...post, isLiked: true };
+                }
+                return post;
+            });
+            return { ...state, posts: updatedPosts, favorites: [...state.favorites, action.post] };
+        }
+        
+        case REMOVE_FAVORITE: {
+            const updatedPosts = state.posts.map(post => {
+                if (post.id === action.postId) {
+                    return { ...post, isLiked: false };
+                }
+                return post;
+            });
+            return { ...state, posts: updatedPosts, favorites: state.favorites.filter(post => post.id !== action.postId) };
+        }
           
         default:
             return state;

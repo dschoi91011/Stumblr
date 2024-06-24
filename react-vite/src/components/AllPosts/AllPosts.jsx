@@ -49,8 +49,8 @@ export default function AllPosts(){
         setCommentsVisible(prev => ({...prev, [postId]: !prev[postId]}));
     };
 
-    const toggleFavorite = (postId, isFavorite) => {
-        if(isFavorite){
+    const toggleFavorite = (postId, isLiked) => {
+        if(isLiked){
             dispatch(removeFavoriteThunk(postId));
         } else {
             dispatch(addFavoriteThunk(postId));
