@@ -155,23 +155,46 @@ def create_post_comment(post_id):
 
 
 #CREATE/DELETE favorite post-------------------------------------------------------------------
-@post_routes.route('/<int:post_id>/favorite', methods=['POST'])
+# @post_routes.route('/<int:post_id>/favorite', methods=['POST'])
+# @login_required
+# def toggle_favorite(post_id):
+#     post = Post.query.get(post_id)
+#     if not post:
+#         return {'message': 'Post does not exist'}, 404
+
+#     existing_favorite = Favorite.query.filter_by(user_id=current_user.id, post_id=post_id).first()
+#     if existing_favorite:
+#         db.session.delete(existing_favorite)
+#         db.session.commit()
+#         return {'message': 'Post removed from favorites'}, 200
+#     else:
+#         new_favorite = Favorite(user_id=current_user.id, post_id=post_id)
+#         db.session.add(new_favorite)
+#         db.session.commit()
+#         return {'message': 'Post added to favorites'}, 201
+
+
+@post_routes.route('/<int:post_id>/favorite', methods=['POST', 'DELETE'])
 @login_required
 def toggle_favorite(post_id):
-    post = Post.query.get(post_id)
-    if not post:
-        return {'message': 'Post does not exist'}, 404
+    post = Post.query.get_or_404(post_id)
+    favorite = Favorite.query.filter_by(user_id=current_user.id, post_id=post_id).first()
 
-    existing_favorite = Favorite.query.filter_by(user_id=current_user.id, post_id=post_id).first()
-    if existing_favorite:
-        db.session.delete(existing_favorite)
-        db.session.commit()
-        return {'message': 'Post removed from favorites'}, 200
-    else:
+    if request.method == 'POST':
+        if favorite:
+            return {"message": "Already favorited"}, 400
         new_favorite = Favorite(user_id=current_user.id, post_id=post_id)
         db.session.add(new_favorite)
         db.session.commit()
-        return {'message': 'Post added to favorites'}, 201
+        # return new_favorite.to_dict(), 201
+        return {"message": "Favorited"}
+
+    if request.method == 'DELETE':
+        if not favorite:
+            return {"message": "Not favorited"}, 400
+        db.session.delete(favorite)
+        db.session.commit()
+        return {"message": "Unfavorited"}, 200
 
 
 #READ favorites for user-----------------------------------------------

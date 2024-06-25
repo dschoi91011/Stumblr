@@ -132,6 +132,18 @@ export const addFavoriteThunk = (postId) => async (dispatch) => {
     return data;
 };
 
+// export const addFavoriteThunk = (postId) => async (dispatch) => {
+//     const response = await fetch(`/api/posts/${postId}/favorite`, {
+//         method: 'POST'
+//     });
+
+//     if (response.ok) {
+//         const favorite = await response.json();
+//         dispatch({ type: ADD_FAVORITE, payload: favorite });
+//         return favorite;
+//     }
+// };
+
 //DELETE FAVORITE POST----------------------------------------
 const REMOVE_FAVORITE = 'posts/REMOVE_FAVORITE';
 
@@ -147,8 +159,16 @@ export const removeFavoriteThunk = (postId) => async (dispatch) => {
     if (res.ok) dispatch(removeFavorite(postId));
 };
 
-//SELECTOR------------------------------------------------------
-// export const selectFavoritePostIds = (state) => state.posts.favorites.map((post) => post.id);
+// export const removeFavoriteThunk = (postId) => async (dispatch) => {
+//     const response = await fetch(`/api/posts/${postId}/favorite`, {
+//         method: 'DELETE'
+//     });
+
+//     if (response.ok) {
+//         dispatch({ type: REMOVE_FAVORITE, postId });
+//     }
+// };
+
 
 //REDUCER---------------------------------------------------------
 const initState = {Posts: [], currentPosts: [], favorites: []};
@@ -167,29 +187,37 @@ const postsReducer = (state = initState, action) => {
             return { ...state, currentPosts: action.posts.posts };
         case GET_FAVORITE_POSTS:
             return { ...state, favorites: action.posts };
-        // case ADD_FAVORITE:
-        //     return { ...state, favorites: [...state.favorites, action.post] };
-        // case REMOVE_FAVORITE:
-        //     return { ...state, favorites: state.favorites.filter(post => post.id !== action.postId) };
-        case ADD_FAVORITE: {
-            const updatedPosts = state.posts.map(post => {
-                if (post.id === action.post.id) {
-                    return { ...post, isLiked: true };
-                }
-                return post;
-            });
-            return { ...state, posts: updatedPosts, favorites: [...state.favorites, action.post] };
-        }
+
+        case ADD_FAVORITE:
+            return {
+                ...state,
+                favorites: [...state.favorites, action.payload]
+            };
+        case REMOVE_FAVORITE:
+            return {
+                ...state,
+                favorites: state.favorites.filter(post => post.id !== action.postId)
+            };
+
+        // case ADD_FAVORITE: {
+        //     const updatedPosts = state.posts.map(post => {
+        //         if (post.id === action.post.id) {
+        //             return { ...post, isLiked: true };
+        //         }
+        //         return post;
+        //     });
+        //     return { ...state, posts: updatedPosts, favorites: [...state.favorites, action.post] };
+        // }
         
-        case REMOVE_FAVORITE: {
-            const updatedPosts = state.posts.map(post => {
-                if (post.id === action.postId) {
-                    return { ...post, isLiked: false };
-                }
-                return post;
-            });
-            return { ...state, posts: updatedPosts, favorites: state.favorites.filter(post => post.id !== action.postId) };
-        }
+        // case REMOVE_FAVORITE: {
+        //     const updatedPosts = state.posts.map(post => {
+        //         if (post.id === action.postId) {
+        //             return { ...post, isLiked: false };
+        //         }
+        //         return post;
+        //     });
+        //     return { ...state, posts: updatedPosts, favorites: state.favorites.filter(post => post.id !== action.postId) };
+        // }
           
         default:
             return state;

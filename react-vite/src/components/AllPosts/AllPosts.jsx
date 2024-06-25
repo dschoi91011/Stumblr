@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from 'react-router-dom';
-import {getAllPostsThunk, addFavoriteThunk, removeFavoriteThunk} from "../../redux/posts";
+import {getAllPostsThunk, addFavoriteThunk, removeFavoriteThunk, getFavoritePostsThunk} from "../../redux/posts";
 import {getCommentsForPostThunk} from "../../redux/comments"; 
 import DeletePost from "../DeletePost";
 import UpdatePost from "../UpdatePost";
@@ -17,14 +17,18 @@ export default function AllPosts(){
     const [commentsVisible, setCommentsVisible] = useState({}); 
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.posts);
+    const favorites = useSelector(state => state.posts.favorites.favorites);
     const currentUser = useSelector(state => state.session.user);
     const commentsByPostId = useSelector(state => state.comments.byPostId);
     const navigate = useNavigate();
     const [follow, setFollow] = useState({});
     const [randomPosts, setRandomPosts] = useState([]);
+    const [localFavorites, setLocalFavorites] = useState([]);
     
-    // console.log('COMMENTS --------------> ', commentsByPostId)
-    // console.log('POSTs_-------------->', posts)
+    console.log('COMMENTS --------------> ', commentsByPostId)
+    console.log('POSTS -------------->', posts)
+    console.log('FAVS --------->', favorites)
+    console.log('STATE.POSTS ---------------->', useSelector(state => state.posts))
     // console.log('CURRENTUSER-------> ', currentUser)
 
     const futureFeature = () => {
@@ -34,11 +38,19 @@ export default function AllPosts(){
     useEffect(() => {
         const getAllPosts = async() => {
             await dispatch(getAllPostsThunk());
+            await dispatch(getFavoritePostsThunk());
             setIsLoaded(true);
         };
         getAllPosts();
     }, [dispatch]);
 
+
+    useEffect(() => {
+        if (isLoaded) {
+            const favIds = favorites.map(fav => fav.id);
+            setLocalFavorites(favIds);
+        }
+    }, [isLoaded, favorites]);
 
     const handleHeaderClick = (userId) => {
         navigate(`/user/${userId}/posts`);
@@ -49,8 +61,22 @@ export default function AllPosts(){
         setCommentsVisible(prev => ({...prev, [postId]: !prev[postId]}));
     };
 
-    const toggleFavorite = (postId, isLiked) => {
-        if(isLiked){
+    // const toggleFavorite = async(postId, isLiked) => {
+    //     if (isLiked) {
+    //         await dispatch(removeFavoriteThunk(postId))
+    //         await dispatch(getAllPostsThunk());
+    //     } else {
+    //         await dispatch(addFavoriteThunk(postId))
+    //         await dispatch(getAllPostsThunk());
+    //     }
+    // };
+
+    const toggleFavorite = (postId) => {
+        const isLiked = localFavorites.includes(postId);
+        const updatedFavorites = isLiked ? localFavorites.filter((id) => id !== postId) : [...localFavorites, postId];
+        setLocalFavorites(updatedFavorites);
+    
+        if (isLiked) {
             dispatch(removeFavoriteThunk(postId));
         } else {
             dispatch(addFavoriteThunk(postId));
@@ -127,11 +153,10 @@ return(
                                     <img className='post-img' src={obj.picture} alt='post-img'/>
                                 </div>
                             )}
-                            <p className='img-caption' style={{marginLeft: '10px', fontSize: '20px'}}>{obj.body}</p>
                         </div>
-                        <div className="post-lower-btns" style={{marginLeft: '10px'}}>
 
-                            <button className='toggle-comment-btn' style={{cursor: 'pointer'}} onClick={() => toggleComments(obj.id)}>Notes</button>
+                        <div className="post-lower-btns" style={{marginLeft: '10px'}}>
+                            <p className='img-caption' style={{marginLeft: '10px', fontSize: '20px'}}>{obj.body}</p>
 
                             {currentUser && currentUser.id !== obj.poster_id && (
                                 <div className='post-lower-right-btn-cluster' style={{marginRight: '10px'}}>
@@ -140,12 +165,9 @@ return(
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleComments(obj.id)}
                                     />
 
-                                    {/* <img className='like-toggle-btn' src={liked ? '/fav_icon.png' : '/unfav_icon.png'} alt='fav_icon' 
-                                    style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleFavorite(obj.id)}
-                                    /> */}
-
-                                    <img className='like-toggle-btn' src={obj.isLiked ? '/fav_icon.png' : '/unfav_icon.png'} alt='fav_icon'
-                                    style={{ cursor: 'pointer', height: '35px', width: '35px' }} onClick={() => toggleFavorite(obj.id, obj.isLiked)}
+                                    <img className='like-toggle-btn' 
+                                    src={localFavorites.includes(obj.id) ? '/fav_icon.png' : '/unfav_icon.png'} alt='fav_icon'
+                                    style={{ cursor: 'pointer', height: '35px', width: '35px' }} onClick={() => toggleFavorite(obj.id)}
                                     />
 
                                     <img className='follow-toggle-btn'
@@ -162,10 +184,10 @@ return(
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleComments(obj.id)}
                                     />
                                     <OpenModalButton className='delete-post' modalComponent={<DeletePost postId={obj.id}/>}>
-                                        <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/delete_icon.png' alt='Delete'/>
+                                        <img style={{cursor: 'pointer', height: '30px', width: '30px'}} src='/delete_icon.png' alt='Delete'/>
                                     </OpenModalButton>
                                     <OpenModalButton className='update-post' modalComponent={<UpdatePost postObj={obj}/>}>
-                                        <img style={{cursor: 'pointer', height: '35px', width: '35px'}} src='/edit_icon.png' alt='Update'/>
+                                        <img style={{cursor: 'pointer', height: '30px', width: '30px'}} src='/edit_icon.png' alt='Update'/>
                                     </OpenModalButton>
                                 </div>
                             )}
@@ -229,3 +251,4 @@ return(
     </div>
     );
 }
+

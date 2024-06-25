@@ -74,15 +74,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-}
-
-.toggle-comment-btn{
-    background-color: rgb(128, 181, 228);
-}
-
-.toggle-comment-btn:hover{
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
 }
 
 .post-lower-right-btn-cluster{
