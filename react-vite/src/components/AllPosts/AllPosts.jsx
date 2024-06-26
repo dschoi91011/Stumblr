@@ -25,11 +25,11 @@ export default function AllPosts(){
     const [randomPosts, setRandomPosts] = useState([]);
     const [localFavorites, setLocalFavorites] = useState([]);
     
-    console.log('COMMENTS --------------> ', commentsByPostId)
-    console.log('POSTS -------------->', posts)
-    console.log('FAVS --------->', favorites)
+    // console.log('COMMENTS --------------> ', commentsByPostId)
+    // console.log('POSTS -------------->', posts)
+    // console.log('FAVS --------->', favorites)
     // console.log('CURRENTUSER-------> ', currentUser)
-    console.log('STATE------------------>', useSelector(state => state.posts))
+    // console.log('STATE------------------>', useSelector(state => state.posts))
 
     const futureFeature = () => {
         alert('Feature under construction')
@@ -60,16 +60,6 @@ export default function AllPosts(){
         await dispatch(getCommentsForPostThunk(postId));
         setCommentsVisible(prev => ({...prev, [postId]: !prev[postId]}));
     };
-
-    // const toggleFavorite = async(postId, isLiked) => {
-    //     if (isLiked) {
-    //         await dispatch(removeFavoriteThunk(postId))
-    //         await dispatch(getAllPostsThunk());
-    //     } else {
-    //         await dispatch(addFavoriteThunk(postId))
-    //         await dispatch(getAllPostsThunk());
-    //     }
-    // };
 
     const toggleFavorite = (postId) => {
         const isLiked = localFavorites.includes(postId);
