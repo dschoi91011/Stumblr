@@ -155,25 +155,6 @@ def create_post_comment(post_id):
 
 
 #CREATE/DELETE favorite post-------------------------------------------------------------------
-# @post_routes.route('/<int:post_id>/favorite', methods=['POST'])
-# @login_required
-# def toggle_favorite(post_id):
-#     post = Post.query.get(post_id)
-#     if not post:
-#         return {'message': 'Post does not exist'}, 404
-
-#     existing_favorite = Favorite.query.filter_by(user_id=current_user.id, post_id=post_id).first()
-#     if existing_favorite:
-#         db.session.delete(existing_favorite)
-#         db.session.commit()
-#         return {'message': 'Post removed from favorites'}, 200
-#     else:
-#         new_favorite = Favorite(user_id=current_user.id, post_id=post_id)
-#         db.session.add(new_favorite)
-#         db.session.commit()
-#         return {'message': 'Post added to favorites'}, 201
-
-
 @post_routes.route('/<int:post_id>/favorite', methods=['POST', 'DELETE'])
 @login_required
 def toggle_favorite(post_id):

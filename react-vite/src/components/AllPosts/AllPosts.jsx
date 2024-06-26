@@ -28,8 +28,8 @@ export default function AllPosts(){
     console.log('COMMENTS --------------> ', commentsByPostId)
     console.log('POSTS -------------->', posts)
     console.log('FAVS --------->', favorites)
-    console.log('STATE.POSTS ---------------->', useSelector(state => state.posts))
     // console.log('CURRENTUSER-------> ', currentUser)
+    console.log('STATE------------------>', useSelector(state => state.posts))
 
     const futureFeature = () => {
         alert('Feature under construction')
@@ -251,4 +251,3 @@ return(
     </div>
     );
 }
-
