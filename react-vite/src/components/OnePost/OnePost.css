@@ -1,27 +1,28 @@
 .one-post-container{
-    display: flex;
-    margin-left: 250px; 
+    /* display: flex; */
+    margin-left: 150px; 
     padding-left: 80px; 
 }
   
-.one-post{
+/* .one-post{
     width: 100%;
     max-width: 1200px;
     margin: auto;
-}
+} */
   
 .post-content{
-    text-align: center;
+    text-align: start;
 }
   
 .post-body{
     font-size: 40px;
-    margin-top: 25px;
+    margin-top: 30px;
+    /* margin-bottom: 30px; */
 }
   
 .post-image{
     width: 100%;
     max-width: 100%;
     height: auto;
-    margin-top: -30px;
+    margin-bottom: 30px;
 }

@@ -1,26 +1,27 @@
 .all-posts-main{
     flex: 1;
     padding: 20px; 
-    margin-left: 310px;
+    margin-left: 200px;
     overflow-y: auto; 
 }
 
-.posts-header{
+/* .posts-header{
     display: flex;
     gap: 50px;
     align-items: center;
-}
+} */
 
 .posts-header-center{
     display: flex;
     justify-content: space-around;
-    width: 650px;
+    width: 100%;
+    margin-bottom: 20px;
     /* border: 1px solid black; */
 }
 
-.search-bar-container{
+/* .search-bar-container{
     display: flex;
-}
+} */
 
 .post-main-body{
     display: flex;
@@ -142,7 +143,7 @@
 }
 
 .post-block-right-title{
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 .post-block-right-features{

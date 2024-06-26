@@ -19,4 +19,3 @@ class Favorite(db.Model):
             'user_id': self.user_id,
             'post_id': self.post_id,
         }
-        

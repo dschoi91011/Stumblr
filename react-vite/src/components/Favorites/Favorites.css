@@ -1,11 +1,15 @@
 .favorites-container{
     display: flex;
     flex-direction: column;
-    margin-left: 250px; 
+    margin-left: 150px; 
     padding-left: 80px; 
 }
 
-.favorite-post{
+.favorites-title{
+    margin-top: 30px;
+}
+
+.favorite-post-container{
     width: 650px;
     border: 1px solid black;
     border-radius: 10px;
@@ -23,4 +27,12 @@
 .favorite-post-image{
     width: 100%; 
     height: auto;
+}
+
+.favorite-post-body{
+    margin-left: 10px;
+}
+
+.favorites-none{
+    margin-left: 8px;
 }

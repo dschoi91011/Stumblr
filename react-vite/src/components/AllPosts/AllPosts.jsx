@@ -103,34 +103,38 @@ export default function AllPosts(){
         }
     }, [isLoaded, posts, currentUser]);
     
-    const searchBar = (
-        <div className='search-bar-container'>
-            <div id='search-icon'>
-                <img style={{height: '25px', width: '25px'}} src='/search_icon.png' alt='search_icon'/>
-            </div>
-            <input id='search-bar' type='search' style={{width: '200px'}} placeholder='Feature under construction'
-                // value=''
-                // onChange={}
-            />
-        </div>
-    );
+    // const searchBar = (
+    //     <div className='search-bar-container'>
+    //         <div id='search-icon'>
+    //             <img style={{height: '25px', width: '25px'}} src='/search_icon.png' alt='search_icon'/>
+    //         </div>
+    //         <input id='search-bar' type='search' style={{width: '200px'}} placeholder='Feature under construction'
+    //             // value=''
+    //             // onChange={}
+    //         />
+    //     </div>
+    // );
 
 
 return(
     <div className='all-posts-main'>
-        <div className='posts-header'>
-            <div className='posts-header-center'>
-                <h3 className='trending' style={{cursor: 'pointer'}} onClick={futureFeature}>Trending</h3>
-                <h3 className='for-you' style={{cursor: 'pointer'}} onClick={futureFeature}>For You</h3>
-                <h3 className='filler' style={{cursor: 'pointer'}} onClick={futureFeature}>Filler</h3>
-            </div>
-            <div className='posts-header-search'>
-                <div className='search'>{searchBar}</div>
-            </div>
-        </div>
+
 
         <div className='post-main-body'>
+
             <div className='post-block-column'>
+
+                <div className='posts-header'>
+                    <div className='posts-header-center'>
+                        <h3 className='trending' style={{cursor: 'pointer'}} onClick={futureFeature}>Trending</h3>
+                        <h3 className='for-you' style={{cursor: 'pointer'}} onClick={futureFeature}>For You</h3>
+                        <h3 className='filler' style={{cursor: 'pointer'}} onClick={futureFeature}>Filler</h3>
+                    </div>
+                    {/* <div className='posts-header-search'>
+                        <div className='search'>{searchBar}</div>
+                    </div> */}
+                </div>
+
                 {isLoaded && posts.slice(0).reverse().map(obj => (
                     <div className='post-block' key={obj.id}>
                         <div>

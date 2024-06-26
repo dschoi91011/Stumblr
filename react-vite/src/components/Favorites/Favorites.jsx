@@ -27,20 +27,26 @@ export default function Favorites(){
 
     return(
         <div className='favorites-container'>
-            <h2 className='favorites-title'>Your Favorite Posts</h2>
+            <h3 className='favorites-title' style={{fontSize: '40px'}}>Your Favorite Posts</h3>
             <div className='favorite-posts-list'>
+
                 {isLoaded && favoritePosts && favoritePosts.length > 0 ? (
                 favoritePosts.map(post => (
-                    <div className='favorite-post' key={post.id} onClick={() => handlePostClick(post.id)}>
-                        <div className='favorite-post-img-container'>
-                            <img className='favorite-post-image' src={post.picture} alt='post-img'/>
-                        </div>
-                        <p className='favorite-post-body'>{post.body}</p>
-                        <p className='favorite-post-username'>Posted by: {post.username}</p>
+                <div className='favorite-post-container' key={post.id}>
+                    <div className='post-header' onClick={() => handlePostClick(post.poster_id)} style={{cursor: 'pointer'}}>
+                        <img className='poster-profpic' src={post?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
+                        <p className='favorite-post-username'>{post.username}</p>
                     </div>
+                    <div className='favorite-post-img-container'>
+                        <img className='favorite-post-image' src={post.picture} alt='post-img'/>
+                    </div>
+                    <p className='favorite-post-body' style={{fontSize: '20px'}}>{post.body}</p>
+                </div>
               ))
             ) : (
-              <p>No favorite posts found.</p>
+                <div className='favorites-none'>
+                    <p>You have not liked any posts.</p>
+                </div>
             )}
           </div>
         </div>

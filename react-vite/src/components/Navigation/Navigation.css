@@ -59,7 +59,7 @@
 
 #stumblr-title{
   text-decoration: none;
-  font-size: 40px;
+  font-size: 45px;
   font-weight: bolder;
   color: rgb(84, 84, 221);
   transition: color 2s ease;
@@ -77,8 +77,8 @@
   align-items: center;
   top: 0;
   bottom: 0;
-  padding: 30px 35px 35px 35px;
-  border-right: 1px solid white;
+  padding: 35px 0 35px 0px;
+  /* border-right: 1px solid white; */
   width: 240px;
 }
 
