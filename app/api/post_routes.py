@@ -186,8 +186,8 @@ def toggle_favorite(post_id):
         new_favorite = Favorite(user_id=current_user.id, post_id=post_id)
         db.session.add(new_favorite)
         db.session.commit()
-        # return new_favorite.to_dict(), 201
-        return {"message": "Favorited"}
+        return new_favorite.to_dict(), 201
+        # return {"message": "Favorited"}
 
     if request.method == 'DELETE':
         if not favorite:

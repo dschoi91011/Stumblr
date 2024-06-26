@@ -128,6 +128,7 @@ export const addFavoriteThunk = (postId) => async (dispatch) => {
         method: 'POST',
     });
     const data = await res.json();
+    console.log('DATA---------- ', data)
     if (res.ok) dispatch(addFavorite(data));
     return data;
 };
@@ -191,7 +192,7 @@ const postsReducer = (state = initState, action) => {
         case ADD_FAVORITE:
             return {
                 ...state,
-                favorites: [...state.favorites, action.payload]
+                favorites: [...state.favorites, action.post]
             };
         case REMOVE_FAVORITE:
             return {

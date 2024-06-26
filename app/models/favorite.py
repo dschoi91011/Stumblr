@@ -13,3 +13,9 @@ class Favorite(db.Model):
     user = db.relationship('User', back_populates='favorites')
     post = db.relationship('Post', back_populates='favorites')
 
+
+    def to_dict(self):
+        return {
+            'user_id': self.user_id,
+            'post_id': self.post_id,
+        }
