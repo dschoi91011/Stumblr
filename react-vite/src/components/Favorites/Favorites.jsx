@@ -33,7 +33,7 @@ export default function Favorites(){
                 {isLoaded && favoritePosts && favoritePosts.length > 0 ? (
                 favoritePosts.map(post => (
                 <div className='favorite-post-container' key={post.id}>
-                    <div className='post-header' onClick={() => handlePostClick(post.poster_id)} style={{cursor: 'pointer'}}>
+                    <div className='post-header' onClick={() => handlePostClick(post.id)} style={{cursor: 'pointer'}}>
                         <img className='poster-profpic' src={post?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
                         <p className='favorite-post-username'>{post.username}</p>
                     </div>
