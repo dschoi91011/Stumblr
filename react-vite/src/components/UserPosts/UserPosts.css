@@ -1,22 +1,36 @@
 .user-posts-container{
     display: flex;
     flex-direction: column;
-    margin-left: 250px; 
+    margin-left: 150px; 
     padding-left: 80px; 
 }
   
 .userpost-prof-block{
     display: flex;
-    margin-bottom: 20px;
+    margin: 20px 0 20px;
     border: 1px solid black;
     border-radius: 10px;
     width: 650px;
-    padding: 10px 0 10px;
+    padding: 5px 0 10px;
     background-color: rgb(75, 87, 196);
 }
   
 .userpost-profpic{
-    padding-left: 10px;
+    height: 50px;
+    width: 50px;
+    margin: 5px 15px 0 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.userpost-owner-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.userpost-owner{
+    margin: 0;
 }
   
 .userpost-block{
@@ -37,4 +51,9 @@
 .userpost-img{
     width: 100%; 
     height: auto;
+}
+
+.userpost-caption{
+    font-size: 20px;
+    margin-left: 20px;
 }

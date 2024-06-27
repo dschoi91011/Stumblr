@@ -21,12 +21,12 @@ export default function OnePost(){
   return(
     isLoaded && (
       <div className="one-post-container">
-        {/* <div className="one-post"> */}
+
           <div className="post-content">
             <h3 className="post-body">{post.post.body}</h3>
             <img className="post-image" src={post.post.picture} alt="Post"/>
           </div>
-        {/* </div> */}
+
       </div>
     )
   );

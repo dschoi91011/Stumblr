@@ -11,17 +11,16 @@
     align-items: center;
 } */
 
+/* .search-bar-container{
+    display: flex;
+} */
+
 .posts-header-center{
     display: flex;
     justify-content: space-around;
     width: 100%;
     margin-bottom: 20px;
-    /* border: 1px solid black; */
 }
-
-/* .search-bar-container{
-    display: flex;
-} */
 
 .post-main-body{
     display: flex;

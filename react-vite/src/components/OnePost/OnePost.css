@@ -1,14 +1,7 @@
 .one-post-container{
-    /* display: flex; */
     margin-left: 150px; 
     padding-left: 80px; 
 }
-  
-/* .one-post{
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-} */
   
 .post-content{
     text-align: start;
@@ -17,7 +10,6 @@
 .post-body{
     font-size: 40px;
     margin-top: 30px;
-    /* margin-bottom: 30px; */
 }
   
 .post-image{

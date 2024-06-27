@@ -22,8 +22,11 @@ export default function UserPosts(){
     <div className="user-posts-container">
       {isLoaded && (
         <div className='userpost-prof-block'>
-          <img className='userpost-profpic' style={{height: "50px", width: "50px", marginTop: '5px', marginRight: '5px'}} src={currentPosts[0].profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>
-          <p>{currentPosts[0].username}</p>
+          <img className='userpost-profpic' src={currentPosts[0].profile_pic || '/default_profpic.jpg'} alt="Profile Pic"/>
+          <div className='userpost-owner-block'>
+            <p className='userpost-owner'>All posts by</p>
+            <p className='userpost-owner' style={{fontWeight: 'bolder'}}>{currentPosts[0].username}</p>
+          </div>
         </div>
       )}
       {isLoaded && currentPosts.length && currentPosts.map(obj => (
@@ -33,7 +36,7 @@ export default function UserPosts(){
               <img className='userpost-img' src={obj.picture} alt='picture'/>
           </div>)
           }
-          <p>{obj.body}</p>
+          <p className='userpost-caption'>{obj.body}</p>
         </div>
       ))}
     </div>
