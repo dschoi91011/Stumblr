@@ -99,7 +99,7 @@ export default function UpdatePost({postObj}){
             </div>
 
             <div className='form-field'>
-                <label htmlFor='caption'>Caption{' '}
+                <label htmlFor='caption'>
                 <textarea id='caption' rows='1' cols='80' placeholder='Optional caption' value={body} onChange={e => setBody(e.target.value)}/></label>
             </div>
 

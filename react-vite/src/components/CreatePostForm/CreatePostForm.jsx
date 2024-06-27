@@ -67,11 +67,10 @@ export default function CreatePostForm(){
 
     return(
         <form className='create-post-form' onSubmit={handleSubmit}>
-            <h1 style={{fontSize: '40px'}}>Create a New Image</h1>
+            <h1 className='create-title' style={{fontSize: '40px'}}>Create a New Image</h1>
 
             <div className='form-field'>
                 <label htmlFor='picture'>
-                    Picture{' '}
                     <input id='picture' type='file' onChange={updatePicture} style={{display: 'none'}}/>
                     <label htmlFor='picture' className='custom-file-upload'>
                         <img src={pictureUrl} alt='Picture Preview' className='picture-preview'/>
@@ -82,7 +81,6 @@ export default function CreatePostForm(){
 
             <div className='form-field'>
                 <label htmlFor='caption'>
-                    Caption{' '}
                     <textarea id='caption' rows='1' cols='80' placeholder='Optional caption' value={body} onChange={(e) => setBody(e.target.value)}/>
                 </label>
                 <div className='error-message'>{inputError.body && <p>{inputError.body}</p>}</div>
