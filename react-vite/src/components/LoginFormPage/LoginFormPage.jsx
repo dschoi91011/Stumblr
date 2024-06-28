@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { thunkLogin } from "../../redux/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {thunkLogin} from "../../redux/session";
+import {useDispatch, useSelector} from "react-redux";
+import {Navigate, useNavigate} from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -12,9 +12,9 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if(sessionUser) return <Navigate to="/" replace={true}/>;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     const serverResponse = await dispatch(
@@ -24,14 +24,14 @@ function LoginFormPage() {
       })
     );
 
-    if (serverResponse) {
+    if(serverResponse){
       setErrors(serverResponse);
     } else {
       navigate("/");
     }
   };
 
-  return (
+  return(
     <>
       <h1>Log In</h1>
       {errors.length > 0 &&
