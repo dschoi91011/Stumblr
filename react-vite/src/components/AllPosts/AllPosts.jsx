@@ -32,9 +32,21 @@ export default function AllPosts(){
     // console.log('CURRENTUSER-------> ', currentUser)
     // console.log('STATE------------------>', useSelector(state => state.posts))
 
-    const futureFeature = () => {
-        alert('Feature under construction')
-    };
+    // const futureFeature = () => {
+    //     alert('Feature under construction')
+    // };
+
+    const goToLinkedIn = () => {
+        window.location.href = `https://www.linkedin.com/in/daniel-choi-905970275/`;
+    }
+
+    const goToGitHub = () => {
+        window.location.href = `https://github.com/dschoi91011`;
+    }
+
+    const goToPortfolio = () => {
+        window.location.href = `https://dschoi91011.github.io/`;
+    }
 
     useEffect(() => {
         const getAllPosts = async() => {
@@ -115,7 +127,7 @@ export default function AllPosts(){
     //         />
     //     </div>
     // );
-    
+
     if(!isLoaded){
         return <LoadingScreen/>;
     }
@@ -130,9 +142,9 @@ return(
 
                 <div className='posts-header'>
                     <div className='posts-header-center'>
-                        <h3 className='trending' style={{cursor: 'pointer'}} onClick={futureFeature}>Trending</h3>
-                        <h3 className='for-you' style={{cursor: 'pointer'}} onClick={futureFeature}>For You</h3>
-                        <h3 className='filler' style={{cursor: 'pointer'}} onClick={futureFeature}>Filler</h3>
+                        <img className='linkedin' style={{height: '60px', width: '60px', cursor: 'pointer'}} onClick={goToLinkedIn} src='/linkedin.png' alt='linkedin'/>
+                        <img className='github' style={{height: '60px', width: '60px', cursor: 'pointer'}} onClick={goToGitHub} src='/github2.png' alt='github'/>
+                        <img className='portfolio' style={{height: '60px', width: '60px', cursor: 'pointer'}} onClick={goToPortfolio} src='/portfolio.png' alt='portfolio'/>
                     </div>
                     {/* <div className='posts-header-search'>
                         <div className='search'>{searchBar}</div>

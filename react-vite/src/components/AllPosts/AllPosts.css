@@ -22,6 +22,14 @@
     margin-bottom: 20px;
 }
 
+.github{
+    border-radius: 10px;
+}
+
+.linkedin{
+    border-radius: 10px;
+}
+
 .post-main-body{
     display: flex;
     justify-content: space-between; 
