@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {getFavoritePostsThunk} from '../../redux/posts';
+import LoadingScreen from "../LoadingScreen";
 import './Favorites.css';
 
 export default function Favorites(){
@@ -24,6 +25,9 @@ export default function Favorites(){
         navigate(`/posts/${postId}`);
     };
 
+    if(!isLoaded){
+        return <LoadingScreen/>;
+    }
 
     return(
         <div className='favorites-container'>

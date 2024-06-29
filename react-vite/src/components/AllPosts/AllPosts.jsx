@@ -115,6 +115,7 @@ export default function AllPosts(){
     //         />
     //     </div>
     // );
+    
     if(!isLoaded){
         return <LoadingScreen/>;
     }
@@ -122,7 +123,6 @@ export default function AllPosts(){
 
 return(
     <div className='all-posts-main'>
-
 
         <div className='post-main-body'>
 
