@@ -22,7 +22,7 @@ export default function AllPosts(){
     const currentUser = useSelector(state => state.session.user);
     const commentsByPostId = useSelector(state => state.comments.byPostId);
     const navigate = useNavigate();
-    const [follow, setFollow] = useState({});
+    // const [follow, setFollow] = useState({});
     const [randomPosts, setRandomPosts] = useState([]);
     const [localFavorites, setLocalFavorites] = useState([]);
     
@@ -57,7 +57,6 @@ export default function AllPosts(){
         getAllPosts();
     }, [dispatch]);
 
-
     useEffect(() => {
         if (isLoaded) {
             const favIds = favorites.map(fav => fav.id);
@@ -86,14 +85,10 @@ export default function AllPosts(){
         }
     };
 
-    const toggleFollow = (userId) => {
-        setFollow(prev => ({...prev, [userId]: !prev[userId]}));
-        alert(`
-            Currently holds no other function than to toggle follow
-            button for all posts of the user being followed. Functionality
-            to be added later for green-lit
-        `)
-    };
+    // const toggleFollow = (userId) => {
+    //     setFollow(prev => ({...prev, [userId]: !prev[userId]}));
+    //     alert(`Future feature`)
+    // };
 
     const getRandomPosts = (posts, count) => {
         const randomized = [...posts].sort(() => 0.5 - Math.random());
@@ -142,9 +137,9 @@ return(
 
                 <div className='posts-header'>
                     <div className='posts-header-center'>
-                        <img className='linkedin' style={{height: '60px', width: '60px', cursor: 'pointer'}} onClick={goToLinkedIn} src='/linkedin.png' alt='linkedin'/>
-                        <img className='github' style={{height: '60px', width: '60px', cursor: 'pointer'}} onClick={goToGitHub} src='/github2.png' alt='github'/>
-                        <img className='portfolio' style={{height: '60px', width: '60px', cursor: 'pointer'}} onClick={goToPortfolio} src='/portfolio.png' alt='portfolio'/>
+                        <img className='linkedin' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToLinkedIn} src='/linkedin.png' alt='linkedin'/>
+                        <img className='github' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToGitHub} src='/github2.png' alt='github'/>
+                        <img className='portfolio' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToPortfolio} src='/portfolio.png' alt='portfolio'/>
                     </div>
                     {/* <div className='posts-header-search'>
                         <div className='search'>{searchBar}</div>
@@ -180,10 +175,10 @@ return(
                                     style={{ cursor: 'pointer', height: '35px', width: '35px' }} onClick={() => toggleFavorite(obj.id)}
                                     />
 
-                                    <img className='follow-toggle-btn'
+                                    {/* <img className='follow-toggle-btn'
                                     src={follow[obj.poster_id] ? '/unfollow_icon.png' : '/follow_icon.png'} alt={follow[obj.poster_id] ? 'unfollow' : 'follow'}
                                     style={{cursor: 'pointer', height: '35px', width: '35px'}} onClick={() => toggleFollow(obj.poster_id)}
-                                    />
+                                    /> */}
                                 </div>
                             )}
 
