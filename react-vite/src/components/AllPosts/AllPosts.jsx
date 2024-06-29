@@ -9,6 +9,7 @@ import PostComment from "../PostComment";
 import UpdateComment from "../UpdateComment";
 import DeleteComment from "../DeleteComment";
 import OpenModalButton from "../OpenModalButton";
+import LoadingScreen from "../LoadingScreen";
 import './AllPosts.css';
 
 
@@ -114,6 +115,9 @@ export default function AllPosts(){
     //         />
     //     </div>
     // );
+    if(!isLoaded){
+        return <LoadingScreen/>;
+    }
 
 
 return(
