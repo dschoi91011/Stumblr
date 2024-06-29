@@ -79,7 +79,7 @@ export default function AllPosts(){
         const updatedFavorites = isLiked ? localFavorites.filter((id) => id !== postId) : [...localFavorites, postId];
         setLocalFavorites(updatedFavorites);
     
-        if (isLiked) {
+        if(isLiked){
             dispatch(removeFavoriteThunk(postId));
         } else {
             dispatch(addFavoriteThunk(postId));

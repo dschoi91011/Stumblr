@@ -1,13 +1,14 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentPostsThunk} from "../../redux/posts";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import LoadingScreen from "../LoadingScreen";
 import './UserPosts.css';
 
 export default function UserPosts(){
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const currentPosts = useSelector((state) => state.posts.currentPosts);
   const {userId} = useParams();
 
@@ -18,6 +19,10 @@ export default function UserPosts(){
     };
     fetchData();
   }, [dispatch, userId]);
+
+  const handlePostClick = (postId) => {
+    navigate(`/posts/${postId}`);
+}
 
   if(!isLoaded){
     return <LoadingScreen/>;
@@ -37,7 +42,7 @@ export default function UserPosts(){
       {isLoaded && currentPosts.length && currentPosts.map(obj => (
         <div key={obj.id} className='userpost-block'>
           {obj.picture && 
-          (<div className='userpost-img-container'>
+          (<div className='userpost-img-container' style={{cursor: 'pointer'}} onClick={() => handlePostClick(obj.id)}>
               <img className='userpost-img' src={obj.picture} alt='picture'/>
           </div>)
           }

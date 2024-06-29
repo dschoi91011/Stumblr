@@ -17,6 +17,12 @@
     background-color: rgb(75, 87, 196);
 }
 
+.favorite-post-header{
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: -20px;
+}
+
 .favorite-post-img-container{
     display: flex;
     justify-content: center;
