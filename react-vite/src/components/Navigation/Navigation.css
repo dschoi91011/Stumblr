@@ -57,12 +57,16 @@
   gap: 5px;
 }
 
-#stumblr-title{
+/* #stumblr-title{
   text-decoration: none;
   font-size: 45px;
   font-weight: bolder;
   color: rgb(84, 84, 221);
   transition: color 2s ease;
+} */
+
+.stumblr-logo{
+  margin-bottom: -20px;
 }
 
 #stumblr-title:hover{

@@ -67,7 +67,7 @@ export default function CreatePostForm(){
 
     return(
         <form className='create-post-form' onSubmit={handleSubmit}>
-            <h1 className='create-title' style={{fontSize: '40px'}}>Create a New Image</h1>
+            <h1 className='create-title' style={{fontSize: '40px', color: 'white'}}>Create a New Image</h1>
 
             <div className='form-field'>
                 <label htmlFor='picture'>

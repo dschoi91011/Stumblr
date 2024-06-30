@@ -20,7 +20,10 @@ function Navigation(){
   return(
     <div id='nav-bar'>
       <div className='nav-upper'>
-        <NavLink id='stumblr-title' to='/'>stumblr</NavLink>
+        {/* <img style={{width: '200px', height: 'auto'}} src='/stumblr_title.png' alt='stumblr-title'/> */}
+        <NavLink id='stumblr-title' to='/'>
+        <img className='stumblr-logo' style={{width: '205px', height: 'auto'}} src='/stumblr_title.png' alt='stumblr-title'/>
+        </NavLink>
 
         <div className='nav-upper-btn-cluster'>
           <ProfileButton className='prof-btn'/>

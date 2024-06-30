@@ -31,7 +31,7 @@ export default function Favorites(){
 
     return(
         <div className='favorites-container'>
-            <h3 className='favorites-title' style={{fontSize: '40px'}}>Your Favorite Posts</h3>
+            <h3 className='favorites-title' style={{fontSize: '40px', color: 'white'}}>Your Favorite Posts</h3>
             <div className='favorite-posts-list'>
 
                 {isLoaded && favoritePosts && favoritePosts.length > 0 ? (
@@ -48,7 +48,7 @@ export default function Favorites(){
                 </div>
               ))
             ) : (
-                <div className='favorites-none'>
+                <div className='favorites-none' style={{color: 'white'}}>
                     <p>You have not liked any posts.</p>
                 </div>
             )}
