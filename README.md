@@ -33,15 +33,15 @@ The user is able to create, edit, and delete his/her own blog posts, read other 
 
 ## Features:
 
-- User authentication: Sign up, log in, and log out users.
-- Show all posts: Main page displays all posts by all users.
-- User posts: Each user has a display page of all his/her posts.
-- Show comments: Comments for each post can be toggled.
-- Post: Users can create, edit, and delete their own posts.
-- Upload image: Users can upload and edit images.
-- Comment: Users can write, edit, and delete their own comments.
-- Like posts: Users can like/unlike other posts.
-- One post: Users can view a post's details.
+- __User authentication__: Sign up, log in, and log out users.
+- __Show all posts__: Main page displays all posts by all users.
+- __User posts__: Each user has a display page of all his/her posts.
+- __Show comments__: Comments for each post can be toggled.
+- __Post__: Users can create, edit, and delete their own posts.
+- __Upload image__: Users can upload and edit images.
+- __Comment__: Users can write, edit, and delete their own comments.
+- __Like posts__: Users can like/unlike other posts.
+- __One post__: Users can view a post's details.
 
 ## Future Features:
 
