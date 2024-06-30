@@ -177,13 +177,14 @@ main, always keeping it up to date.
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
 
-# Backend API-Routes 🚙
+## Endpoints
 
-This web app uses the following API routes to dynamically update the page to create a single-page-app-like feel for the user for specific features.
+### User Auth
 
-## USER AUTHENTICATION/AUTHORIZATION 👥
+| Request | Purpose | Return |
+|---------|---------|--------|
+| GET /api/auth | Sent on initial load and upon refreshes. Returns current user object, if one is logged in |        |
 
-### All endpoints that require authentication
 
 All endpoints that require a current user to be logged in.
 
