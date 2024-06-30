@@ -211,12 +211,12 @@ main, always keeping it up to date.
 
 | Request | Purpose | Return |
 |---------|---------|--------|
-| GET /api/posts/ | Fetches all posts | List of post objects |
-| GET /api/posts/user/:id/posts | Fetches all of a user's posts | List of post objects |
-| GET /api/posts/:id | Fetches a post by its ID | Post object |
-| POST /api/posts/new-post | Creates a new post | Post object |
-| PUT /api/posts/:id | Update a post made by current user | Post object |
-| DELETE /api/posts/:id | Delete a post made by current user | {"message": "Post deleted"} |
+| GET /api/posts/ | Fetches all posts. | List of post objects |
+| GET /api/posts/user/:id/posts | Fetches all of a user's posts. | List of post objects |
+| GET /api/posts/:id | Fetches a post by its ID. | Post object |
+| POST /api/posts/new-post | Creates a new post. | Post object |
+| PUT /api/posts/:id | Update a post made by current user. | Post object |
+| DELETE /api/posts/:id | Delete a post made by current user. | {"message": "Post deleted"} |
 
 * Post Object:
 ```
@@ -235,10 +235,10 @@ main, always keeping it up to date.
 
 | Request | Purpose | Return |
 |---------|---------|--------|
-| GET /api/posts/:id/comments | Fetches all comments for a post | List of comment objects |
-| POST /api/posts/:id/comments/new | Creates a comment for a post | Comment object |
-| PUT /api/comments/:id | Edit a comment made by current user | Comment object |
-| DELETE /api/comments/:id | Delete a comment made by current user | {"message": "Comment deleted"} |
+| GET /api/posts/:id/comments | Fetches all comments for a post. | List of comment objects |
+| POST /api/posts/:id/comments/new | Creates a comment for a post. | Comment object |
+| PUT /api/comments/:id | Edit a comment made by current user. | Comment object |
+| DELETE /api/comments/:id | Delete a comment made by current user. | {"message": "Comment deleted"} |
 
 * Comment Object:
 ```
@@ -259,9 +259,9 @@ main, always keeping it up to date.
 
 | Request | Purpose | Return |
 |---------|---------|--------|
-| GET /api/posts/favorites | Fetches all posts liked by a user | Favorite object |
-| POST /api/posts/:id/favorite | Like a post | Favorite object |
-| DELETE /api/posts/:id/favorite | Unlike a post | {"message": "Unfavorited"} |
+| GET /api/posts/favorites | Fetches all posts liked by a user. | List of favorite objects |
+| POST /api/posts/:id/favorite | Like a post. | Favorite object |
+| DELETE /api/posts/:id/favorite | Unlike a post. | {"message": "Unfavorited"} |
 
 * Favorite Object:
 ```
