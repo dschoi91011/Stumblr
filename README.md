@@ -1,6 +1,6 @@
-<div style="text-align: center;">
+<p align="center">
    <img src="https://github.com/dschoi91011/Stumblr/blob/main/stumblr.png?raw=true" alt="stumblr-logo-img" width="300" height="300">
-</div>
+</p>
 
 ##
 
