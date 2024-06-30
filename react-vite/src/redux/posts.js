@@ -126,8 +126,6 @@ export const addFavoriteThunk = (postId) => async (dispatch) => {
         method: 'POST',
     });
     const data = await res.json();
-
-    console.log('ADDFAV THUNK----------->', data)
     if (res.ok) dispatch(addFavorite(data));
     return data;
 };
