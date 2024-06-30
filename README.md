@@ -1,4 +1,4 @@
-![logowhitebig](https://github.com/dschoi91011/Stumblr/blob/main/stumblr.png?raw=true)
+<img src="https://github.com/dschoi91011/Stumblr/blob/main/stumblr.png?raw=true" alt="stumblr-logo-img" width="300" height="300">
 
 ## stumblr
 
