@@ -10,7 +10,7 @@ The user is able to create, edit, and delete his/her own blog posts, read other 
 
 [Live Site](https://stumblr.onrender.com/)
 
-## Screenshots:
+## 
 <p align="center">
    <img src="https://github.com/dschoi91011/Stumblr/blob/main/stumblr_site_screenshot.png?raw=true" alt="stumblr-screenshot" width="650" height="auto">
 </p>
