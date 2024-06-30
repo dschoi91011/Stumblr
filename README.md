@@ -182,38 +182,22 @@ main, always keeping it up to date.
 ### User Auth
 
 | Request | Purpose | Return |
-|         |         |        |
 |---------|---------|--------|
-| GET /api/auth | Sent on initial load and upon refreshes. Returns current user object, if one is logged in. |        |
-|               |                                                                                            |        |
+| GET /api/auth/ | Sent on initial load and upon refreshes. Returns current user object, if one is logged in. |        |
 
-* **Request:** endpoints that require authentication
-* **Error Response:** Require authentication
-  * **Status Code:** 401
-  * **Headers:**
-    * `Content-Type: application/json`
-  * **Body:**
-    ```json
-    {
-      "message": "Authentication required"
-    }
-    ```
 
-### All endpoints that require proper authorization
-
-All endpoints that require authentication and the current user does not have the correct role(s) or permission(s).
-
-* **Request:** endpoints that require proper authorization
-* **Error Response:** Require proper authorization
-  * **Status Code:** 403
-  * **Headers:**
-    * `Content-Type: application/json`
-  * **Body:**
-    ```json
-    {
-      "message": "Forbidden"
-    }
-    ```
+* **Body:**
+  ```json
+  {
+     "id": "integer",
+     "first_name": "string",
+     "last_name": "string",
+     "email": "email",
+     "username": string,
+     "profile_pic": string,
+     "posts": array
+  }
+  ```
 
 ### Get the Current User
 
