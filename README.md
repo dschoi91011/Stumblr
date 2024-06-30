@@ -185,19 +185,17 @@ main, always keeping it up to date.
 |---------|---------|--------|
 | GET /api/auth/ | Sent on initial load and upon refreshes. Returns current user object, if one is logged in. |        |
 
-
-* **Body:**
-  ```json
-  {
-     "id": "integer",
-     "first_name": "string",
-     "last_name": "string",
-     "email": "email",
-     "username": string,
-     "profile_pic": string,
-     "posts": array
-  }
-  ```
+```
+{
+   "id": integer,
+   "first_name": string,
+   "last_name": string,
+   "email": email,
+   "username": string,
+   "profile_pic": string,
+   "posts": array
+}
+```
 
 ### Get the Current User
 
