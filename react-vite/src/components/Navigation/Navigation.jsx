@@ -27,6 +27,7 @@ function Navigation(){
 
         <div className='nav-upper-btn-cluster'>
           <ProfileButton className='prof-btn'/>
+          
           <button className='nav-home-btn' style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={navHomeClick}>
             <img style={{height: '25px', width: '25px'}} src='/home_icon.png' alt='profile'/>
             <span style={{fontSize: '15px'}}>Home</span>

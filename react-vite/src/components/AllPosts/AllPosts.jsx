@@ -58,11 +58,11 @@ export default function AllPosts(){
     }, [dispatch]);
 
     useEffect(() => {
-        if (isLoaded) {
+        if(isLoaded && currentUser && favorites){
             const favIds = favorites.map(fav => fav.id);
             setLocalFavorites(favIds);
         }
-    }, [isLoaded, favorites]);
+    }, [isLoaded, currentUser, favorites]);
 
     const handleHeaderClick = (userId) => {
         navigate(`/user/${userId}/posts`);
