@@ -190,7 +190,12 @@ main, always keeping it up to date.
 |---------|---------|--------|
 | POST /api/auth/login | Will attempt to log in user with provided credentials. Returns current user object if validations pass. | Current user object |
 
-* User Object *
+
+| Request | Purpose | Return |
+|---------|---------|--------|
+| POST /api/auth/signup | Signs up and logs in new user. Returns current user if validations pass. | Current user object |
+
+* User Object:
 ```
 {
    "id": integer,
@@ -202,4 +207,15 @@ main, always keeping it up to date.
    "posts": array
 }
 ```
+### Posts
+
+| Request | Purpose | Return |
+|---------|---------|--------|
+| GET /api/posts/ | Fetches all posts | List of post objects |
+| GET /api/posts/user/:id/posts | Fetches all of a user's posts | List of post objects |
+
+
+
+
+
 
