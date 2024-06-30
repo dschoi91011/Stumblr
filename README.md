@@ -1,8 +1,39 @@
-# Flask React Project
+![logowhitebig](https://github.com/ckang021/welp/assets/104466769/e6505998-4e38-4a10-b5d5-8f5768072e19)
 
-This is the starter for the Flask React project.
+## stumblr
 
-## Getting started
+Stumblr is inspired by Tumblr, a social media platform in which users are able to express themselves via multiple mediums. 
+Stumblr allows users to create their own account and view other users' blogs.
+The user is able to create, edit, and delete his/her own blog posts, read other users' comments on existing blogs, and post, edit, and delete his/her own comments.
+
+[Live Site](https://stumblr.onrender.com/)
+
+## Screenshots:
+![ScreenRecording2024-06-23at7 11 00PM-ezgif com-video-to-gif-converter](https://github.com/ckang021/welp/assets/104466769/dc9c3895-73aa-44f7-8c43-b353fdf7b40d)
+
+## Contact:
+[LinkedIn](https://www.linkedin.com/in/daniel-choi-905970275/)
+[Portfolio](https://dschoi91011.github.io/)
+
+## Technologies Used:
+![](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=aws&logoColor=white)
+![](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+## Future Features:
+
+- User follows
+- Text blog entries
+- Search/filter
+
+## Getting started:
 
 1. Clone this repository (only this branch).
 
@@ -52,7 +83,7 @@ This is the starter for the Flask React project.
    folder whenever you change your code, keeping the production version up to
    date.
 
-## Deployment through Render.com
+## Deployment through Render.com:
 
 First, recall that Vite is a development dependency, so it will not be used in
 production. This means that you must already have the __dist__ folder located in
@@ -129,3 +160,215 @@ main, always keeping it up to date.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
+# Backend API-Routes 🚙
+
+This web app uses the following API routes to dynamically update the page to create a single-page-app-like feel for the user for specific features.
+
+## USER AUTHENTICATION/AUTHORIZATION 👥
+
+### All endpoints that require authentication
+
+All endpoints that require a current user to be logged in.
+
+* **Request:** endpoints that require authentication
+* **Error Response:** Require authentication
+  * **Status Code:** 401
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "message": "Authentication required"
+    }
+    ```
+
+### All endpoints that require proper authorization
+
+All endpoints that require authentication and the current user does not have the correct role(s) or permission(s).
+
+* **Request:** endpoints that require proper authorization
+* **Error Response:** Require proper authorization
+  * **Status Code:** 403
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "message": "Forbidden"
+    }
+    ```
+
+### Get the Current User
+
+Returns the information about the current user that is logged in.
+
+* **Require Authentication:** false
+* **Request:**
+  * **Method:** GET
+  * **URL:** `/api/session`
+  * **Body:** none
+* **Successful Response when there is a logged in user:**
+  * **Status Code:** 200
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "user": {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john.smith@gmail.com",
+        "username": "JohnSmith"
+      }
+    }
+    ```
+* **Successful Response when there is no logged in user:**
+  * **Status Code:** 200
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "user": null
+    }
+    ```
+
+### Log In a User
+
+Logs in a current user with valid credentials and returns the current user's information.
+
+* **Require Authentication:** false
+* **Request:**
+  * **Method:** POST
+  * **URL:** `/api/session`
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "credential": "john.smith@gmail.com",
+      "password": "secret password"
+    }
+    ```
+* **Successful Response:**
+  * **Status Code:** 200
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "user": {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john.smith@gmail.com",
+        "username": "JohnSmith"
+      }
+    }
+    ```
+* **Error Response: Invalid credentials**
+  * **Status Code:** 401
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "message": "Invalid credentials"
+    }
+    ```
+* **Error Response: Body validation errors**
+  * **Status Code:** 400
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "credential": "Email or username is required",
+        "password": "Password is required"
+      }
+    }
+    ```
+
+### Sign Up a User
+
+Creates a new user, logs them in as the current user, and returns the current user's information.
+
+* **Require Authentication:** false
+* **Request:**
+  * **Method:** POST
+  * **URL:** `/api/users`
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john.smith@gmail.com",
+      "username": "JohnSmith",
+      "password": "secret password"
+    }
+    ```
+* **Successful Response:**
+  * **Status Code:** 200
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "user": {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john.smith@gmail.com",
+        "username": "JohnSmith"
+      }
+    }
+    ```
+* **Error Response: User already exists with the specified email**
+  * **Status Code:** 500
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "message": "User already exists",
+      "errors": {
+        "email": "User with that email already exists"
+      }
+    }
+    ```
+* **Error Response: User already exists with the specified username**
+  * **Status Code:** 500
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "message": "User already exists",
+      "errors": {
+        "username": "User with that username already exists"
+      }
+    }
+    ```
+* **Error Response: Body validation errors**
+  * **Status Code:** 400
+  * **Headers:**
+    * `Content-Type: application/json`
+  * **Body:**
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "email": "Invalid email",
+        "username": "Username is required",
+        "firstName": "First Name is required",
+        "lastName": "Last Name is required"
+      }
+    }
+    ```
+
