@@ -12,7 +12,7 @@ The user is able to create, edit, and delete his/her own blog posts, read other 
 ![ScreenRecording2024-06-23at7 11 00PM-ezgif com-video-to-gif-converter](https://github.com/ckang021/welp/assets/104466769/dc9c3895-73aa-44f7-8c43-b353fdf7b40d)
 
 ## Contact:
-[LinkedIn](https://www.linkedin.com/in/daniel-choi-905970275/)
+[LinkedIn](https://www.linkedin.com/in/daniel-choi-905970275/)  
 [Portfolio](https://dschoi91011.github.io/)
 
 ## Technologies Used:
