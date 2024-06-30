@@ -31,6 +31,18 @@ The user is able to create, edit, and delete his/her own blog posts, read other 
 ![](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
 ![](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
+## Features:
+
+- User authentication: Sign up, log in, and log out users.
+- Show all posts: Main page displays all posts by all users.
+- User posts: Each user has a display page of all his/her posts.
+- Show comments: Comments for each post can be toggled.
+- Post: Users can create, edit, and delete their own posts.
+- Upload image: Users can upload and edit images.
+- Comment: Users can write, edit, and delete their own comments.
+- Like posts: Users can like/unlike other posts.
+- One post: Users can view a post's details.
+
 ## Future Features:
 
 - User follows
