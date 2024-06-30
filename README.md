@@ -1,6 +1,8 @@
-<img src="https://github.com/dschoi91011/Stumblr/blob/main/stumblr.png?raw=true" alt="stumblr-logo-img" width="300" height="300">
+<div style="text-align: center;">
+   <img src="https://github.com/dschoi91011/Stumblr/blob/main/stumblr.png?raw=true" alt="stumblr-logo-img" width="300" height="300">
+</div>
 
-## stumblr
+##
 
 Stumblr is inspired by Tumblr, a social media platform in which users are able to express themselves via multiple mediums. 
 Stumblr allows users to create their own account and view other users' blogs.
