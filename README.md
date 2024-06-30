@@ -182,11 +182,10 @@ main, always keeping it up to date.
 ### User Auth
 
 | Request | Purpose | Return |
+|         |         |        |
 |---------|---------|--------|
-| GET /api/auth | Sent on initial load and upon refreshes. Returns current user object, if one is logged in |        |
-
-
-All endpoints that require a current user to be logged in.
+| GET /api/auth | Sent on initial load and upon refreshes. Returns current user object, if one is logged in. |        |
+|               |                                                                                            |        |
 
 * **Request:** endpoints that require authentication
 * **Error Response:** Require authentication
