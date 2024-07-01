@@ -137,9 +137,9 @@ return(
 
                 <div className='posts-header'>
                     <div className='posts-header-center'>
-                        <img className='linkedin' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToLinkedIn} src='/linkedin.png' alt='linkedin'/>
-                        <img className='github' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToGitHub} src='/github2.png' alt='github'/>
-                        <img className='portfolio' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToPortfolio} src='/portfolio.png' alt='portfolio'/>
+                        <img className='linkedin' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToLinkedIn} src='/linkedin_white.png' alt='linkedin'/>
+                        <img className='github' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToGitHub} src='/github_white.png' alt='github'/>
+                        <img className='portfolio' style={{height: '50px', width: '50px', cursor: 'pointer'}} onClick={goToPortfolio} src='/portfolio_white.png' alt='portfolio'/>
                     </div>
                     {/* <div className='posts-header-search'>
                         <div className='search'>{searchBar}</div>
