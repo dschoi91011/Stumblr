@@ -54,7 +54,7 @@
 }
 
 .post-block{
-    border: 1px solid black;
+    border: 1px solid white;
     width: 100%; 
     margin-bottom: 15px;
     background-color: rgb(75, 87, 196);
@@ -71,7 +71,7 @@
     height: 50px;
     width: 50px;
     margin: 5px 15px 0 10px;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 5px;
 }
 
@@ -83,8 +83,8 @@
     display: flex;
     justify-content: center;
     margin: 30px 0 0;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    /* border-top: 1px solid white;
+    border-bottom: 1px solid white; */
 }
 
 .post-img{
@@ -127,17 +127,17 @@
     width: 50px;
     margin-top: 5px;
     margin-right: 10px;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 5px;
 }
 
 .commenter-post-block{
-    border: 1px solid black;
+    /* border: 1px solid white; */
     border-radius: 5px;
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 5px;
-    background-color: white;
+    background-color: rgb(128, 181, 228);
 }
 
 .commenter-reply{
@@ -177,6 +177,7 @@
 
 .poster-username{
     margin-bottom: -10px;
+    color: white;
 }
 
 .reshuffle-btn-container{

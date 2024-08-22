@@ -161,7 +161,7 @@ return(
                         </div>
 
                         <div className="post-lower-btns" style={{marginLeft: '10px'}}>
-                            <p className='img-caption' style={{marginLeft: '10px', fontSize: '20px'}}>{obj.body}</p>
+                            <p className='img-caption' style={{marginLeft: '10px', fontSize: '20px', color: 'white'}}>{obj.body}</p>
 
                             {currentUser && currentUser.id !== obj.poster_id && (
                                 <div className='post-lower-right-btn-cluster' style={{marginRight: '10px'}}>
