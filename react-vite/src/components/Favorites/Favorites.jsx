@@ -39,12 +39,12 @@ export default function Favorites(){
                 <div className='favorite-post-container' key={post.id}>
                     <div className='favorite-post-header'>
                         <img className='poster-profpic' src={post?.profile_pic || '/default_profpic.jpg'} alt='prof_pic'/>
-                        <p className='post-username'>{post.username}</p>
+                        <p className='post-username' style={{color: 'white'}}>{post.username}</p>
                     </div>
                     <div className='favorite-post-img-container' onClick={() => handlePostClick(post.id)} style={{cursor: 'pointer'}}>
                         <img className='favorite-post-image' src={post.picture} alt='post-img'/>
                     </div>
-                    <p className='favorite-post-body' style={{fontSize: '20px'}}>{post.body}</p>
+                    <p className='favorite-post-body' style={{fontSize: '20px', color: 'white'}}>{post.body}</p>
                 </div>
               ))
             ) : (
