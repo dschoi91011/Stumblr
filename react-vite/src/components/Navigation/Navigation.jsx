@@ -17,6 +17,10 @@ function Navigation(){
     navigate('favorites');
   }
 
+  const followClick = () => {
+    alert('Show all users being followed.');
+  }
+
   return(
     <div id='nav-bar'>
       <div className='nav-upper'>
@@ -41,13 +45,13 @@ function Navigation(){
             </button>
           }
 
-          {/* {
+          {
             currentUser &&
-            <button className="nav-follow-btn" style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={navHomeClick}>
+            <button className="nav-follow-btn" style={{height: '30px', width: '130px', borderRadius: '10px', cursor: 'pointer'}} onClick={followClick}>
               <img style={{height: '25px', width: '25px'}} src="/follow_icon.png" alt="fav"/>
               <span style={{fontSize: '15px'}}>Follow</span>
             </button>
-          } */}
+          }
         
         </div>
       </div>
