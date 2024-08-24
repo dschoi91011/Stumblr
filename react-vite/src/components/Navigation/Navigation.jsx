@@ -18,7 +18,7 @@ function Navigation(){
   }
 
   const followClick = () => {
-    alert('Show all users being followed.');
+    navigate('following');
   }
 
   return(

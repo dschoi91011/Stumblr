@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import {createBrowserRouter} from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import AllPosts from '../components/AllPosts';
@@ -7,7 +7,7 @@ import CreatePostForm from '../components/CreatePostForm';
 import OnePost from '../components/OnePost';
 import Layout from './Layout';
 import Favorites from '../components/Favorites';
-
+import Follows from '../components/Follows';
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "favorites",
         element: <Favorites/>,
+      },
+      {
+        path: "following",
+        element: <Follows/>,
       }
     ],
   },
