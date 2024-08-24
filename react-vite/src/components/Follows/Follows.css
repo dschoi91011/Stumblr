@@ -1,0 +1,10 @@
+.follows-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px; 
+    padding-left: 80px; 
+}
+
+.follows-title{
+    margin-top: 30px;
+}
